@@ -1,0 +1,139 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 800px;
+}
+
+.header {
+  margin-bottom: var(--space-md);
+}
+
+.backBtn {
+  display: inline-block;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: var(--space-md);
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: var(--color-primary);
+}
+
+.title {
+  font-size: 1.8rem;
+  color: var(--color-tertiary);
+  margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.formSection {
+  background: white;
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.sectionTitle {
+  font-size: 1.2rem;
+  color: var(--color-tertiary);
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.formGroup, .formGroupFull {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.formGroup label, .formGroupFull label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.input, .textarea {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid #d1d5db;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  background-color: #f9fafb;
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: white;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitBtn {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: var(--color-tertiary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.errorBanner {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  border: 1px solid #f87171;
+}
+
+@media (max-width: 600px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+}

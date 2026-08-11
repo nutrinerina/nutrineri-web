@@ -1,0 +1,83 @@
+:root {
+  /* Brand Colors - Luxury Muted Palette */
+  --color-primary: #2d6a4f;     /* Verde bosque elegante */
+  --color-secondary: #52796f;   /* Verde salvia / grisáceo */
+  --color-tertiary: #1b263b;    /* Azul medianoche (casi negro) */
+  --color-quaternary: #f1f3ee;  /* Gris/verde ultraclaro cálido */
+  
+  /* UI Colors */
+  --color-background: #fdfbf7;  /* Blanco cálido/marfil (no blanco puro) */
+  --color-surface: #ffffff;     /* Blanco puro solo para tarjetas */
+  --color-text-main: #2c3531;   /* Gris muy oscuro, menos duro que negro */
+  --color-text-muted: #5e6b62;  /* Gris sutil */
+  --color-text-light: #fcfbf9;  /* Blanco para textos sobre fondos oscuros */
+  
+  /* Typography */
+  --font-heading: var(--font-outfit), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+  
+  /* Spacing - Increased for more whitespace */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 8rem;
+
+  /* Border Radius - Very soft */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows - Ethereal and soft */
+  --shadow-sm: 0 4px 20px rgba(27, 38, 59, 0.03);
+  --shadow-md: 0 8px 30px rgba(27, 38, 59, 0.05);
+  --shadow-lg: 0 16px 40px rgba(27, 38, 59, 0.08);
+}
+
+/* Global Reset & Typography */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-tertiary);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  line-height: 1.1;
+}

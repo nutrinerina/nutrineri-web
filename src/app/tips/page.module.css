@@ -1,0 +1,124 @@
+.page {
+  background-color: var(--color-background);
+  min-height: 100vh;
+}
+
+.header {
+  padding: var(--space-3xl) 0 var(--space-xl);
+  text-align: center;
+  background: linear-gradient(180deg, var(--color-quaternary) 0%, var(--color-background) 100%);
+}
+
+.headerContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+.title {
+  font-size: 3rem;
+  color: var(--color-tertiary);
+  margin-bottom: var(--space-sm);
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-xl);
+}
+
+.newsletter {
+  background-color: var(--color-tertiary);
+  color: white;
+  padding: var(--space-3xl) var(--space-lg);
+  text-align: center;
+  margin-top: var(--space-3xl);
+}
+
+.newsletterContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsletter h2 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: var(--space-sm);
+}
+
+.newsletter p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: var(--space-lg);
+}
+
+.form {
+  display: flex;
+  gap: var(--space-sm);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.input {
+  flex-grow: 1;
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-full);
+  border: none;
+  font-size: 1rem;
+  font-family: var(--font-body);
+}
+
+.input:focus {
+  outline: 2px solid var(--color-primary);
+}
+
+.button {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.button:hover {
+  background-color: var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .form {
+    flex-direction: column;
+  }
+  
+  .button {
+    width: 100%;
+  }
+}

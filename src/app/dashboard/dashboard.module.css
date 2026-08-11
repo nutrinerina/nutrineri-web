@@ -1,0 +1,118 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  font-family: var(--font-body);
+}
+
+.sidebar {
+  width: 260px;
+  background-color: var(--color-tertiary);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl) var(--space-md);
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.brand {
+  padding: 0 var(--space-sm) var(--space-xl);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: var(--space-xl);
+}
+
+.brand h2 {
+  color: white;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex-grow: 1;
+}
+
+.navLink {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.navLink:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.logoutWrapper {
+  margin-top: auto;
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.logoutBtn {
+  width: 100%;
+  padding: 0.85rem;
+  background-color: transparent;
+  color: #fca5a5;
+  border: 1px solid rgba(252, 165, 165, 0.2);
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+  font-weight: 600;
+}
+
+.logoutBtn:hover {
+  background-color: rgba(252, 165, 165, 0.1);
+}
+
+.mainContent {
+  flex-grow: 1;
+  margin-left: 260px;
+  padding: var(--space-2xl);
+}
+
+.pageHeader {
+  margin-bottom: var(--space-2xl);
+}
+
+.pageHeader h1 {
+  font-size: 2rem;
+  margin-bottom: var(--space-xs);
+}
+
+.pageHeader p {
+  color: var(--color-text-muted);
+}
+
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+}
+
+.statsCard {
+  background-color: white;
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.statsCard h3 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.statsNumber {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}

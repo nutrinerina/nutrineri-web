@@ -1,0 +1,113 @@
+.page {
+  background-color: var(--color-background);
+  min-height: 100vh;
+}
+
+.hero {
+  height: 50vh;
+  min-height: 400px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.backBtn {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-bottom: var(--space-lg);
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: white;
+}
+
+.category {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-sm);
+  display: inline-block;
+}
+
+.title {
+  color: white;
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  line-height: 1.1;
+}
+
+.meta {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: -var(--space-2xl) auto var(--space-3xl);
+  padding: 0 var(--space-lg);
+  position: relative;
+  z-index: 10;
+}
+
+.article {
+  background-color: white;
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.lead {
+  font-size: 1.25rem;
+  color: var(--color-tertiary);
+  font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.content {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.content p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .article {
+    padding: var(--space-xl);
+  }
+}

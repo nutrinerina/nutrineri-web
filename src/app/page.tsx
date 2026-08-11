@@ -1,0 +1,68 @@
+import Image from "next/image";
+import Button from "@/components/Button";
+import Card from "@/components/Card";
+import styles from "./page.module.css";
+
+export default function Home() {
+  return (
+    <div className={styles.page}>
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.title}>
+            Nutrición que transforma hábitos y mejora tu vida.
+          </h1>
+          <p className={styles.subtitle}>
+            Te acompaño a construir una alimentación saludable, realista y adaptada a vos. Sin dietas restrictivas, con educación y consciencia.
+          </p>
+          <div className={styles.actions}>
+            <Button href="/servicios" variant="primary" size="lg">Conocé mis servicios</Button>
+            <Button href="/contacto" variant="outline" size="lg">Reservá tu turno</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Highlight */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>¿Cómo te puedo ayudar?</h2>
+            <p className={styles.sectionSubtitle}>Espacios pensados para lograr tus objetivos de forma sostenible.</p>
+          </div>
+          
+          <div className={styles.grid}>
+            <Card hoverable className={styles.card}>
+              <div className={styles.iconWrapper}>🍏</div>
+              <h3 className={styles.cardTitle}>Consulta Nutricional</h3>
+              <p className={styles.cardText}>Evaluación completa, diagnóstico y armado de estrategia personalizada según tus necesidades.</p>
+              <Button href="/servicios" variant="text" className={styles.cardLink}>Conocer más →</Button>
+            </Card>
+
+            <Card hoverable className={styles.card}>
+              <div className={styles.iconWrapper}>📝</div>
+              <h3 className={styles.cardTitle}>Plan Personalizado</h3>
+              <p className={styles.cardText}>Esquema de alimentación adaptado a tu estilo de vida, preferencias y objetivos reales.</p>
+              <Button href="/servicios" variant="text" className={styles.cardLink}>Conocer más →</Button>
+            </Card>
+
+            <Card hoverable className={styles.card}>
+              <div className={styles.iconWrapper}>🌱</div>
+              <h3 className={styles.cardTitle}>Educación Alimentaria</h3>
+              <p className={styles.cardText}>Aprende a comer sin culpas. Herramientas para que seas independiente en tus elecciones.</p>
+              <Button href="/servicios" variant="text" className={styles.cardLink}>Conocer más →</Button>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaContainer}>
+          <h2 className={styles.ctaTitle}>¿Querés empezar a sentirte mejor?</h2>
+          <p className={styles.ctaSubtitle}>Da el primer paso hacia una vida más saludable. Estoy acá para acompañarte en el proceso.</p>
+          <Button href="/contacto" variant="primary" size="lg">Reservar mi turno</Button>
+        </div>
+      </section>
+    </div>
+  );
+}

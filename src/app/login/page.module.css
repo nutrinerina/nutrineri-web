@@ -1,0 +1,130 @@
+.page {
+  background-color: var(--color-background);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.loginContainer {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl) var(--space-xl);
+  width: 100%;
+  max-width: 450px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(27, 38, 59, 0.03);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--color-tertiary);
+  margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-tertiary);
+}
+
+.input {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0,0,0,0.1);
+  font-size: 1rem;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+  background-color: var(--color-background);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+}
+
+.submitButton {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: var(--space-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: var(--color-tertiary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.errorBanner {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  text-align: center;
+  border: 1px solid #f87171;
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordWrapper .input {
+  width: 100%;
+  padding-right: 3rem;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.eyeButton:hover {
+  color: var(--color-primary);
+}

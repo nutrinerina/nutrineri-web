@@ -1,0 +1,356 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.backBtn {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: var(--space-md);
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: var(--color-primary);
+}
+
+.name {
+  font-size: 2rem;
+  color: var(--color-tertiary);
+  margin-bottom: var(--space-xs);
+}
+
+.meta {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.newConsultationBtn {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+
+.newConsultationBtn:hover {
+  background-color: var(--color-tertiary);
+  transform: translateY(-2px);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-sm);
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: var(--space-sm) var(--space-lg);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: var(--color-tertiary);
+}
+
+.activeTab {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  font-weight: 600;
+}
+
+.content {
+  padding: var(--space-md) 0;
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.editActionHeader {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-md);
+}
+
+.editBtn {
+  background: none;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.editBtn:hover {
+  background-color: #f9fafb;
+  color: var(--color-tertiary);
+  border-color: var(--color-tertiary);
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-md);
+}
+
+.card {
+  background: white;
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+  font-size: 1.1rem;
+  color: var(--color-tertiary);
+  margin-bottom: var(--space-md);
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: var(--space-xs);
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.card li {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.card strong {
+  color: var(--color-tertiary);
+}
+
+.medicalGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.medicalGrid h4 {
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.medicalGrid p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* History List Styles */
+.historyList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.historyCard {
+  background: white;
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  border-left: 4px solid var(--color-primary);
+}
+
+.historyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.historyHeader h3 {
+  margin: 0;
+  color: var(--color-tertiary);
+}
+
+.date {
+  background: #f3f4f6;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.historyMetrics {
+  display: flex;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+}
+
+.metricLabel {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.metricValue {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.historyNotes {
+  background: #f9fafb;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  border: 1px solid #e5e7eb;
+}
+
+.emptyState {
+  background: white;
+  padding: var(--space-3xl);
+  text-align: center;
+  border-radius: var(--radius-lg);
+  color: var(--color-text-muted);
+}
+
+/* Form Styles */
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.formSections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.formSection {
+  background: white;
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.formSection h4 {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: var(--space-xs);
+}
+
+.formGroup, .formGroupFull {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.formGroup label, .formGroupFull label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.input, .textarea {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid #d1d5db;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background-color: #f9fafb;
+  transition: all 0.2s;
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: white;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+}
+
+.cancelBtn {
+  background: none;
+  border: 1px solid #d1d5db;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submitBtn {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.submitBtn:hover {
+  background-color: var(--color-tertiary);
+}
+
+@media (max-width: 768px) {
+  .grid2, .medicalGrid {
+    grid-template-columns: 1fr;
+  }
+}

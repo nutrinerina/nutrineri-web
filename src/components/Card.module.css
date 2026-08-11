@@ -1,0 +1,18 @@
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  border: 1px solid rgba(27, 38, 59, 0.03); /* Extremely subtle border */
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.hoverable:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(27, 38, 59, 0.08);
+  cursor: pointer;
+}

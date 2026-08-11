@@ -1,0 +1,85 @@
+.page {
+  background-color: var(--color-background);
+  min-height: 100vh;
+}
+
+.header {
+  background-color: var(--color-quaternary);
+  padding: var(--space-2xl) 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--color-tertiary);
+  margin-bottom: var(--space-sm);
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-main);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.servicesSection {
+  padding: var(--space-2xl) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--space-xl);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.iconWrapper {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  align-self: flex-start;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  color: var(--color-tertiary);
+  margin-bottom: var(--space-sm);
+}
+
+.cardDescription {
+  color: var(--color-text-main);
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+  flex-grow: 1;
+}
+
+.benefitsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: var(--space-lg);
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.ctaButton {
+  margin-top: auto;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
