@@ -1,0 +1,125 @@
+.container {
+  padding: var(--space-xl);
+}
+
+.header {
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: var(--space-xl);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: var(--color-primary);
+}
+
+.activeTab {
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.success {
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.error {
+  background-color: #fee2e2;
+  color: #ef4444;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.formCard {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.formCard h2 {
+  margin-bottom: var(--space-lg);
+  color: var(--color-tertiary);
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+  background-color: #f9fafb;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+}
+
+.section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.input, .textarea {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-xl);
+}
+
+.submitBtn {
+  background-color: var(--color-tertiary);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+}

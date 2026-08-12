@@ -76,25 +76,52 @@ export default function NuevoPaciente() {
         </div>
 
         <div className={styles.formSection}>
-          <h2 className={styles.sectionTitle}>Historia Médica Base</h2>
-          
+          <h2 className={styles.sectionTitle}>Motivo de Consulta</h2>
           <div className={styles.formGroupFull}>
-            <label>Objetivo de la consulta</label>
+            <label>Objetivo principal</label>
             <input type="text" name="objective" className={styles.input} placeholder="Ej: Descenso de grasa, educación alimentaria..." />
           </div>
           <div className={styles.formGroupFull}>
-            <label>Antecedentes Médicos</label>
-            <textarea name="medical_background" className={styles.textarea} rows={3}></textarea>
+            <label>Expectativas del paciente (qué espera lograr y en cuánto tiempo)</label>
+            <textarea name="expectations" className={styles.textarea} rows={2}></textarea>
           </div>
+          <div className={styles.formGroupFull}>
+            <label>Derivado por (profesional / motivo)</label>
+            <input type="text" name="referred_by" className={styles.input} />
+          </div>
+        </div>
+
+        <div className={styles.formSection}>
+          <h2 className={styles.sectionTitle}>Antecedentes y Hábitos</h2>
           <div className={styles.grid2}>
             <div className={styles.formGroup}>
-              <label>Medicamentos Actuales</label>
-              <textarea name="medication" className={styles.textarea} rows={2}></textarea>
+              <label>Enfermedades actuales y pasadas</label>
+              <textarea name="medical_background" className={styles.textarea} rows={3}></textarea>
+            </div>
+            <div className={styles.formGroup}>
+              <label>Antecedentes familiares</label>
+              <textarea name="family_background" className={styles.textarea} rows={3}></textarea>
+            </div>
+            <div className={styles.formGroup}>
+              <label>Cirugías previas</label>
+              <textarea name="past_surgeries" className={styles.textarea} rows={2}></textarea>
             </div>
             <div className={styles.formGroup}>
               <label>Alergias o Intolerancias</label>
               <textarea name="allergies_intolerances" className={styles.textarea} rows={2}></textarea>
             </div>
+            <div className={styles.formGroup}>
+              <label>Medicamentos Actuales</label>
+              <textarea name="medication" className={styles.textarea} rows={2}></textarea>
+            </div>
+            <div className={styles.formGroup}>
+              <label>Suplementos</label>
+              <textarea name="supplements" className={styles.textarea} rows={2}></textarea>
+            </div>
+          </div>
+          <div className={styles.formGroupFull}>
+            <label>Preferencias y rechazos alimentarios</label>
+            <textarea name="food_preferences" className={styles.textarea} rows={2}></textarea>
           </div>
         </div>
 

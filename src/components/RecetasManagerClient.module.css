@@ -1,0 +1,191 @@
+.container {
+  padding: var(--space-xl);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+}
+
+.addBtn {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.addBtn:hover {
+  opacity: 0.9;
+}
+
+.error {
+  background-color: #fee2e2;
+  color: #ef4444;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+}
+
+.formCard {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: var(--space-2xl);
+}
+
+.formCard h2 {
+  margin-bottom: var(--space-lg);
+  color: var(--color-tertiary);
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroupFull {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input, .textarea {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-xl);
+}
+
+.submitBtn {
+  background-color: var(--color-tertiary);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gridList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.card {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.cardImage {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+}
+
+.cardContent {
+  padding: var(--space-lg);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardContent h3 {
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.cardContent p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.deleteBtn {
+  background-color: white;
+  color: #ef4444;
+  border: 1px solid #ef4444;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.deleteBtn:hover {
+  background-color: #fee2e2;
+}
+
+.editBtn {
+  background-color: white;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.editBtn:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.empty {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--space-3xl);
+  background-color: #f9fafb;
+  border-radius: var(--radius-lg);
+  border: 2px dashed #e5e7eb;
+}

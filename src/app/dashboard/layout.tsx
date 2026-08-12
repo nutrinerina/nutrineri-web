@@ -21,6 +21,9 @@ export default function DashboardLayout({
         <nav className={styles.nav}>
           <Link href="/dashboard" className={styles.navLink}>Resumen</Link>
           <Link href="/dashboard/pacientes" className={styles.navLink}>Pacientes</Link>
+          <Link href="/dashboard/recetas" className={styles.navLink}>Recetas</Link>
+          <Link href="/dashboard/tips" className={styles.navLink}>Tips (Blog)</Link>
+          <Link href="/dashboard/configuracion" className={styles.navLink}>Configuración Web</Link>
         </nav>
         <div className={styles.logoutWrapper}>
           <form action={logout}>

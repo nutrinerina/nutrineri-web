@@ -1,40 +1,46 @@
 import React from 'react';
-import styles from './page.module.css';
+import { createClient } from '@/utils/supabase/server';
 import TipCard from '@/components/TipCard';
-import { TIPS } from '@/lib/mockData';
+import styles from './page.module.css';
 
 export const metadata = {
-  title: "Tips de Nutrición | Nerina Bruno",
-  description: "Artículos y recursos sobre hábitos saludables, organización y nutrición.",
+  title: 'Tips y Artículos | Nerina Bruno',
+  description: 'Consejos, artículos y recursos gratuitos sobre nutrición y bienestar.',
 };
 
-export default function Tips() {
+export default async function TipsPage() {
+  const supabase = await createClient();
+  const { data: tips } = await supabase
+    .from('tips')
+    .select('*')
+    .order('created_at', { ascending: false });
+
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <div className={styles.headerContainer}>
-          <span className={styles.eyebrow}>Blog & Recursos</span>
-          <h1 className={styles.title}>Tips de Nutrición</h1>
+        <div className={styles.container}>
+          <h1 className={styles.title}>Tips y Artículos</h1>
           <p className={styles.subtitle}>
-            Información basada en ciencia, bajada a la realidad. 
-            Estrategias simples para transformar tu día a día sin extremismos.
+            Consejos prácticos, información con base científica y herramientas para aplicar en tu día a día.
           </p>
         </div>
       </header>
 
-      <section className={styles.container}>
-        <div className={styles.grid}>
-          {TIPS.map(tip => (
-            <TipCard 
-              key={tip.id}
-              id={tip.id}
-              title={tip.title}
-              summary={tip.summary}
-              imageUrl={tip.imageUrl}
-              category={tip.category}
-              date={tip.date}
-            />
-          ))}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.grid}>
+            {tips?.map(tip => (
+              <TipCard 
+                key={tip.id}
+                id={tip.id}
+                title={tip.title}
+                summary={tip.summary}
+                imageUrl={tip.image_url}
+                category={tip.category}
+                date={tip.date}
+              />
+            ))}
+          </div>
         </div>
       </section>
 

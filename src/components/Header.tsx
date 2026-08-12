@@ -2,11 +2,17 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import Button from './Button';
 import styles from './Header.module.css';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  if (pathname?.startsWith('/dashboard') || pathname?.startsWith('/login')) {
+    return null;
+  }
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 

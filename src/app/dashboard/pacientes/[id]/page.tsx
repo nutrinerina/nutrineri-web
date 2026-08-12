@@ -23,7 +23,8 @@ export default async function PatientProfile({ params }: { params: Promise<{ id:
     .from('clinical_histories')
     .select('*, biochemical_indicators(*)')
     .eq('patient_id', id)
-    .order('consultation_date', { ascending: false });
+    .order('consultation_date', { ascending: false })
+    .order('created_at', { ascending: false });
 
   if (historiesError) {
     console.error("Error fetching histories:", historiesError);

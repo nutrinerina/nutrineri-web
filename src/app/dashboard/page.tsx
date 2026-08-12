@@ -20,7 +20,7 @@ export default async function DashboardPage() {
   return (
     <div className={styles.page}>
       <header className={styles.pageHeader}>
-        <h1>Hola, Administrador</h1>
+        <h1>Hola Nerina</h1>
         <p>Bienvenido a tu panel de gestión privada.</p>
       </header>
 
