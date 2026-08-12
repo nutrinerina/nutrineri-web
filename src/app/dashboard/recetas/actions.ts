@@ -6,7 +6,7 @@ export async function createRecipe(formData: FormData) {
   const supabase = await createClient();
 
   const ingredientsStr = formData.get('ingredients') as string;
-  let ingredients = [];
+  let ingredients: string[] = [];
   try {
     ingredients = ingredientsStr.split(',').map(i => i.trim()).filter(i => i !== '');
   } catch(e) {}
@@ -55,7 +55,7 @@ export async function updateRecipe(recipeId: string, formData: FormData) {
   const supabase = await createClient();
 
   const ingredientsStr = formData.get('ingredients') as string;
-  let ingredients = [];
+  let ingredients: string[] = [];
   try {
     ingredients = ingredientsStr.split(',').map(i => i.trim()).filter(i => i !== '');
   } catch(e) {}
