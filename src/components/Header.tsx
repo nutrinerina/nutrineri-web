@@ -40,13 +40,13 @@ export default function Header() {
             <li><Link href="/tips" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Tips</Link></li>
             {/* Mobile specific links */}
             <li className={styles.mobileOnly}><Link href="/login" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Ingresar</Link></li>
-            <li className={styles.mobileOnly}><Link href="/contacto" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Reservar turno</Link></li>
+            <li className={styles.mobileOnly}><Link href="/turnos" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Reservar turno</Link></li>
           </ul>
         </nav>
 
         <div className={styles.actions}>
           <Button href="/login" variant="outline" size="sm">Ingresar</Button>
-          <Button href="/contacto" variant="primary" size="sm">Reservar turno</Button>
+          <Button href="/turnos" variant="primary" size="sm">Reservar turno</Button>
         </div>
 
         <button className={styles.hamburger} onClick={toggleMenu} aria-label="Toggle Menu">

@@ -80,14 +80,62 @@
 
 .pageHeader {
   margin-bottom: var(--space-2xl);
+  background-image: linear-gradient(to right, rgba(46, 125, 50, 0.8), rgba(46, 125, 50, 0.4)), url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
 }
 
 .pageHeader h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: var(--space-xs);
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .pageHeader p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  margin: var(--space-2xl) 0 var(--space-md);
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-primary-light);
+  padding-bottom: var(--space-xs);
+  display: inline-block;
+}
+
+.patientsList {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.patientItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.patientItem:last-child {
+  border-bottom: none;
+}
+
+.patientName {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.patientDate {
+  font-size: 0.9rem;
   color: var(--color-text-muted);
 }
 

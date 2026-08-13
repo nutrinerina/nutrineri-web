@@ -15,6 +15,22 @@ export default function ConfiguracionClient({
   const [activeTab, setActiveTab] = useState<'home' | 'about'>('home');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{type: 'error' | 'success', text: string} | null>(null);
+  const [imageUrl, setImageUrl] = useState(initialAbout.image_url || '');
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        setMessage({ type: 'error', text: 'La imagen es demasiado grande. Máximo 2MB.' });
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImageUrl(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleSave = async (e: React.FormEvent<HTMLFormElement>, pageId: string) => {
     e.preventDefault();
@@ -151,7 +167,29 @@ export default function ConfiguracionClient({
               <h3>Multimedia</h3>
               <div className={styles.formGroup}>
                 <label>URL de tu foto de perfil</label>
-                <input type="url" name="image_url" defaultValue={initialAbout.image_url} className={styles.input} placeholder="https://..." />
+                <input 
+                  type="text" 
+                  name="image_url" 
+                  value={imageUrl} 
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  className={styles.input} 
+                  placeholder="https://..." 
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label>O selecciona una foto desde tu PC</label>
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleImageChange}
+                  className={styles.input}
+                  style={{ padding: '0.5rem 0' }}
+                />
+                {imageUrl && imageUrl.startsWith('data:image') && (
+                  <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.5rem' }}>
+                    Imagen cargada (Base64)
+                  </p>
+                )}
               </div>
             </div>
 
