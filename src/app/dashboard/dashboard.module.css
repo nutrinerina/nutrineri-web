@@ -164,3 +164,42 @@
   font-weight: 700;
   color: var(--color-primary);
 }
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: var(--space-md);
+  }
+  
+  .nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .navLink {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .mainContent {
+    margin-left: 0;
+    padding: var(--space-md);
+  }
+  
+  .pageHeader {
+    padding: var(--space-xl);
+  }
+  
+  .pageHeader h1 {
+    font-size: 2rem;
+  }
+}
