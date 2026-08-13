@@ -19,13 +19,13 @@ export default function DashboardLayout({
           <h2>NB Panel</h2>
         </div>
         <nav className={styles.nav}>
-          <Link href="/dashboard" className={styles.navLink}>Resumen</Link>
-          <Link href="/dashboard/turnos" className={styles.navLink}>Turnos (Agenda)</Link>
+          <Link href="/dashboard" className={styles.navLink}>📊 Resumen</Link>
+          <Link href="/dashboard/turnos" className={styles.navLink}>📅 Turnos (Agenda)</Link>
           <Link href="/dashboard/agenda-movil" className={styles.navLink}>📱 Agenda en Vivo</Link>
-          <Link href="/dashboard/pacientes" className={styles.navLink}>Pacientes</Link>
-          <Link href="/dashboard/recetas" className={styles.navLink}>Recetas</Link>
-          <Link href="/dashboard/tips" className={styles.navLink}>Tips (Blog)</Link>
-          <Link href="/dashboard/configuracion" className={styles.navLink}>Configuración Web</Link>
+          <Link href="/dashboard/pacientes" className={styles.navLink}>👥 Pacientes</Link>
+          <Link href="/dashboard/recetas" className={styles.navLink}>🍎 Recetas</Link>
+          <Link href="/dashboard/tips" className={styles.navLink}>📝 Tips (Blog)</Link>
+          <Link href="/dashboard/configuracion" className={styles.navLink}>⚙️ Configuración</Link>
         </nav>
         <div className={styles.logoutWrapper}>
           <form action={logout}>
