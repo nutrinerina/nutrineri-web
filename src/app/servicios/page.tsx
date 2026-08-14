@@ -73,9 +73,14 @@ export default async function Servicios() {
                     <li key={i}>✓ {b}</li>
                   ))}
                 </ul>
-                <Button href="/contacto" variant="primary" className={styles.ctaButton}>
-                  Reservar este servicio
-                </Button>
+                <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'column', width: '100%', marginTop: 'auto', paddingTop: '1rem' }}>
+                  <Button href="/turnos" variant="primary" className={styles.ctaButton}>
+                    Reservar turno
+                  </Button>
+                  <Button href={`/contacto?motivo=${encodeURIComponent(s.title)}`} variant="outline" className={styles.ctaButton}>
+                    Consulta
+                  </Button>
+                </div>
               </Card>
             ))}
           </div>

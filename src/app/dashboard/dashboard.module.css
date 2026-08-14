@@ -40,14 +40,15 @@
 }
 
 .navLink {
-  padding: 0.85rem 1rem;
+  padding: 1rem 1.25rem;
   border-radius: var(--radius-md);
   color: rgba(255, 255, 255, 0.7);
   transition: all 0.2s ease;
   font-weight: 500;
+  font-size: 1.05rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   background-color: transparent;
   border: 1px solid transparent;
   text-decoration: none;

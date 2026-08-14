@@ -1,3 +1,4 @@
+import ContactForm from "./ContactForm";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import styles from "./page.module.css";
@@ -7,7 +8,11 @@ export const metadata = {
   description: "Ponete en contacto para reservar un turno, hacer una consulta o sumarte a mis programas de nutrición.",
 };
 
-export default function Contacto() {
+export default async function Contacto({ searchParams }: { searchParams: Promise<{ motivo?: string }> | { motivo?: string } }) {
+  // Manejar searchParams tanto si es promesa (Next.js 15+) como si es objeto (Next.js 14)
+  const resolvedParams = await Promise.resolve(searchParams);
+  const motivo = resolvedParams?.motivo || "";
+
   return (
     <div className={styles.page}>
       <section className={styles.header}>
@@ -26,36 +31,7 @@ export default function Contacto() {
             {/* Contact Form */}
             <Card className={styles.formCard}>
               <h2 className={styles.formTitle}>Dejanos tu consulta</h2>
-              <form className={styles.form}>
-                <div className={styles.inputGroup}>
-                  <label htmlFor="name" className={styles.label}>Nombre completo</label>
-                  <input type="text" id="name" className={styles.input} placeholder="Tu nombre" required />
-                </div>
-                
-                <div className={styles.inputGroup}>
-                  <label htmlFor="email" className={styles.label}>Email</label>
-                  <input type="email" id="email" className={styles.input} placeholder="tu@email.com" required />
-                </div>
-                
-                <div className={styles.inputGroup}>
-                  <label htmlFor="reason" className={styles.label}>Motivo de consulta</label>
-                  <select id="reason" className={styles.input} required>
-                    <option value="">Seleccioná un motivo</option>
-                    <option value="turno">Quiero reservar un turno</option>
-                    <option value="duda">Tengo una duda sobre los servicios</option>
-                    <option value="otro">Otro</option>
-                  </select>
-                </div>
-                
-                <div className={styles.inputGroup}>
-                  <label htmlFor="message" className={styles.label}>Mensaje</label>
-                  <textarea id="message" rows={5} className={styles.textarea} placeholder="Escribí tu mensaje acá..." required></textarea>
-                </div>
-                
-                <Button type="submit" variant="primary" className={styles.submitBtn}>
-                  Enviar Mensaje
-                </Button>
-              </form>
+              <ContactForm initialReason={motivo} />
             </Card>
 
             {/* Contact Info */}

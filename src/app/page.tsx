@@ -34,7 +34,10 @@ export default async function Home() {
           </p>
           <div className={styles.actions}>
             <Button href="/servicios" variant="primary" size="lg">Conocé mis servicios</Button>
-            <Button href="/contacto" variant="outline" size="lg">Reservá tu turno</Button>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <Button href="/turnos" variant="primary" size="lg">Reservar turno</Button>
+              <Button href="/contacto" variant="outline" size="lg">Contacto</Button>
+            </div>
           </div>
         </div>
       </section>
