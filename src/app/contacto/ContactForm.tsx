@@ -28,9 +28,11 @@ export default function ContactForm({ initialReason = "" }: { initialReason?: st
       <div style={{ textAlign: 'center', padding: '2rem' }}>
         <h3 style={{ color: 'var(--success)', marginBottom: '1rem' }}>¡Consulta enviada!</h3>
         <p>Gracias por escribirme. Me pondré en contacto con vos a la brevedad.</p>
-        <Button onClick={() => setStatus('idle')} variant="outline" style={{ marginTop: '1rem' }}>
-          Enviar otra consulta
-        </Button>
+        <div style={{ marginTop: '1rem' }}>
+          <Button onClick={() => setStatus('idle')} variant="outline">
+            Enviar otra consulta
+          </Button>
+        </div>
       </div>
     )
   }
