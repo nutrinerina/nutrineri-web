@@ -53,6 +53,30 @@ export default function RecetasManagerClient({ initialRecipes }: { initialRecipe
     setError(null);
   };
 
+  const handleSeed = async () => {
+    if (!confirm('¿Insertar recetas de prueba?')) return;
+    setIsSubmitting(true);
+    try {
+      const { RECIPES } = await import('@/lib/mockData');
+      for (const r of RECIPES) {
+        const formData = new FormData();
+        formData.append('title', r.title);
+        formData.append('category', r.category);
+        formData.append('difficulty', r.difficulty);
+        formData.append('prep_time_minutes', r.prepTime.toString());
+        formData.append('image_url', r.imageUrl);
+        formData.append('ingredients', r.ingredients.join(', '));
+        formData.append('instructions', 'Instrucciones de ejemplo...');
+        await createRecipe(formData);
+      }
+      window.location.reload();
+    } catch (e) {
+      console.error(e);
+      setError('Error insertando recetas');
+    }
+    setIsSubmitting(false);
+  };
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -60,9 +84,14 @@ export default function RecetasManagerClient({ initialRecipes }: { initialRecipe
           <h1 className={styles.title}>Gestor de Recetas</h1>
           <p className={styles.subtitle}>Administrá las recetas que se muestran en la web pública.</p>
         </div>
-        <button className={styles.addBtn} onClick={showForm ? handleCancel : () => setShowForm(true)}>
-          {showForm ? 'Cancelar' : '+ Nueva Receta'}
-        </button>
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <button className={styles.addBtn} onClick={handleSeed} style={{ backgroundColor: '#f59e0b' }}>
+            {isSubmitting ? 'Insertando...' : 'Sembrar Datos (Temporal)'}
+          </button>
+          <button className={styles.addBtn} onClick={showForm ? handleCancel : () => setShowForm(true)}>
+            {showForm ? 'Cancelar' : '+ Nueva Receta'}
+          </button>
+        </div>
       </header>
 
       {error && <div className={styles.error}>{error}</div>}

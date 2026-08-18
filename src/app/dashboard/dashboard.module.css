@@ -1,24 +1,27 @@
 .layout {
-  --dash-bg: #0d1113;
-  --dash-surface: #161d21;
-  --dash-surface-hover: #1f292e;
-  --dash-border: rgba(255, 255, 255, 0.08);
-  --dash-text: #e2e8f0;
-  --dash-text-muted: #94a3b8;
+  --dash-bg: #f8fafc;
+  --dash-surface: rgba(255, 255, 255, 0.9);
+  --dash-surface-hover: rgba(255, 255, 255, 1);
+  --dash-border: rgba(0, 0, 0, 0.08);
+  --dash-text: #1e293b;
+  --dash-text-muted: #64748b;
   --dash-primary: #2d6a4f;
-  --dash-primary-light: rgba(45, 106, 79, 0.2);
+  --dash-primary-light: rgba(45, 106, 79, 0.1);
 
   display: flex;
   min-height: 100vh;
-  background-color: var(--dash-bg);
+  background-image: linear-gradient(rgba(248, 250, 252, 0.88), rgba(248, 250, 252, 0.88)), url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1920&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--dash-text);
   font-family: var(--font-body);
 }
 
 .sidebar {
   width: 280px;
-  background-color: #080b0c;
-  color: white;
+  background-color: var(--dash-surface);
+  color: var(--dash-text);
   display: flex;
   flex-direction: column;
   padding: var(--space-xl) var(--space-md);
@@ -29,6 +32,7 @@
   z-index: 100;
   overflow-y: auto;
   border-right: 1px solid var(--dash-border);
+  backdrop-filter: blur(10px);
 }
 
 .brand {
@@ -41,7 +45,7 @@
 }
 
 .brand h2 {
-  color: white;
+  color: var(--dash-text);
   margin: 0;
   font-size: 1.6rem;
   letter-spacing: 0.5px;
@@ -95,14 +99,15 @@
 }
 
 .navLink:hover {
-  background-color: var(--dash-surface);
-  color: white;
+  background-color: var(--dash-primary-light);
+  color: var(--dash-primary);
   transform: translateX(4px);
-  border-color: var(--dash-border);
+  border-color: transparent;
 }
 
 .navLink:hover .iconWrapper {
-  background-color: var(--dash-primary-light);
+  background-color: var(--dash-primary);
+  color: white;
   border-color: var(--dash-primary);
   transform: scale(1.1);
 }
@@ -139,7 +144,7 @@
   flex-grow: 1;
   margin-left: 280px;
   padding: var(--space-2xl);
-  background-color: var(--dash-bg);
+  background: transparent;
 }
 
 .pageHeader {
@@ -184,7 +189,7 @@
 .sectionTitle {
   font-size: 1.5rem;
   margin: var(--space-2xl) 0 var(--space-md);
-  color: white;
+  color: var(--dash-text);
   border-bottom: 2px solid var(--dash-primary);
   padding-bottom: var(--space-xs);
   display: inline-block;
@@ -252,13 +257,14 @@
 
 .statsCard {
   background-color: var(--dash-surface);
-  padding: var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
   border-radius: var(--radius-lg);
   border: 1px solid var(--dash-border);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   transition: transform 0.3s ease, border-color 0.3s ease;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .statsCard::after {
@@ -272,22 +278,21 @@
 }
 
 .statsCard:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-3px);
+  border-color: rgba(45, 106, 79, 0.3);
 }
 
 .statsCard h3 {
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: var(--dash-text-muted);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
 }
 
 .statsNumber {
-  font-size: 3rem;
-  font-weight: 800;
-  color: white;
-  text-shadow: 0 0 20px rgba(255,255,255,0.1);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--dash-primary);
 }
 
 @media (max-width: 768px) {
