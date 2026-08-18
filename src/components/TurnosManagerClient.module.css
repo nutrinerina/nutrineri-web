@@ -1,18 +1,29 @@
 .container {
   font-family: var(--font-body);
+  --turn-bg: #161d21;
+  --turn-border: rgba(255, 255, 255, 0.08);
+  --turn-text: #e2e8f0;
+  --turn-text-muted: #94a3b8;
+  --turn-primary: #2d6a4f;
+  --turn-available: #059669;
+  --turn-booked: #1d4ed8;
+  --turn-booked-bg: rgba(29, 78, 216, 0.1);
+  --turn-available-bg: rgba(5, 150, 105, 0.1);
 }
 
 .error {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: rgba(153, 27, 27, 0.2);
+  color: #fca5a5;
+  border: 1px solid #991b1b;
   padding: 1rem;
   border-radius: var(--radius-md);
   margin-bottom: var(--space-xl);
 }
 
 .success {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: rgba(22, 101, 52, 0.2);
+  color: #86efac;
+  border: 1px solid #166534;
   padding: 1rem;
   border-radius: var(--radius-md);
   margin-bottom: var(--space-xl);
@@ -20,8 +31,9 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 320px 1fr;
   gap: var(--space-2xl);
+  align-items: start;
 }
 
 @media (max-width: 900px) {
@@ -31,20 +43,23 @@
 }
 
 .formCard {
-  background-color: white;
+  background-color: var(--turn-bg);
   padding: var(--space-xl);
   border-radius: var(--radius-lg);
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  border: 1px solid var(--turn-border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 2rem;
 }
 
 .formCard h2 {
   font-size: 1.5rem;
   margin-bottom: var(--space-xs);
-  color: var(--color-text);
+  color: white;
 }
 
 .subtitle {
-  color: var(--color-text-muted);
+  color: var(--turn-text-muted);
   font-size: 0.95rem;
   margin-bottom: var(--space-lg);
 }
@@ -58,15 +73,24 @@
 .formGroup label {
   font-weight: 500;
   margin-bottom: var(--space-xs);
-  color: var(--color-text);
+  color: var(--turn-text);
+  font-size: 0.9rem;
 }
 
 .input, .select {
   padding: 0.75rem;
-  border: 1px solid var(--color-border);
+  background-color: #0d1113;
+  border: 1px solid var(--turn-border);
   border-radius: var(--radius-md);
+  color: white;
   font-family: inherit;
   font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.input:focus, .select:focus {
+  outline: none;
+  border-color: var(--turn-primary);
 }
 
 .timeGroup {
@@ -77,152 +101,240 @@
 
 .submitBtn {
   width: 100%;
-  padding: 0.75rem;
-  background-color: var(--color-primary);
+  padding: 0.85rem;
+  background-color: var(--turn-primary);
   color: white;
   border: none;
   border-radius: var(--radius-md);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
   margin-top: var(--space-md);
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
 }
 
 .submitBtn:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(45, 106, 79, 0.4);
 }
 
 .submitBtn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
 }
 
 .empty {
-  color: var(--color-text-muted);
+  color: var(--turn-text-muted);
   margin-top: var(--space-md);
+  background-color: var(--turn-bg);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--turn-border);
+  text-align: center;
 }
 
 .datesList {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xl);
-  margin-top: var(--space-md);
+  gap: var(--space-2xl);
 }
 
 .dateGroup {
-  background-color: white;
-  padding: var(--space-xl);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  background-color: transparent;
 }
 
 .dateTitle {
-  font-size: 1.25rem;
-  color: var(--color-primary);
+  font-size: 1.4rem;
+  color: white;
   margin-bottom: var(--space-lg);
-  border-bottom: 2px solid #f3f4f6;
   padding-bottom: var(--space-sm);
   text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dateTitle::before {
+  content: '📅';
+  font-size: 1.2rem;
+  background-color: var(--turn-bg);
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--turn-border);
 }
 
 .slotsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--space-md);
 }
 
 .slotCard {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-md);
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
   display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
+  flex-direction: row;
+  overflow: hidden;
+  background-color: var(--turn-bg);
+  transition: transform 0.2s, border-color 0.2s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.slotCard:hover {
+  transform: translateY(-3px);
 }
 
 .slotAvailable {
-  background-color: #f9fafb;
+  border-color: var(--turn-border);
+}
+
+.slotAvailable:hover {
+  border-color: var(--turn-available);
 }
 
 .slotBooked {
-  background-color: #eff6ff;
-  border-color: #bfdbfe;
+  border-color: rgba(29, 78, 216, 0.3);
 }
 
-.slotHeader {
+.slotBooked:hover {
+  border-color: var(--turn-booked);
+}
+
+.timeColumn {
+  padding: var(--space-md);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  padding-bottom: var(--space-xs);
+  justify-content: center;
+  border-right: 1px solid var(--turn-border);
+  min-width: 90px;
+}
+
+.slotAvailable .timeColumn {
+  background-color: rgba(255,255,255,0.02);
+}
+
+.slotBooked .timeColumn {
+  background-color: var(--turn-booked-bg);
 }
 
 .slotTime {
-  font-weight: 700;
-  font-size: 1.25rem;
-  color: var(--color-text);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: white;
+  line-height: 1;
 }
 
 .slotDuration {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  background-color: #e5e7eb;
-  padding: 2px 6px;
-  border-radius: 12px;
+  font-size: 0.75rem;
+  color: var(--turn-text-muted);
+  margin-top: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .slotDetails {
+  padding: var(--space-md);
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  font-size: 0.9rem;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .availableText {
-  color: #059669;
-  font-weight: 500;
+  color: var(--turn-available);
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.availableText::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--turn-available);
+}
+
+.clientName {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+  margin: 0;
+}
+
+.clientInfo {
+  font-size: 0.85rem;
+  color: var(--turn-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .modalityBadge {
   display: inline-block;
-  background-color: var(--color-primary-light);
-  color: var(--color-primary);
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  background-color: rgba(255,255,255,0.1);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   width: max-content;
-  margin: 0.25rem 0;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.modalityBadge.online {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #93c5fd;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.actionButtons {
+  margin-top: auto;
+  padding-top: var(--space-sm);
+  display: flex;
+  justify-content: flex-end;
 }
 
 .deleteBtn {
   background: none;
-  border: none;
-  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
   cursor: pointer;
-  text-align: left;
-  padding: 0;
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
 .deleteBtn:hover {
-  text-decoration: underline;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: #ef4444;
 }
 
 .cancelBtn {
-  background: none;
-  border: none;
-  color: #b91c1c;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
   cursor: pointer;
-  text-align: left;
-  padding: 0;
-  font-size: 0.85rem;
-  margin-top: 0.5rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
   font-weight: 600;
+  transition: all 0.2s;
 }
 
 .cancelBtn:hover {
-  text-decoration: underline;
+  background-color: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
 }

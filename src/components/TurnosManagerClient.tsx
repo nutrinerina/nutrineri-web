@@ -133,24 +133,34 @@ export default function TurnosManagerClient({ initialSlots }: { initialSlots: Sl
                   <div className={styles.slotsGrid}>
                     {slotsByDate[date].map(slot => (
                       <div key={slot.id} className={`${styles.slotCard} ${slot.status === 'booked' ? styles.slotBooked : styles.slotAvailable}`}>
-                        <div className={styles.slotHeader}>
+                        <div className={styles.timeColumn}>
                           <span className={styles.slotTime}>{slot.time.substring(0, 5)}</span>
-                          <span className={styles.slotDuration}>{slot.duration}m</span>
+                          <span className={styles.slotDuration}>{slot.duration} min</span>
                         </div>
                         
-                        {slot.status === 'booked' ? (
-                          <div className={styles.slotDetails}>
-                            <strong>{slot.client_name}</strong>
-                            <span>{slot.client_phone}</span>
-                            <span className={styles.modalityBadge}>{slot.modality === 'online' ? 'Online' : 'Presencial'}</span>
-                            <button onClick={() => handleCancel(slot.id)} className={styles.cancelBtn} title="Cancelar Reserva">✕ Cancelar</button>
-                          </div>
-                        ) : (
-                          <div className={styles.slotDetails}>
-                            <span className={styles.availableText}>Disponible</span>
-                            <button onClick={() => handleDelete(slot.id)} className={styles.deleteBtn} title="Eliminar Horario">Eliminar</button>
-                          </div>
-                        )}
+                        <div className={styles.slotDetails}>
+                          {slot.status === 'booked' ? (
+                            <>
+                              <h4 className={styles.clientName}>{slot.client_name}</h4>
+                              <div className={styles.clientInfo}>
+                                <span>{slot.client_phone}</span>
+                              </div>
+                              <span className={`${styles.modalityBadge} ${slot.modality === 'online' ? styles.online : ''}`}>
+                                {slot.modality === 'online' ? 'Online' : 'Presencial'}
+                              </span>
+                              <div className={styles.actionButtons}>
+                                <button onClick={() => handleCancel(slot.id)} className={styles.cancelBtn} title="Cancelar Reserva">✕ Cancelar</button>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <span className={styles.availableText}>Disponible</span>
+                              <div className={styles.actionButtons}>
+                                <button onClick={() => handleDelete(slot.id)} className={styles.deleteBtn} title="Eliminar Horario">Eliminar</button>
+                              </div>
+                            </>
+                          )}
+                        </div>
                       </div>
                     ))}
                   </div>

@@ -37,12 +37,20 @@ export default function RecetasClient({ initialRecipes }: RecetasClientProps) {
       const matchesSearch = recipe.title.toLowerCase().includes(searchQuery.toLowerCase());
       
       // Filter by ingredients ("¿Qué tenés en casa?")
+      // Changed from 'every' to 'some' so selecting more ingredients shows MORE recipes (OR logic)
       const matchesIngredients = selectedIngredients.length === 0 || 
-        selectedIngredients.every(ing => recipe.ingredients?.includes(ing));
+        selectedIngredients.some(ing => recipe.ingredients?.includes(ing));
 
       return matchesSearch && matchesIngredients;
     });
   }, [initialRecipes, selectedIngredients, searchQuery]);
+
+  const INGREDIENT_ICONS: Record<string, string> = {
+    "Pollo": "🍗", "Huevo": "🥚", "Tomate": "🍅", "Zanahoria": "🥕", 
+    "Zapallito": "🥒", "Arroz": "🍚", "Lentejas": "🍲", "Avena": "🌾", 
+    "Cebolla": "🧅", "Morrón": "🫑", "Quinoa": "🥣", "Palta": "🥑", 
+    "Espinaca": "🥬", "Cacao": "🍫", "Almendras": "🥜", "Banana": "🍌"
+  };
 
   return (
     <div className={styles.page}>
@@ -68,7 +76,8 @@ export default function RecetasClient({ initialRecipes }: RecetasClientProps) {
                   className={`${styles.ingredientTag} ${selectedIngredients.includes(ing) ? styles.tagActive : ''}`}
                   onClick={() => toggleIngredient(ing)}
                 >
-                  {ing}
+                  <span className={styles.ingredientIcon}>{INGREDIENT_ICONS[ing] || "🥗"}</span>
+                  <span className={styles.ingredientName}>{ing}</span>
                 </button>
               ))}
             </div>

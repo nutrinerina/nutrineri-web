@@ -84,6 +84,60 @@ export const RECIPES: Recipe[] = [
     imageUrl: "https://images.unsplash.com/photo-1557925923-33b251dc3296?q=80&w=800&auto=format&fit=crop",
     ingredients: ["Banana", "Avena", "Huevo", "Almendras"],
     category: "Desayunos"
+  },
+  {
+    id: "9",
+    title: "Pollo al curry con Arroz",
+    difficulty: "Media",
+    prepTime: 40,
+    imageUrl: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["Pollo", "Arroz", "Cebolla"],
+    category: "Almuerzos"
+  },
+  {
+    id: "10",
+    title: "Wok de Arroz, Quinoa y Morrón",
+    difficulty: "Fácil",
+    prepTime: 20,
+    imageUrl: "https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["Arroz", "Quinoa", "Morrón", "Zapallito"],
+    category: "Cenas"
+  },
+  {
+    id: "11",
+    title: "Tostadas con Palta y Huevo",
+    difficulty: "Fácil",
+    prepTime: 10,
+    imageUrl: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["Palta", "Huevo", "Tomate"],
+    category: "Desayunos"
+  },
+  {
+    id: "12",
+    title: "Omelette de Espinaca y Tomate",
+    difficulty: "Fácil",
+    prepTime: 15,
+    imageUrl: "https://images.unsplash.com/photo-1510693206972-df098062cb71?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["Espinaca", "Huevo", "Tomate"],
+    category: "Cenas"
+  },
+  {
+    id: "13",
+    title: "Brownie saludable de Cacao y Banana",
+    difficulty: "Media",
+    prepTime: 35,
+    imageUrl: "https://images.unsplash.com/photo-1587314168485-3236d6710814?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["Cacao", "Banana", "Avena"],
+    category: "Snacks"
+  },
+  {
+    id: "14",
+    title: "Bastones de Zapallito al horno",
+    difficulty: "Fácil",
+    prepTime: 25,
+    imageUrl: "https://images.unsplash.com/photo-1485962398705-ef6a13cb1e8b?q=80&w=800&auto=format&fit=crop",
+    ingredients: ["Zapallito", "Avena"],
+    category: "Guarniciones"
   }
 ];
 

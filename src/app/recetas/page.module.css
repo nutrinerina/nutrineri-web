@@ -74,24 +74,41 @@
 }
 
 .ingredientTag {
-  background-color: var(--color-background);
-  border: 1px solid rgba(0,0,0,0.1);
-  padding: 6px 12px;
+  background-color: var(--color-surface);
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 8px 14px;
   border-radius: 20px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--color-text-main);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
 .ingredientTag:hover {
   border-color: var(--color-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.ingredientIcon {
+  font-size: 1.1rem;
 }
 
 .tagActive {
   background-color: var(--color-primary);
   color: white;
   border-color: var(--color-primary);
+  box-shadow: 0 4px 10px rgba(45, 106, 79, 0.25);
+  transform: translateY(-2px);
+}
+
+.tagActive .ingredientIcon {
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
 }
 
 .clearBtn {

@@ -16,17 +16,18 @@ export default function DashboardLayout({
     <div className={styles.layout}>
       <aside className={styles.sidebar}>
         <div className={styles.brand}>
+          <div className={styles.brandIcon}>N</div>
           <h2>NB Panel</h2>
         </div>
         <nav className={styles.nav}>
-          <Link href="/dashboard" className={styles.navLink}><span>📊</span> Resumen</Link>
-          <Link href="/dashboard/turnos" className={styles.navLink}><span>📅</span> Turnos (Agenda)</Link>
-          <Link href="/dashboard/agenda-movil" className={styles.navLink}><span>📱</span> Agenda en Vivo</Link>
-          <Link href="/dashboard/pacientes" className={styles.navLink}><span>👥</span> Pacientes</Link>
-          <Link href="/dashboard/recetas" className={styles.navLink}><span>🍎</span> Recetas</Link>
-          <Link href="/dashboard/tips" className={styles.navLink}><span>📝</span> Tips (Blog)</Link>
-          <Link href="/dashboard/consultas" className={styles.navLink}><span>📩</span> Consultas</Link>
-          <Link href="/dashboard/configuracion" className={styles.navLink}><span>⚙️</span> Configuración</Link>
+          <Link href="/dashboard" className={styles.navLink}><span className={styles.iconWrapper}>📊</span> Resumen</Link>
+          <Link href="/dashboard/turnos" className={styles.navLink}><span className={styles.iconWrapper}>📅</span> Turnos (Agenda)</Link>
+          <Link href="/dashboard/agenda-movil" className={styles.navLink}><span className={styles.iconWrapper}>📱</span> Agenda en Vivo</Link>
+          <Link href="/dashboard/pacientes" className={styles.navLink}><span className={styles.iconWrapper}>👥</span> Pacientes</Link>
+          <Link href="/dashboard/recetas" className={styles.navLink}><span className={styles.iconWrapper}>🍎</span> Recetas</Link>
+          <Link href="/dashboard/tips" className={styles.navLink}><span className={styles.iconWrapper}>📝</span> Tips (Blog)</Link>
+          <Link href="/dashboard/consultas" className={styles.navLink}><span className={styles.iconWrapper}>📩</span> Consultas</Link>
+          <Link href="/dashboard/configuracion" className={styles.navLink}><span className={styles.iconWrapper}>⚙️</span> Configuración</Link>
         </nav>
         <div className={styles.logoutWrapper}>
           <form action={logout}>
