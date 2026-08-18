@@ -32,17 +32,23 @@ export default function RecetasClient({ initialRecipes }: RecetasClientProps) {
   };
 
   const filteredRecipes = useMemo(() => {
-    return initialRecipes.filter(recipe => {
+    let result = initialRecipes.filter(recipe => {
       // Filter by search query
       const matchesSearch = recipe.title.toLowerCase().includes(searchQuery.toLowerCase());
       
       // Filter by ingredients ("¿Qué tenés en casa?")
-      // Changed from 'every' to 'some' so selecting more ingredients shows MORE recipes (OR logic)
       const matchesIngredients = selectedIngredients.length === 0 || 
-        selectedIngredients.some(ing => recipe.ingredients?.includes(ing));
+        selectedIngredients.every(ing => recipe.ingredients?.includes(ing));
 
       return matchesSearch && matchesIngredients;
     });
+
+    // Si no hay ingredientes seleccionados (ni búsqueda), mostramos solo 6 por defecto
+    if (selectedIngredients.length === 0 && searchQuery === "") {
+      result = result.slice(0, 6);
+    }
+
+    return result;
   }, [initialRecipes, selectedIngredients, searchQuery]);
 
   const INGREDIENT_ICONS: Record<string, string> = {

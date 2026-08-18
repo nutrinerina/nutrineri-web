@@ -67,8 +67,8 @@
 }
 
 .ingredientsGrid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-sm);
   margin-bottom: var(--space-md);
 }
