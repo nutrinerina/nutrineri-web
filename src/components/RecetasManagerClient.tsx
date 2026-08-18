@@ -36,8 +36,12 @@ export default function RecetasManagerClient({ initialRecipes }: { initialRecipe
 
   const handleDelete = async (id: string) => {
     if (!confirm('¿Seguro que querés eliminar esta receta?')) return;
+    setIsSubmitting(true);
     const result = await deleteRecipe(id);
-    if (!result.error) {
+    setIsSubmitting(false);
+    if (result?.error) {
+      alert(result.error);
+    } else {
       setRecipes(recipes.filter(r => r.id !== id));
     }
   };
@@ -45,6 +49,7 @@ export default function RecetasManagerClient({ initialRecipes }: { initialRecipe
   const handleEdit = (recipe: any) => {
     setEditingRecipe(recipe);
     setShowForm(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCancel = () => {
@@ -88,7 +93,7 @@ export default function RecetasManagerClient({ initialRecipes }: { initialRecipe
           <button className={styles.addBtn} onClick={handleSeed} style={{ backgroundColor: '#f59e0b' }}>
             {isSubmitting ? 'Insertando...' : 'Sembrar Datos (Temporal)'}
           </button>
-          <button className={styles.addBtn} onClick={showForm ? handleCancel : () => setShowForm(true)}>
+          <button className={styles.addBtn} onClick={showForm ? handleCancel : () => { setShowForm(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
             {showForm ? 'Cancelar' : '+ Nueva Receta'}
           </button>
         </div>

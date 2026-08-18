@@ -7,11 +7,14 @@ export async function submitConsultation(formData: FormData) {
   const name = formData.get('name') as string
   const email = formData.get('email') as string
   const reason = formData.get('reason') as string
-  const message = formData.get('message') as string
+  const rawMessage = formData.get('message') as string
+  const phone = formData.get('phone') as string
 
-  if (!name || !email || !reason || !message) {
+  if (!name || !email || !reason || !rawMessage) {
     return { error: 'Todos los campos son obligatorios' }
   }
+
+  const message = phone ? `[Celular: ${phone}]\n\n${rawMessage}` : rawMessage;
 
   const supabase = await createClient()
 

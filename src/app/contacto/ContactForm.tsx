@@ -54,6 +54,11 @@ export default function ContactForm({ initialReason = "" }: { initialReason?: st
         <label htmlFor="email" className={styles.label}>Email</label>
         <input type="email" id="email" name="email" className={styles.input} placeholder="tu@email.com" required />
       </div>
+
+      <div className={styles.inputGroup}>
+        <label htmlFor="phone" className={styles.label}>Celular (Opcional)</label>
+        <input type="tel" id="phone" name="phone" className={styles.input} placeholder="Ej: 11 2345-6789" />
+      </div>
       
       <div className={styles.inputGroup}>
         <label htmlFor="reason" className={styles.label}>Motivo de consulta</label>

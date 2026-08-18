@@ -149,14 +149,15 @@
 
 .pageHeader {
   margin-bottom: var(--space-2xl);
-  background: linear-gradient(135deg, #16241e, #1a1e20);
+  background: var(--dash-surface);
   border: 1px solid var(--dash-border);
   padding: var(--space-2xl);
   border-radius: var(--radius-lg);
-  color: white;
-  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+  color: var(--dash-text);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .pageHeader::before {
@@ -167,14 +168,14 @@
   width: 300px;
   height: 100%;
   background: radial-gradient(circle, var(--dash-primary-light) 0%, transparent 70%);
-  opacity: 0.5;
+  opacity: 0.8;
   pointer-events: none;
 }
 
 .pageHeader h1 {
   font-size: 2.5rem;
   margin-bottom: var(--space-xs);
-  color: white;
+  color: var(--dash-text);
   position: relative;
   z-index: 1;
 }

@@ -36,8 +36,12 @@ export default function TipsManagerClient({ initialTips }: { initialTips: any[] 
 
   const handleDelete = async (id: string) => {
     if (!confirm('¿Seguro que querés eliminar este Tip?')) return;
+    setIsSubmitting(true);
     const result = await deleteTip(id);
-    if (!result.error) {
+    setIsSubmitting(false);
+    if (result?.error) {
+      alert(result.error);
+    } else {
       setTips(tips.filter(t => t.id !== id));
     }
   };
@@ -45,6 +49,7 @@ export default function TipsManagerClient({ initialTips }: { initialTips: any[] 
   const handleEdit = (tip: any) => {
     setEditingTip(tip);
     setShowForm(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCancel = () => {
@@ -60,7 +65,7 @@ export default function TipsManagerClient({ initialTips }: { initialTips: any[] 
           <h1 className={styles.title}>Gestor de Tips (Blog)</h1>
           <p className={styles.subtitle}>Administrá los artículos educativos de la web pública.</p>
         </div>
-        <button className={styles.addBtn} onClick={showForm ? handleCancel : () => setShowForm(true)}>
+        <button className={styles.addBtn} onClick={showForm ? handleCancel : () => { setShowForm(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
           {showForm ? 'Cancelar' : '+ Nuevo Tip'}
         </button>
       </header>
