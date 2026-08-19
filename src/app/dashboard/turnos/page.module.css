@@ -4,6 +4,11 @@
 
 .header {
   margin-bottom: var(--space-2xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-md);
 }
 
 .header h1 {
@@ -15,4 +20,25 @@
 .header p {
   color: var(--color-text-muted);
   font-size: 1.1rem;
+  margin: 0;
+}
+
+.publicLink {
+  background-color: white;
+  color: var(--color-primary);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.publicLink:hover {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary);
 }

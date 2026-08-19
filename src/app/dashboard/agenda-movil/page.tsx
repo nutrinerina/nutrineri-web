@@ -32,7 +32,7 @@ export default async function AgendaMovilPage() {
   }
 
   return (
-    <div style={{ padding: '1rem', maxWidth: '600px', margin: '0 auto' }}>
+    <div style={{ padding: '1rem', maxWidth: '900px', margin: '0 auto' }}>
       <header style={{ marginBottom: '1.5rem', textAlign: 'center' }}>
         <h1 style={{ fontSize: '1.5rem', color: 'var(--color-primary)' }}>📱 Agenda en Vivo</h1>
         <p style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem' }}>

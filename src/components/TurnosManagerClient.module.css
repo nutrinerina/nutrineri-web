@@ -1,9 +1,9 @@
 .container {
   font-family: var(--font-body);
-  --turn-bg: #161d21;
-  --turn-border: rgba(255, 255, 255, 0.08);
-  --turn-text: #e2e8f0;
-  --turn-text-muted: #94a3b8;
+  --turn-bg: #ffffff;
+  --turn-border: #e2e8f0;
+  --turn-text: #1e293b;
+  --turn-text-muted: #64748b;
   --turn-primary: #2d6a4f;
   --turn-available: #059669;
   --turn-booked: #1d4ed8;
@@ -47,7 +47,7 @@
   padding: var(--space-xl);
   border-radius: var(--radius-lg);
   border: 1px solid var(--turn-border);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
   position: sticky;
   top: 2rem;
 }
@@ -55,7 +55,7 @@
 .formCard h2 {
   font-size: 1.5rem;
   margin-bottom: var(--space-xs);
-  color: white;
+  color: var(--turn-text);
 }
 
 .subtitle {
@@ -79,10 +79,10 @@
 
 .input, .select {
   padding: 0.75rem;
-  background-color: #0d1113;
+  background-color: #ffffff;
   border: 1px solid var(--turn-border);
   border-radius: var(--radius-md);
-  color: white;
+  color: var(--turn-text);
   font-family: inherit;
   font-size: 1rem;
   transition: border-color 0.2s;
@@ -147,7 +147,7 @@
 
 .dateTitle {
   font-size: 1.4rem;
-  color: white;
+  color: var(--turn-text);
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-sm);
   text-transform: capitalize;
@@ -213,7 +213,7 @@
 }
 
 .slotAvailable .timeColumn {
-  background-color: rgba(255,255,255,0.02);
+  background-color: #f8fafc;
 }
 
 .slotBooked .timeColumn {
@@ -223,7 +223,7 @@
 .slotTime {
   font-weight: 800;
   font-size: 1.4rem;
-  color: white;
+  color: var(--turn-text);
   line-height: 1;
 }
 
@@ -266,7 +266,7 @@
 .clientName {
   font-weight: 700;
   font-size: 1.1rem;
-  color: white;
+  color: var(--turn-text);
   margin: 0;
 }
 
@@ -280,8 +280,8 @@
 
 .modalityBadge {
   display: inline-block;
-  background-color: rgba(255,255,255,0.1);
-  color: white;
+  background-color: #f1f5f9;
+  color: var(--turn-text);
   padding: 3px 8px;
   border-radius: 6px;
   font-size: 0.7rem;
@@ -289,13 +289,13 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   width: max-content;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid #e2e8f0;
 }
 
 .modalityBadge.online {
-  background-color: rgba(59, 130, 246, 0.2);
-  color: #93c5fd;
-  border-color: rgba(59, 130, 246, 0.3);
+  background-color: #eff6ff;
+  color: #2563eb;
+  border-color: #bfdbfe;
 }
 
 .actionButtons {

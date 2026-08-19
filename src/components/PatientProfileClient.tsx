@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { createClinicalHistory, updatePatient } from '@/app/dashboard/pacientes/actions';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import styles from './PatientProfileClient.module.css';
 
 export default function PatientProfileClient({ patient, initialHistories }: { patient: any, initialHistories: any[] }) {
@@ -13,6 +15,18 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
   // Edit Patient State
   const [isEditingPatient, setIsEditingPatient] = useState(false);
   const [isUpdatingPatient, setIsUpdatingPatient] = useState(false);
+
+  const [selectedHistoryId, setSelectedHistoryId] = useState<string | null>(
+    initialHistories.length > 0 ? initialHistories[0].id : null
+  );
+
+  const [activeFormTab, setActiveFormTab] = useState(0);
+
+  React.useEffect(() => {
+    if (initialHistories.length > 0 && !selectedHistoryId) {
+      setSelectedHistoryId(initialHistories[0].id);
+    }
+  }, [initialHistories, selectedHistoryId]);
 
   const handleConsultationSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -268,137 +282,158 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
             {initialHistories.length === 0 ? (
               <div className={styles.emptyState}>No hay consultas registradas aún.</div>
             ) : (
-              <div className={styles.historyList}>
-                {initialHistories.map((h, i) => {
-                  const titleType = h.consultation_type || 'Consulta';
-                  const titleReason = h.reason_for_consultation ? ` - ${h.reason_for_consultation}` : '';
-                  const displayTitle = `${titleType}${titleReason}`;
-                  
-                  return (
-                    <div key={h.id} className={styles.historyCard}>
-                      <div className={styles.historyHeader}>
-                        <h3>{displayTitle}</h3>
-                        <span className={styles.date}>{formatDate(h.consultation_date)}</span>
-                      </div>
-                    <div className={styles.historyMetrics}>
-                      <div className={styles.metric}>
-                        <span className={styles.metricLabel}>Peso</span>
-                        <span className={styles.metricValue}>{h.weight ? `${h.weight} kg` : '-'}</span>
-                      </div>
-                      <div className={styles.metric}>
-                        <span className={styles.metricLabel}>% Grasa</span>
-                        <span className={styles.metricValue}>{h.fat_percentage ? `${h.fat_percentage}%` : '-'}</span>
-                      </div>
-                      <div className={styles.metric}>
-                        <span className={styles.metricLabel}>Masa Muscular</span>
-                        <span className={styles.metricValue}>{h.muscle_mass ? `${h.muscle_mass} kg` : '-'}</span>
-                      </div>
-                      <div className={styles.metric}>
-                        <span className={styles.metricLabel}>IMC</span>
-                        <span className={styles.metricValue}>{h.bmi || '-'}</span>
-                      </div>
-                    </div>
-
-                    <div className={styles.historyFullDetails}>
-                      <div className={styles.detailsGrid}>
-                        <div className={styles.detailsColumn}>
-                          <h4>1. Información y Antropometría</h4>
-                          <p><strong>Tipo y Motivo:</strong> {h.consultation_type || '-'} - {h.reason_for_consultation || '-'}</p>
-                          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.25rem', marginTop: '0.5rem'}}>
-                            <p><strong>Peso:</strong> {h.weight ? `${h.weight} kg` : '-'}</p>
-                            <p><strong>Altura:</strong> {h.height ? `${h.height} cm` : '-'}</p>
-                            <p><strong>IMC:</strong> {h.bmi || '-'}</p>
-                            <p><strong>Masa Musc.:</strong> {h.muscle_mass ? `${h.muscle_mass} kg` : '-'}</p>
-                            <p><strong>% Grasa:</strong> {h.fat_percentage ? `${h.fat_percentage}%` : '-'}</p>
-                            <p><strong>Agua Corp.:</strong> {h.body_water ? `${h.body_water}%` : '-'}</p>
-                            <p><strong>Cintura:</strong> {h.waist_circumference ? `${h.waist_circumference} cm` : '-'}</p>
-                            <p><strong>Cadera:</strong> {h.hip_circumference ? `${h.hip_circumference} cm` : '-'}</p>
+              <div className={styles.historiesLayout}>
+                <div className={styles.historiesSidebar}>
+                  {initialHistories.map((h) => {
+                    const titleType = h.consultation_type || 'Consulta';
+                    return (
+                      <button 
+                        key={h.id}
+                        type="button"
+                        className={`${styles.historyTab} ${selectedHistoryId === h.id ? styles.historyTabActive : ''}`}
+                        onClick={() => setSelectedHistoryId(h.id)}
+                      >
+                        <div className={styles.historyTabDate}>{formatDate(h.consultation_date)}</div>
+                        <div className={styles.historyTabType}>{titleType}</div>
+                      </button>
+                    );
+                  })}
+                </div>
+                
+                <div className={styles.historyDetail}>
+                  {(() => {
+                    const h = initialHistories.find(h => h.id === selectedHistoryId) || initialHistories[0];
+                    if (!h) return null;
+                    const titleType = h.consultation_type || 'Consulta';
+                    const titleReason = h.reason_for_consultation ? ` - ${h.reason_for_consultation}` : '';
+                    const displayTitle = `${titleType}${titleReason}`;
+                    
+                    return (
+                      <div className={styles.historyCard}>
+                        <div className={styles.historyHeader}>
+                          <h3>{displayTitle}</h3>
+                          <span className={styles.date}>{formatDate(h.consultation_date)}</span>
+                        </div>
+                        <div className={styles.historyMetrics}>
+                          <div className={styles.metric}>
+                            <span className={styles.metricLabel}>Peso</span>
+                            <span className={styles.metricValue}>{h.weight ? `${h.weight} kg` : '-'}</span>
                           </div>
-                          <p style={{marginTop: '0.25rem'}}><strong>Otros perímetros:</strong> {h.other_perimeters || '-'}</p>
+                          <div className={styles.metric}>
+                            <span className={styles.metricLabel}>% Grasa</span>
+                            <span className={styles.metricValue}>{h.fat_percentage ? `${h.fat_percentage}%` : '-'}</span>
+                          </div>
+                          <div className={styles.metric}>
+                            <span className={styles.metricLabel}>Masa Muscular</span>
+                            <span className={styles.metricValue}>{h.muscle_mass ? `${h.muscle_mass} kg` : '-'}</span>
+                          </div>
+                          <div className={styles.metric}>
+                            <span className={styles.metricLabel}>IMC</span>
+                            <span className={styles.metricValue}>{h.bmi || '-'}</span>
+                          </div>
                         </div>
-                        
-                        <div className={styles.detailsColumn}>
-                          <h4>2. Evaluación Alimentaria</h4>
-                          <p><strong>Cambios reportados:</strong> {h.dietary_changes || '-'}</p>
-                          <p><strong>Dificultades:</strong> {h.difficulties || '-'}</p>
-                          <p><strong>Dónde/Quién:</strong> {h.where_eats || '-'}</p>
-                          <p><strong>Horarios:</strong> {h.meal_times || '-'}</p>
-                          <p><strong>Hidratación:</strong> {h.hydration || '-'}</p>
-                          <p><strong>Alcohol/Tabaco/Café:</strong> {h.alcohol_tobacco || '-'}</p>
-                          <p><strong>Frecuencia:</strong> {h.food_frequency || '-'}</p>
-                          <p><strong>Rec. 24h:</strong> {h.dietary_recall_24h || '-'}</p>
-                        </div>
-                      </div>
 
-                      <div className={styles.detailsGrid} style={{marginTop: '1.5rem'}}>
-                        <div className={styles.detailsColumn}>
-                          <h4>3. Estilo de Vida y Clínica</h4>
-                          <p><strong>Actividad física:</strong> {h.physical_activity || '-'} ({h.exercise_frequency_duration || '-'})</p>
-                          <p><strong>Nivel act. diaria:</strong> {h.daily_activity_level || '-'}</p>
-                          <p><strong>Sueño:</strong> {h.sleep_hours || '-'}</p>
-                          <p><strong>Estrés:</strong> {h.stress_level || '-'}</p>
-                          <p><strong>Presión arterial:</strong> {h.blood_pressure || '-'}</p>
-                          <p><strong>Energía:</strong> {h.energy_level || '-'}</p>
-                          <p><strong>Percepción/Ánimo:</strong> {h.patient_perception || '-'} {h.mood_relationship_with_food ? `(${h.mood_relationship_with_food})` : ''}</p>
-                          <p><strong>Síntomas digestivos:</strong> {h.symptoms || '-'}</p>
-                        </div>
-                        
-                        <div className={styles.detailsColumn}>
-                          <h4>4. Laboratorio</h4>
-                          <p><strong>Notas de Lab:</strong> {h.lab_notes || '-'}</p>
-                          {h.biochemical_indicators && h.biochemical_indicators.length > 0 ? (
-                            <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.25rem', marginTop: '0.5rem'}}>
-                              <p><strong>Glucosa:</strong> {h.biochemical_indicators[0].glucose || '-'}</p>
-                              <p><strong>Colesterol:</strong> {h.biochemical_indicators[0].total_cholesterol || '-'}</p>
-                              <p><strong>HDL:</strong> {h.biochemical_indicators[0].hdl_cholesterol || '-'}</p>
-                              <p><strong>LDL:</strong> {h.biochemical_indicators[0].ldl_cholesterol || '-'}</p>
-                              <p><strong>Triglicéridos:</strong> {h.biochemical_indicators[0].triglycerides || '-'}</p>
-                              <p><strong>Hierro:</strong> {h.biochemical_indicators[0].iron || '-'}</p>
-                              <p><strong>Hemoglobina:</strong> {h.biochemical_indicators[0].hemoglobin || '-'}</p>
-                              <p><strong>Ferritina:</strong> {h.biochemical_indicators[0].ferritin || '-'}</p>
-                              <p><strong>Vit D:</strong> {h.biochemical_indicators[0].vitamin_d || '-'}</p>
-                              <p><strong>Vit B12:</strong> {h.biochemical_indicators[0].vitamin_b12 || '-'}</p>
-                              <p><strong>TSH:</strong> {h.biochemical_indicators[0].tsh || '-'}</p>
-                              <p><strong>T4:</strong> {h.biochemical_indicators[0].t4 || '-'}</p>
+                        <div className={styles.historyFullDetails}>
+                          <div className={styles.detailsGrid}>
+                            <div className={styles.detailsColumn}>
+                              <h4>1. Información y Antropometría</h4>
+                              <p><strong>Tipo y Motivo:</strong> {h.consultation_type || '-'} - {h.reason_for_consultation || '-'}</p>
+                              <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.25rem', marginTop: '0.5rem'}}>
+                                <p><strong>Peso:</strong> {h.weight ? `${h.weight} kg` : '-'}</p>
+                                <p><strong>Altura:</strong> {h.height ? `${h.height} cm` : '-'}</p>
+                                <p><strong>IMC:</strong> {h.bmi || '-'}</p>
+                                <p><strong>Masa Musc.:</strong> {h.muscle_mass ? `${h.muscle_mass} kg` : '-'}</p>
+                                <p><strong>% Grasa:</strong> {h.fat_percentage ? `${h.fat_percentage}%` : '-'}</p>
+                                <p><strong>Agua Corp.:</strong> {h.body_water ? `${h.body_water}%` : '-'}</p>
+                                <p><strong>Cintura:</strong> {h.waist_circumference ? `${h.waist_circumference} cm` : '-'}</p>
+                                <p><strong>Cadera:</strong> {h.hip_circumference ? `${h.hip_circumference} cm` : '-'}</p>
+                              </div>
+                              <p style={{marginTop: '0.25rem'}}><strong>Otros perímetros:</strong> {h.other_perimeters || '-'}</p>
                             </div>
-                          ) : (
-                            <p style={{marginTop: '0.5rem', color: 'var(--color-text-muted)'}}>Sin datos de laboratorio en esta consulta.</p>
-                          )}
-                        </div>
-                      </div>
+                            
+                            <div className={styles.detailsColumn}>
+                              <h4>2. Evaluación Alimentaria</h4>
+                              <p><strong>Cambios reportados:</strong> {h.dietary_changes || '-'}</p>
+                              <p><strong>Dificultades:</strong> {h.difficulties || '-'}</p>
+                              <p><strong>Dónde/Quién:</strong> {h.where_eats || '-'}</p>
+                              <p><strong>Horarios:</strong> {h.meal_times || '-'}</p>
+                              <p><strong>Hidratación:</strong> {h.hydration || '-'}</p>
+                              <p><strong>Alcohol/Tabaco/Café:</strong> {h.alcohol_tobacco || '-'}</p>
+                              <p><strong>Frecuencia:</strong> {h.food_frequency || '-'}</p>
+                              <p><strong>Rec. 24h:</strong> {h.dietary_recall_24h || '-'}</p>
+                            </div>
+                          </div>
 
-                      <div className={styles.detailsGrid} style={{marginTop: '1.5rem'}}>
-                        <div className={styles.detailsColumn} style={{gridColumn: '1 / -1'}}>
-                          <h4>5. Seguimiento y Plan de Acción</h4>
-                          <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
-                            <div>
-                              <p><strong>Adherencia:</strong> {h.adherence || '-'}</p>
-                              <p><strong>Ajustes dieta:</strong> {h.dietary_adjustments || '-'}</p>
-                              <p><strong>Recomendaciones:</strong> {h.specific_recommendations || '-'}</p>
-                              <p><strong>Metas a corto plazo:</strong> {h.short_term_goals || '-'}</p>
+                          <div className={styles.detailsGrid} style={{marginTop: '1.5rem'}}>
+                            <div className={styles.detailsColumn}>
+                              <h4>3. Estilo de Vida y Clínica</h4>
+                              <p><strong>Actividad física:</strong> {h.physical_activity || '-'} ({h.exercise_frequency_duration || '-'})</p>
+                              <p><strong>Nivel act. diaria:</strong> {h.daily_activity_level || '-'}</p>
+                              <p><strong>Sueño:</strong> {h.sleep_hours || '-'}</p>
+                              <p><strong>Estrés:</strong> {h.stress_level || '-'}</p>
+                              <p><strong>Presión arterial:</strong> {h.blood_pressure || '-'}</p>
+                              <p><strong>Energía:</strong> {h.energy_level || '-'}</p>
+                              <p><strong>Percepción/Ánimo:</strong> {h.patient_perception || '-'} {h.mood_relationship_with_food ? `(${h.mood_relationship_with_food})` : ''}</p>
+                              <p><strong>Síntomas digestivos:</strong> {h.symptoms || '-'}</p>
                             </div>
-                            <div>
-                              <p><strong>Próximo Control:</strong> {h.next_appointment_date ? new Date(h.next_appointment_date).toLocaleDateString() : '-'}</p>
-                              <p><strong>Material entregado:</strong> {h.delivered_material || '-'}</p>
-                              {h.diet_plan_url && (
-                                <p style={{marginTop: '0.5rem'}}>
-                                  <strong>Plan:</strong> <a href={h.diet_plan_url} target="_blank" rel="noopener noreferrer" style={{color: 'var(--color-primary)', textDecoration: 'underline', fontWeight: 'bold'}}>Abrir Plan de Alimentación ↗</a>
-                                </p>
+                            
+                            <div className={styles.detailsColumn}>
+                              <h4>4. Laboratorio</h4>
+                              <p><strong>Notas de Lab:</strong> {h.lab_notes || '-'}</p>
+                              {h.biochemical_indicators && h.biochemical_indicators.length > 0 ? (
+                                <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.25rem', marginTop: '0.5rem'}}>
+                                  <p><strong>Glucosa:</strong> {h.biochemical_indicators[0].glucose || '-'}</p>
+                                  <p><strong>Colesterol:</strong> {h.biochemical_indicators[0].total_cholesterol || '-'}</p>
+                                  <p><strong>HDL:</strong> {h.biochemical_indicators[0].hdl_cholesterol || '-'}</p>
+                                  <p><strong>LDL:</strong> {h.biochemical_indicators[0].ldl_cholesterol || '-'}</p>
+                                  <p><strong>Triglicéridos:</strong> {h.biochemical_indicators[0].triglycerides || '-'}</p>
+                                  <p><strong>Hierro:</strong> {h.biochemical_indicators[0].iron || '-'}</p>
+                                  <p><strong>Hemoglobina:</strong> {h.biochemical_indicators[0].hemoglobin || '-'}</p>
+                                  <p><strong>Ferritina:</strong> {h.biochemical_indicators[0].ferritin || '-'}</p>
+                                  <p><strong>Vit D:</strong> {h.biochemical_indicators[0].vitamin_d || '-'}</p>
+                                  <p><strong>Vit B12:</strong> {h.biochemical_indicators[0].vitamin_b12 || '-'}</p>
+                                  <p><strong>TSH:</strong> {h.biochemical_indicators[0].tsh || '-'}</p>
+                                  <p><strong>T4:</strong> {h.biochemical_indicators[0].t4 || '-'}</p>
+                                </div>
+                              ) : (
+                                <p style={{marginTop: '0.5rem', color: 'var(--color-text-muted)'}}>Sin datos de laboratorio en esta consulta.</p>
                               )}
                             </div>
                           </div>
+
+                          <div className={styles.detailsGrid} style={{marginTop: '1.5rem'}}>
+                            <div className={styles.detailsColumn} style={{gridColumn: '1 / -1'}}>
+                              <h4>5. Seguimiento y Plan de Acción</h4>
+                              <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem'}}>
+                                <div>
+                                  <p><strong>Adherencia:</strong> {h.adherence || '-'}</p>
+                                  <p><strong>Ajustes dieta:</strong> {h.dietary_adjustments || '-'}</p>
+                                  <p><strong>Recomendaciones:</strong> {h.specific_recommendations || '-'}</p>
+                                  <p><strong>Metas a corto plazo:</strong> {h.short_term_goals || '-'}</p>
+                                </div>
+                                <div>
+                                  <p><strong>Próximo Control:</strong> {h.next_appointment_date ? new Date(h.next_appointment_date).toLocaleDateString() : '-'}</p>
+                                  <p><strong>Material entregado:</strong> {h.delivered_material || '-'}</p>
+                                  {h.diet_plan_url && (
+                                    <p style={{marginTop: '0.5rem'}}>
+                                      <strong>Plan:</strong> <a href={h.diet_plan_url} target="_blank" rel="noopener noreferrer" style={{color: 'var(--color-primary)', textDecoration: 'underline', fontWeight: 'bold'}}>Abrir Plan de Alimentación ↗</a>
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {h.notes && (
+                            <div className={styles.historyNotes} style={{marginTop: '1.5rem', padding: '1rem', backgroundColor: '#fffbe5', border: '1px solid #fef08a', borderRadius: 'var(--radius-md)'}}>
+                              <strong>📝 Notas internas (Privadas):</strong> {h.notes}
+                            </div>
+                          )}
                         </div>
                       </div>
-
-                      {h.notes && (
-                        <div className={styles.historyNotes} style={{marginTop: '1.5rem', padding: '1rem', backgroundColor: '#fffbe5', border: '1px solid #fef08a', borderRadius: 'var(--radius-md)'}}>
-                          <strong>📝 Notas internas (Privadas):</strong> {h.notes}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  ); 
-                })}
+                    );
+                  })()}
+                </div>
               </div>
             )}
           </div>
@@ -408,14 +443,21 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
         {activeTab === 'evolucion' && (
           <div className={styles.tabContent}>
             <div className={styles.card}>
-              <h3>Evolución de Peso y Composición Corporal</h3>
+              <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <h3>Evolución de Peso y Composición Corporal</h3>
+                {initialHistories.length >= 2 && (
+                  <button onClick={handleExportPDF} className={styles.exportBtn}>
+                    📥 Exportar PDF
+                  </button>
+                )}
+              </div>
               
               {initialHistories.length < 2 ? (
                 <div className={styles.emptyState}>
                   <p>Se necesitan al menos 2 consultas registradas para ver la evolución gráfica.</p>
                 </div>
               ) : (
-                <div style={{ width: '100%', height: 400, marginTop: '2rem' }}>
+                <div id="evolution-chart-container" style={{ width: '100%', height: 400, marginTop: '2rem', background: 'white', padding: '1rem' }}>
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                       data={[...initialHistories].reverse().map(h => ({
@@ -452,9 +494,22 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
           <form onSubmit={handleConsultationSubmit} className={styles.formContainer}>
             {error && <div className={styles.errorBanner}>{error}</div>}
             
+            <div className={styles.formTabsContainer}>
+              {['Básica', 'Antropometría', 'Alimentación', 'Estilo', 'Clínica', 'Laboratorio', 'Plan'].map((tab, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  className={`${styles.formTabBtn} ${activeFormTab === idx ? styles.formTabBtnActive : ''}`}
+                  onClick={() => setActiveFormTab(idx)}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+
             <div className={styles.formSections}>
               {/* Información Básica */}
-              <div className={styles.formSection}>
+              <div className={activeFormTab === 0 ? styles.formSection : styles.hiddenSection}>
                 <h4>Información Básica de la Consulta</h4>
                 <div className={styles.grid2}>
                   <div className={styles.formGroup}>
@@ -474,7 +529,7 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
               </div>
 
               {/* Sección 1: Antropometría */}
-              <div className={styles.formSection}>
+              <div className={activeFormTab === 1 ? styles.formSection : styles.hiddenSection}>
                 <h4>1. Antropometría y Composición</h4>
                 <div className={styles.grid4}>
                   <div className={styles.formGroup}>
@@ -513,7 +568,7 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
               </div>
 
               {/* Sección 2: Hábitos Alimentarios */}
-              <div className={styles.formSection}>
+              <div className={activeFormTab === 2 ? styles.formSection : styles.hiddenSection}>
                 <h4>2. Evaluación Alimentaria</h4>
                 <div className={styles.grid2}>
                   <div className={styles.formGroup}>
@@ -552,7 +607,7 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
               </div>
 
               {/* Sección 3: Actividad Física y Estilo de Vida */}
-              <div className={styles.formSection}>
+              <div className={activeFormTab === 3 ? styles.formSection : styles.hiddenSection}>
                 <h4>3. Actividad Física y Estilo de Vida</h4>
                 <div className={styles.grid2}>
                   <div className={styles.formGroup}>
@@ -584,7 +639,7 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
               </div>
 
               {/* Sección 4: Clínica, Digestivo y Ánimo */}
-              <div className={styles.formSection}>
+              <div className={activeFormTab === 4 ? styles.formSection : styles.hiddenSection}>
                 <h4>4. Clínica, Digestivo y Percepción</h4>
                 <div className={styles.grid2}>
                   <div className={styles.formGroup}>
@@ -611,7 +666,7 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
               </div>
 
               {/* Sección 5: Laboratorio */}
-              <div className={styles.formSection}>
+              <div className={activeFormTab === 5 ? styles.formSection : styles.hiddenSection}>
                 <h4>5. Análisis de Laboratorio</h4>
                 <div className={styles.formGroupFull} style={{marginBottom: '1rem'}}>
                   <label>Notas sobre cambios en laboratorio</label>
@@ -670,7 +725,7 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
               </div>
 
               {/* Sección 6: Seguimiento y Plan */}
-              <div className={styles.formSection}>
+              <div className={activeFormTab === 6 ? styles.formSection : styles.hiddenSection}>
                 <h4>6. Objetivos, Ajustes y Plan de Acción</h4>
                 <div className={styles.grid2}>
                   <div className={styles.formGroup}>
@@ -711,6 +766,19 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
                   <label>Notas Internas (observaciones para futuras consultas)</label>
                   <textarea name="notes" className={styles.textarea} rows={3}></textarea>
                 </div>
+              </div>
+            </div>
+
+            <div className={styles.formNavigation}>
+              <div style={{ visibility: activeFormTab > 0 ? 'visible' : 'hidden' }}>
+                <button type="button" className={styles.navBtn} onClick={() => setActiveFormTab(prev => prev - 1)}>
+                  &larr; Anterior
+                </button>
+              </div>
+              <div style={{ visibility: activeFormTab < 6 ? 'visible' : 'hidden' }}>
+                <button type="button" className={styles.navBtn} onClick={() => setActiveFormTab(prev => prev + 1)}>
+                  Siguiente &rarr;
+                </button>
               </div>
             </div>
 
