@@ -27,7 +27,7 @@ export default function ContactForm({ initialReason = "" }: { initialReason?: st
     return (
       <div style={{ textAlign: 'center', padding: '2rem' }}>
         <h3 style={{ color: 'var(--success)', marginBottom: '1rem' }}>¡Consulta enviada!</h3>
-        <p>Gracias por escribirme. Me pondré en contacto con vos a la brevedad.</p>
+        <p>Gracias por escribirme.</p>
         <div style={{ marginTop: '1rem' }}>
           <Button onClick={() => setStatus('idle')} variant="outline">
             Enviar otra consulta
@@ -51,13 +51,13 @@ export default function ContactForm({ initialReason = "" }: { initialReason?: st
       </div>
       
       <div className={styles.inputGroup}>
-        <label htmlFor="email" className={styles.label}>Email</label>
-        <input type="email" id="email" name="email" className={styles.input} placeholder="tu@email.com" required />
+        <label htmlFor="email" className={styles.label}>Email (Opcional)</label>
+        <input type="email" id="email" name="email" className={styles.input} placeholder="tu@email.com" />
       </div>
 
       <div className={styles.inputGroup}>
-        <label htmlFor="phone" className={styles.label}>Celular (Opcional)</label>
-        <input type="tel" id="phone" name="phone" className={styles.input} placeholder="Ej: 11 2345-6789" />
+        <label htmlFor="phone" className={styles.label}>Celular</label>
+        <input type="tel" id="phone" name="phone" className={styles.input} placeholder="Ej: 11 2345-6789" required />
       </div>
       
       <div className={styles.inputGroup}>

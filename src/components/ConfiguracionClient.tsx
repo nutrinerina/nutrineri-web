@@ -6,13 +6,15 @@ import styles from './ConfiguracionClient.module.css';
 export default function ConfiguracionClient({ 
   initialHome, 
   initialAbout, 
-  initialServices 
+  initialServices,
+  initialContact
 }: { 
   initialHome: any, 
   initialAbout: any, 
-  initialServices: any 
+  initialServices: any,
+  initialContact: any
 }) {
-  const [activeTab, setActiveTab] = useState<'home' | 'about'>('home');
+  const [activeTab, setActiveTab] = useState<'home' | 'about' | 'contact'>('home');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{type: 'error' | 'success', text: string} | null>(null);
   const [imageUrl, setImageUrl] = useState(initialAbout.image_url || '');
@@ -73,6 +75,12 @@ export default function ConfiguracionClient({
           onClick={() => setActiveTab('about')}
         >
           Sobre Mí
+        </button>
+        <button 
+          className={`${styles.tab} ${activeTab === 'contact' ? styles.activeTab : ''}`}
+          onClick={() => setActiveTab('contact')}
+        >
+          Contacto y Atención
         </button>
       </div>
 
@@ -196,6 +204,34 @@ export default function ConfiguracionClient({
             <div className={styles.actions}>
               <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
                 {isSubmitting ? 'Guardando...' : 'Guardar Cambios de Sobre Mí'}
+              </button>
+            </div>
+          </form>
+        )}
+
+        {activeTab === 'contact' && (
+          <form onSubmit={(e) => handleSave(e, 'contact')} className={styles.formCard}>
+            <h2>Página de Contacto y Atención</h2>
+            
+            <div className={styles.section}>
+              <h3>Vías de Contacto</h3>
+              <p style={{ fontSize: '0.85rem', color: '#666', marginBottom: '1rem' }}>Ingresá los medios por los cuales pueden contactarte (ej: teléfono, email, redes sociales).</p>
+              <div className={styles.formGroup}>
+                <textarea name="contact_methods" defaultValue={initialContact.contact_methods} className={styles.textarea} rows={4} placeholder="Ej: WhatsApp: +54 9 11 1234-5678&#10;Email: hola@ejemplo.com"></textarea>
+              </div>
+            </div>
+
+            <div className={styles.section}>
+              <h3>Modalidad de Atención</h3>
+              <p style={{ fontSize: '0.85rem', color: '#666', marginBottom: '1rem' }}>Detallá cómo trabajas (presencial, virtual, horarios).</p>
+              <div className={styles.formGroup}>
+                <textarea name="attention_modality" defaultValue={initialContact.attention_modality} className={styles.textarea} rows={4} placeholder="Ej: Atención online a todo el país.&#10;Consultas presenciales en Palermo."></textarea>
+              </div>
+            </div>
+
+            <div className={styles.actions}>
+              <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
+                {isSubmitting ? 'Guardando...' : 'Guardar Cambios de Contacto'}
               </button>
             </div>
           </form>

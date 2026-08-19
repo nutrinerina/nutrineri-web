@@ -1,17 +1,25 @@
 import React from 'react';
 import Link from 'next/link';
 import { logout } from '@/app/login/actions';
+import { createClient } from '@/utils/supabase/server';
 import styles from './dashboard.module.css';
 
 export const metadata = {
   title: "Dashboard | Nerina Bruno",
 };
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const supabase = await createClient();
+  const { count, error } = await supabase
+    .from('consultations')
+    .select('*', { count: 'exact', head: true })
+    .eq('read', false);
+
+  const unreadCount = count || 0;
   return (
     <div className={styles.layout}>
       <aside className={styles.sidebar}>
@@ -26,7 +34,11 @@ export default function DashboardLayout({
           <Link href="/dashboard/pacientes" className={styles.navLink}><span className={styles.iconWrapper}>👥</span> Pacientes</Link>
           <Link href="/dashboard/recetas" className={styles.navLink}><span className={styles.iconWrapper}>🍎</span> Recetas</Link>
           <Link href="/dashboard/tips" className={styles.navLink}><span className={styles.iconWrapper}>📝</span> Tips (Blog)</Link>
-          <Link href="/dashboard/consultas" className={styles.navLink}><span className={styles.iconWrapper}>📩</span> Consultas</Link>
+          <Link href="/dashboard/consultas" className={styles.navLink}>
+            <span className={styles.iconWrapper}>📩</span> 
+            Consultas
+            {unreadCount > 0 && <span className={styles.badge}>{unreadCount}</span>}
+          </Link>
           <Link href="/dashboard/configuracion" className={styles.navLink}><span className={styles.iconWrapper}>⚙️</span> Configuración</Link>
         </nav>
         <div className={styles.logoutWrapper}>

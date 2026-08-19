@@ -1,6 +1,7 @@
 import React from 'react';
 import { createClient } from '@/utils/supabase/server';
 import styles from './page.module.css';
+import ConsultaCard from '@/components/ConsultaCard';
 
 export const metadata = {
   title: "Consultas | Panel de Control",
@@ -38,38 +39,7 @@ export default async function ConsultasPage() {
         ) : (
           <div className={styles.consultasList}>
             {consultations.map((consulta) => (
-              <div key={consulta.id} className={styles.consultaCard}>
-                <div className={styles.consultaHeader}>
-                  <div className={styles.consultaInfo}>
-                    <h3 className={styles.name}>{consulta.name}</h3>
-                    <a href={`mailto:${consulta.email}`} className={styles.email}>
-                      {consulta.email}
-                    </a>
-                  </div>
-                  <div className={styles.consultaMeta}>
-                    <span className={styles.date}>
-                      {new Date(consulta.created_at).toLocaleDateString('es-AR', {
-                        day: '2-digit',
-                        month: 'short',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}
-                    </span>
-                    <span className={styles.reasonBadge}>
-                      {consulta.reason}
-                    </span>
-                  </div>
-                </div>
-                <div className={styles.consultaBody}>
-                  <p className={styles.message}>{consulta.message}</p>
-                </div>
-                <div className={styles.consultaActions}>
-                  <a href={`mailto:${consulta.email}?subject=Respuesta a tu consulta: ${consulta.reason}`} className={styles.replyBtn}>
-                    Responder por Email
-                  </a>
-                </div>
-              </div>
+              <ConsultaCard key={consulta.id} consulta={consulta} />
             ))}
           </div>
         )}

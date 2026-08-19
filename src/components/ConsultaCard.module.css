@@ -1,0 +1,193 @@
+.consultaCard {
+  background-color: var(--dash-surface);
+  border: 1px solid var(--dash-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.consultaCard.unread {
+  background-color: rgba(45, 106, 79, 0.05); /* very light primary */
+  border-left: 4px solid var(--dash-primary);
+}
+
+.consultaHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.consultaInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nameContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--dash-text);
+  margin: 0;
+}
+
+.newBadge {
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.contactInfo {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.email {
+  color: var(--dash-primary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: opacity 0.2s;
+}
+
+.email:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.phone {
+  font-size: 0.95rem;
+  color: var(--dash-text-muted);
+  background: rgba(0,0,0,0.03);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.consultaMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.date {
+  font-size: 0.85rem;
+  color: var(--dash-text-muted);
+}
+
+.reasonBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  background-color: rgba(45, 106, 79, 0.1);
+  color: var(--dash-primary);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.consultaBody {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--dash-border);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+}
+
+.message {
+  margin: 0;
+  color: var(--dash-text);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  font-size: 0.95rem;
+}
+
+.consultaActions {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.replyBtn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--dash-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.replyBtn:hover {
+  background-color: #1b4332;
+  transform: translateY(-2px);
+}
+
+.readBtn {
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.markRead {
+  background-color: transparent;
+  color: var(--dash-text-muted);
+  border: 1px solid var(--dash-border);
+}
+
+.markRead:hover {
+  background-color: rgba(0,0,0,0.05);
+  color: var(--dash-text);
+}
+
+.markUnread {
+  background-color: transparent;
+  color: var(--dash-primary);
+  border: 1px solid rgba(45, 106, 79, 0.3);
+}
+
+.markUnread:hover {
+  background-color: rgba(45, 106, 79, 0.05);
+}
+
+@media (max-width: 768px) {
+  .consultaHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .consultaMeta {
+    align-items: flex-start;
+    margin-top: var(--space-sm);
+  }
+  
+  .consultaActions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .replyBtn, .readBtn {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -13,6 +13,7 @@ export default async function ConfiguracionPage() {
   const homeConfig = configs?.find(c => c.page_id === 'home')?.content || {};
   const aboutConfig = configs?.find(c => c.page_id === 'about')?.content || {};
   const servicesConfig = configs?.find(c => c.page_id === 'services')?.content || {};
+  const contactConfig = configs?.find(c => c.page_id === 'contact')?.content || {};
 
   return (
     <div>
@@ -20,6 +21,7 @@ export default async function ConfiguracionPage() {
         initialHome={homeConfig}
         initialAbout={aboutConfig}
         initialServices={servicesConfig}
+        initialContact={contactConfig}
       />
     </div>
   );
