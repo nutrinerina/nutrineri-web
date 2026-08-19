@@ -21,7 +21,7 @@ export async function saveLead(
 
   if (error) {
     console.error("Error saving lead:", error)
-    return { success: false, error: 'Ocurrió un error al guardar los datos.' }
+    return { success: false, error: error.message || 'Ocurrió un error al guardar los datos.' }
   }
 
   return { success: true }

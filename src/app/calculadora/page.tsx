@@ -76,7 +76,7 @@ export default function CalculadoraPage() {
     if (response.success) {
       setStep(3); // Show results
     } else {
-      alert("Hubo un problema al guardar tus datos. Por favor intentá de nuevo.");
+      alert(`Hubo un problema al guardar tus datos: ${response.error}`);
     }
     setLoading(false);
   };
