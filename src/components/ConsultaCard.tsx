@@ -1,10 +1,12 @@
 'use client'
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './ConsultaCard.module.css';
 import { toggleConsultaRead } from '@/app/dashboard/consultas/actions';
 
 export default function ConsultaCard({ consulta }: { consulta: any }) {
+  const router = useRouter();
   const [isRead, setIsRead] = useState(consulta.read);
   const [isUpdating, setIsUpdating] = useState(false);
 
@@ -21,6 +23,9 @@ export default function ConsultaCard({ consulta }: { consulta: any }) {
       // Revert on error
       setIsRead(previousState);
       alert(result.error);
+    } else {
+      // Force Next.js to re-fetch the layout to update the unread counter
+      router.refresh();
     }
     setIsUpdating(false);
   };
