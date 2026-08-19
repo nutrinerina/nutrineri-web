@@ -39,6 +39,7 @@ export default async function DashboardLayout({
             Consultas
             {unreadCount > 0 && <span className={styles.badge}>{unreadCount}</span>}
           </Link>
+          <Link href="/dashboard/leads" className={styles.navLink}><span className={styles.iconWrapper}>🧲</span> Contactos</Link>
           <Link href="/dashboard/configuracion" className={styles.navLink}><span className={styles.iconWrapper}>⚙️</span> Configuración</Link>
         </nav>
         <div className={styles.logoutWrapper}>

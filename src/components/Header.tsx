@@ -38,6 +38,7 @@ export default function Header() {
             <li><Link href="/servicios" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Servicios</Link></li>
             <li><Link href="/recetas" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Recetas</Link></li>
             <li><Link href="/tips" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Tips</Link></li>
+            <li><Link href="/calculadora" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Calculadora</Link></li>
             {/* Mobile specific links */}
             <li className={styles.mobileOnly}><Link href="/login" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Ingresar</Link></li>
             <li className={styles.mobileOnly}><Link href="/turnos" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Reservar turno</Link></li>
