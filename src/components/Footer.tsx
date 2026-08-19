@@ -8,7 +8,7 @@ import styles from './Footer.module.css';
 export default function Footer() {
   const pathname = usePathname();
   
-  if (pathname?.startsWith('/dashboard') || pathname?.startsWith('/login')) {
+  if (pathname?.startsWith('/dashboard') || pathname?.startsWith('/login') || pathname?.startsWith('/agenda-en-vivo')) {
     return null;
   }
   return (
