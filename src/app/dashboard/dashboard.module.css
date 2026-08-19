@@ -10,8 +10,7 @@
 
   display: flex;
   min-height: 100vh;
-  background-image: linear-gradient(rgba(248, 250, 252, 0.88), rgba(248, 250, 252, 0.88)), url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1920&auto=format&fit=crop');
-  background-size: cover;
+  background-color: var(--color-background);
   background-position: center;
   background-attachment: fixed;
   color: var(--dash-text);

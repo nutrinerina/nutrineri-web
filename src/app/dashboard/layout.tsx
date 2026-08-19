@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { logout } from '@/app/login/actions';
 import { createClient } from '@/utils/supabase/server';
+import { LayoutDashboard, Calendar, CalendarDays, Users, Apple, BookOpen, MessageSquare, Magnet, Settings } from 'lucide-react';
 import styles from './dashboard.module.css';
 
 export const metadata = {
@@ -30,19 +31,19 @@ export default async function DashboardLayout({
           <h2>NB Panel</h2>
         </div>
         <nav className={styles.nav}>
-          <Link href="/dashboard" className={styles.navLink}><span className={styles.iconWrapper}>📊</span> Resumen</Link>
-          <Link href="/dashboard/turnos" className={styles.navLink}><span className={styles.iconWrapper}>📅</span> Turnos (Agenda)</Link>
-          <Link href="/dashboard/agenda-movil" className={styles.navLink}><span className={styles.iconWrapper}>📱</span> Agenda en Vivo</Link>
-          <Link href="/dashboard/pacientes" className={styles.navLink}><span className={styles.iconWrapper}>👥</span> Pacientes</Link>
-          <Link href="/dashboard/recetas" className={styles.navLink}><span className={styles.iconWrapper}>🍎</span> Recetas</Link>
-          <Link href="/dashboard/tips" className={styles.navLink}><span className={styles.iconWrapper}>📝</span> Tips (Blog)</Link>
+          <Link href="/dashboard" className={styles.navLink}><span className={styles.iconWrapper}><LayoutDashboard size={20} /></span> Resumen</Link>
+          <Link href="/dashboard/turnos" className={styles.navLink}><span className={styles.iconWrapper}><Calendar size={20} /></span> Turnos (Agenda)</Link>
+          <Link href="/dashboard/agenda-movil" className={styles.navLink}><span className={styles.iconWrapper}><CalendarDays size={20} /></span> Agenda en Vivo</Link>
+          <Link href="/dashboard/pacientes" className={styles.navLink}><span className={styles.iconWrapper}><Users size={20} /></span> Pacientes</Link>
+          <Link href="/dashboard/recetas" className={styles.navLink}><span className={styles.iconWrapper}><Apple size={20} /></span> Recetas</Link>
+          <Link href="/dashboard/tips" className={styles.navLink}><span className={styles.iconWrapper}><BookOpen size={20} /></span> Tips (Blog)</Link>
           <Link href="/dashboard/consultas" className={styles.navLink}>
-            <span className={styles.iconWrapper}>📩</span> 
+            <span className={styles.iconWrapper}><MessageSquare size={20} /></span> 
             Consultas
             {unreadCount > 0 && <span className={styles.badge}>{unreadCount}</span>}
           </Link>
-          <Link href="/dashboard/leads" className={styles.navLink}><span className={styles.iconWrapper}>🧲</span> Contactos</Link>
-          <Link href="/dashboard/configuracion" className={styles.navLink}><span className={styles.iconWrapper}>⚙️</span> Configuración</Link>
+          <Link href="/dashboard/leads" className={styles.navLink}><span className={styles.iconWrapper}><Magnet size={20} /></span> Contactos</Link>
+          <Link href="/dashboard/configuracion" className={styles.navLink}><span className={styles.iconWrapper}><Settings size={20} /></span> Configuración</Link>
         </nav>
         <div className={styles.logoutWrapper}>
           <form action={logout}>

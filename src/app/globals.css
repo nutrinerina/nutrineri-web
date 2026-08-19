@@ -1,16 +1,18 @@
 :root {
   /* Brand Colors - Luxury Organic Palette */
-  --color-primary: #7d967b;     /* Sage green (calm & organic) */
-  --color-secondary: #d4a373;   /* Warm Terracotta / Sand */
-  --color-tertiary: #2e3532;    /* Deep slate gray (softer than black) */
-  --color-quaternary: #f1f3ee;  /* Gris/verde ultraclaro cálido */
+  --color-primary: #0F172A;      /* Azul Marino muy oscuro (Títulos pesados, Sidebar) */
+  --color-secondary: #0D9488;    /* Verde Teal (Botones, Acentos) */
+  --color-tertiary: #14B8A6;     /* Teal más claro (Hover, Detalles) */
+  --color-quaternary: #F0FDFA;   /* Fondo Teal muy suave (Tarjetas de destaque) */
   
   /* UI Colors */
-  --color-background: #fdfbf7;  /* Blanco cálido/marfil (no blanco puro) */
+  --color-background: #F8FAFC;   /* Gris azulado ultra claro (Fondo general) */
   --color-surface: #ffffff;     /* Blanco puro solo para tarjetas */
-  --color-text-main: #2c3531;   /* Gris muy oscuro, menos duro que negro */
-  --color-text-muted: #5e6b62;  /* Gris sutil */
+  --color-text-main: #334155;    /* Texto principal */
+  --color-text-muted: #64748B;   /* Texto secundario */
   --color-text-light: #fcfbf9;  /* Blanco para textos sobre fondos oscuros */
+  --color-error: #EF4444;        /* Rojo para alertas */
+  --color-border: #E2E8F0;       /* Bordes grises */
   
   /* Typography */
   --font-heading: var(--font-outfit), "Playfair Display", serif;

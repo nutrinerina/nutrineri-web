@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import { Calendar as CalendarIcon } from 'lucide-react';
 import { createSlots, deleteSlot, cancelAppointment } from '@/app/dashboard/turnos/actions';
 import styles from './TurnosManagerClient.module.css';
 
@@ -89,8 +90,8 @@ export default function TurnosManagerClient({ initialSlots }: { initialSlots: Sl
             <h2>Abrir Agenda</h2>
             <p className={styles.subtitle}>Genera bloques de turnos automáticamente para un día.</p>
             
-            <div className={styles.formGroup}>
-              <label>Fecha</label>
+            <div className={styles.dateSelector}>
+              <CalendarIcon size={24} color="var(--color-primary)" style={{ marginRight: '0.5rem' }} />
               <input type="date" name="date" required className={styles.input} min={new Date().toISOString().split('T')[0]} />
             </div>
 
@@ -129,7 +130,10 @@ export default function TurnosManagerClient({ initialSlots }: { initialSlots: Sl
             <div className={styles.datesList}>
               {sortedDates.map(date => (
                 <div key={date} className={styles.dateGroup}>
-                  <h3 className={styles.dateTitle}>{new Date(date + 'T00:00:00').toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</h3>
+                  <h3 className={styles.dateTitle}>
+                    <CalendarIcon size={24} color="var(--color-primary)" />
+                    {new Date(date + 'T00:00:00').toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                  </h3>
                   <div className={styles.slotsGrid}>
                     {slotsByDate[date].map(slot => (
                       <div key={slot.id} className={`${styles.slotCard} ${slot.status === 'booked' ? styles.slotBooked : styles.slotAvailable}`}>
