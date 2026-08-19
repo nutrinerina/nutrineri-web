@@ -1,25 +1,37 @@
 'use client'
 
-import React, { useTransition } from 'react';
+import React, { useState } from 'react';
 import styles from './ConsultaCard.module.css';
 import { toggleConsultaRead } from '@/app/dashboard/consultas/actions';
 
 export default function ConsultaCard({ consulta }: { consulta: any }) {
-  const [isPending, startTransition] = useTransition();
+  const [isRead, setIsRead] = useState(consulta.read);
+  const [isUpdating, setIsUpdating] = useState(false);
 
-  const handleToggleRead = () => {
-    startTransition(() => {
-      toggleConsultaRead(consulta.id, consulta.read);
-    });
+  const handleToggleRead = async () => {
+    setIsUpdating(true);
+    const previousState = isRead;
+    
+    // Optimistic update
+    setIsRead(!previousState);
+    
+    const result = await toggleConsultaRead(consulta.id, previousState);
+    
+    if (result?.error) {
+      // Revert on error
+      setIsRead(previousState);
+      alert(result.error);
+    }
+    setIsUpdating(false);
   };
 
   return (
-    <div className={`${styles.consultaCard} ${!consulta.read ? styles.unread : ''}`}>
+    <div className={`${styles.consultaCard} ${!isRead ? styles.unread : ''}`}>
       <div className={styles.consultaHeader}>
         <div className={styles.consultaInfo}>
           <div className={styles.nameContainer}>
             <h3 className={styles.name}>{consulta.name}</h3>
-            {!consulta.read && <span className={styles.newBadge}>Nuevo</span>}
+            {!isRead && <span className={styles.newBadge}>Nuevo</span>}
           </div>
           <div className={styles.contactInfo}>
             <a href={`mailto:${consulta.email}`} className={styles.email}>
@@ -54,10 +66,10 @@ export default function ConsultaCard({ consulta }: { consulta: any }) {
         </a>
         <button 
           onClick={handleToggleRead} 
-          disabled={isPending}
-          className={`${styles.readBtn} ${consulta.read ? styles.markUnread : styles.markRead}`}
+          disabled={isUpdating}
+          className={`${styles.readBtn} ${isRead ? styles.markUnread : styles.markRead}`}
         >
-          {isPending ? 'Actualizando...' : (consulta.read ? 'Marcar como No Leído' : 'Marcar como Leído')}
+          {isUpdating ? 'Actualizando...' : (isRead ? 'Marcar como No Leído' : 'Marcar como Leído')}
         </button>
       </div>
     </div>

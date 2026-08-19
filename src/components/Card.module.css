@@ -11,8 +11,8 @@
 }
 
 .hoverable:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
   border-color: rgba(27, 38, 59, 0.08);
   cursor: pointer;
 }

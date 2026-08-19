@@ -21,12 +21,12 @@ export async function submitConsultation(formData: FormData) {
   const { error } = await supabase
     .from('consultations')
     .insert([
-      { name, email: email || null, reason, message, phone, read: false }
+      { name, email: email || '', reason, message, phone, read: false }
     ])
 
   if (error) {
     console.error('Error inserting consultation:', error)
-    return { error: 'Hubo un error al enviar la consulta. Intenta nuevamente.' }
+    return { error: `Error de BD: ${error.message}` }
   }
 
   revalidatePath('/dashboard/consultas')

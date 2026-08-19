@@ -11,7 +11,7 @@
   justify-content: center;
   padding: var(--space-2xl) var(--space-lg);
   background-image: 
-    linear-gradient(to bottom right, rgba(253, 251, 247, 0.9), rgba(253, 251, 247, 0.6)),
+    linear-gradient(to bottom right, rgba(253, 251, 247, 0.95), rgba(253, 251, 247, 0.75)),
     url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2053&auto=format&fit=crop');
   background-size: cover;
   background-position: center;

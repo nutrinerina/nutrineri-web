@@ -1,8 +1,8 @@
 :root {
-  /* Brand Colors - Luxury Muted Palette */
-  --color-primary: #2d6a4f;     /* Verde bosque elegante */
-  --color-secondary: #52796f;   /* Verde salvia / grisáceo */
-  --color-tertiary: #1b263b;    /* Azul medianoche (casi negro) */
+  /* Brand Colors - Luxury Organic Palette */
+  --color-primary: #7d967b;     /* Sage green (calm & organic) */
+  --color-secondary: #d4a373;   /* Warm Terracotta / Sand */
+  --color-tertiary: #2e3532;    /* Deep slate gray (softer than black) */
   --color-quaternary: #f1f3ee;  /* Gris/verde ultraclaro cálido */
   
   /* UI Colors */
@@ -13,7 +13,7 @@
   --color-text-light: #fcfbf9;  /* Blanco para textos sobre fondos oscuros */
   
   /* Typography */
-  --font-heading: var(--font-outfit), system-ui, sans-serif;
+  --font-heading: var(--font-outfit), "Playfair Display", serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
   
   /* Spacing - Increased for more whitespace */
@@ -28,8 +28,8 @@
   /* Border Radius - Very soft */
   --radius-sm: 4px;
   --radius-md: 8px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
   --radius-full: 9999px;
 
   /* Shadows - Ethereal and soft */
@@ -80,4 +80,29 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   line-height: 1.1;
+}
+
+/* Utilities for Animations */
+.fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.hover-lift {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
