@@ -11,6 +11,49 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
   const [activeTab, setActiveTab] = useState<'resumen' | 'evolucion' | 'consultas' | 'nueva'>('resumen');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const handleExportPDF = async () => {
+    const element = document.getElementById('evolution-chart-container');
+    if (!element) return;
+    
+    const canvas = await html2canvas(element, { scale: 2, backgroundColor: '#ffffff' });
+    const imgData = canvas.toDataURL('image/png');
+    
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    
+    // Add header
+    pdf.setFontSize(22);
+    pdf.setTextColor(22, 163, 74);
+    pdf.text('Nerina Bruno - Nutricion', 20, 20);
+    
+    pdf.setFontSize(16);
+    pdf.setTextColor(30, 41, 59);
+    pdf.text(`Evolucion: ${patient.first_name} ${patient.last_name}`, 20, 30);
+    
+    pdf.setFontSize(12);
+    pdf.setTextColor(100, 116, 139);
+    pdf.text(`Fecha del reporte: ${new Date().toLocaleDateString('es-AR')}`, 20, 38);
+    
+    // Add image
+    const imgHeight = (canvas.height * (pdfWidth - 40)) / canvas.width;
+    pdf.addImage(imgData, 'PNG', 20, 50, pdfWidth - 40, imgHeight);
+    
+    // Add latest plan summary
+    const latestHistory = initialHistories[0];
+    if (latestHistory && latestHistory.specific_recommendations) {
+      let yPos = 50 + imgHeight + 15;
+      pdf.setFontSize(14);
+      pdf.setTextColor(30, 41, 59);
+      pdf.text('Recomendaciones actuales:', 20, yPos);
+      
+      pdf.setFontSize(11);
+      const splitText = pdf.splitTextToSize(latestHistory.specific_recommendations, pdfWidth - 40);
+      pdf.text(splitText, 20, yPos + 8);
+    }
+    
+    pdf.save(`Evolucion_${patient.first_name}_${patient.last_name}.pdf`);
+  };
   
   // Edit Patient State
   const [isEditingPatient, setIsEditingPatient] = useState(false);
