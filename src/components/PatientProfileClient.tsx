@@ -801,8 +801,8 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
                     <textarea name="delivered_material" className={styles.textarea} rows={2}></textarea>
                   </div>
                   <div className={styles.formGroupFull}>
-                    <label>Enlace / URL al Plan de Alimentación Actualizado</label>
-                    <input type="url" name="diet_plan_url" className={styles.input} placeholder="https://drive.google.com/..." />
+                    <label>Subir archivo del Plan de Alimentación (PDF, Word, Imagen)</label>
+                    <input type="file" name="diet_plan_file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" className={styles.input} />
                   </div>
                 </div>
                 <div className={styles.formGroupFull} style={{marginTop: '1rem'}}>

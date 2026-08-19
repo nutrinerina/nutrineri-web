@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Plan Nutricional - Nerina Bruno</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2e3532;
+            background-color: #fff;
+            margin: 0;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #7d967b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            color: #7d967b;
+            font-size: 32px;
+            margin: 0 0 10px 0;
+        }
+        .header p {
+            margin: 0;
+            color: #d4a373;
+            font-weight: 600;
+        }
+        .patient-info {
+            background-color: #fdfbf7;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .patient-info p {
+            margin: 0;
+        }
+        .patient-info strong {
+            color: #7d967b;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #7d967b;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        .meal-box {
+            border-left: 4px solid #d4a373;
+            padding: 15px 20px;
+            background-color: #fafafa;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .meal-title {
+            font-weight: 600;
+            color: #2e3532;
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .meal-options {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .meal-options li {
+            margin-bottom: 8px;
+        }
+        .notes {
+            background-color: #f1f3ee;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 14px;
+            color: #888;
+        }
+        /* Oculta los bordes e inputs al imprimir */
+        @media print {
+            body { padding: 0; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print" style="background: #fef3c7; border: 1px solid #f59e0b; padding: 15px; border-radius: 8px; margin-bottom: 30px; text-align: center;">
+        <strong>👉 Cómo usar esta plantilla:</strong> Editá los textos directamente haciendo clic sobre ellos (son editables). Cuando termines, apretá <strong>Ctrl + P</strong> (o Cmd + P) y elegí "Guardar como PDF". Luego subís ese PDF a la ficha del paciente.
+    </div>
+
+    <div class="header">
+        <h1>Nerina Bruno</h1>
+        <p>Nutrición Integrativa & Educación Alimentaria</p>
+    </div>
+
+    <div class="patient-info">
+        <p><strong>Paciente:</strong> <span contenteditable="true">[Nombre y Apellido]</span></p>
+        <p><strong>Fecha:</strong> <span contenteditable="true">[Fecha de consulta]</span></p>
+        <p><strong>Objetivo:</strong> <span contenteditable="true">[Ej. Composición corporal / Hábitos]</span></p>
+        <p><strong>Próximo Control:</strong> <span contenteditable="true">[Fecha próxima]</span></p>
+    </div>
+
+    <h2 contenteditable="true">Esquema Diario de Alimentación</h2>
+
+    <div class="meal-box">
+        <h3 class="meal-title" contenteditable="true">☕ Desayuno / Merienda</h3>
+        <ul class="meal-options" contenteditable="true">
+            <li>Opción 1: Huevos revueltos con 1 tostada de pan integral y palta.</li>
+            <li>Opción 2: Bowl de yogurt natural con avena, frutos rojos y nueces.</li>
+            <li>Opción 3: [Agregar opción...]</li>
+        </ul>
+    </div>
+
+    <div class="meal-box">
+        <h3 class="meal-title" contenteditable="true">🥗 Almuerzo</h3>
+        <ul class="meal-options" contenteditable="true">
+            <li>Opción 1: 1/2 plato de verduras asadas + 1/4 plato de pechuga de pollo + 1/4 plato de quinoa.</li>
+            <li>Opción 2: Ensalada completa con atún, huevo, tomates cherry y garbanzos.</li>
+            <li>Opción 3: [Agregar opción...]</li>
+        </ul>
+    </div>
+
+    <div class="meal-box">
+        <h3 class="meal-title" contenteditable="true">🌙 Cena</h3>
+        <ul class="meal-options" contenteditable="true">
+            <li>Opción 1: Wok de vegetales con tofu o tiras de carne magra.</li>
+            <li>Opción 2: Pescado al horno con puré de calabaza y ensalada verde.</li>
+            <li>Opción 3: [Agregar opción...]</li>
+        </ul>
+    </div>
+
+    <div class="meal-box" style="border-left-color: #7d967b;">
+        <h3 class="meal-title" contenteditable="true">🍎 Snacks / Colaciones (Opcionales)</h3>
+        <ul class="meal-options" contenteditable="true">
+            <li>1 Fruta fresca + puñado de almendras.</li>
+            <li>Bastones de zanahoria con hummus.</li>
+        </ul>
+    </div>
+
+    <div class="notes">
+        <h3 style="margin-top: 0; color: #7d967b;" contenteditable="true">📌 Recomendaciones Generales</h3>
+        <ul contenteditable="true" style="margin-bottom: 0;">
+            <li>Mantener una hidratación de al menos 2 litros de agua por día.</li>
+            <li>Condimentar con aceite de oliva (1 cucharada) en crudo.</li>
+            <li>Priorizar el descanso (7-8 horas).</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        Plan de alimentación diseñado exclusivamente para el paciente.<br>
+        <strong>Nerina Bruno - Nutricionista</strong>
+    </div>
+
+</body>
+</html>

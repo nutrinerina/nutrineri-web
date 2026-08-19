@@ -36,11 +36,12 @@ export async function updateSession(request: NextRequest) {
 
   if (
     !user &&
-    request.nextUrl.pathname.startsWith('/dashboard')
+    (request.nextUrl.pathname.startsWith('/dashboard') || request.nextUrl.pathname.startsWith('/portal'))
   ) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone()
-    url.pathname = '/login'
+    // Redirect to the appropriate login page based on the requested route
+    url.pathname = request.nextUrl.pathname.startsWith('/portal') ? '/portal/login' : '/login'
     return NextResponse.redirect(url)
   }
 

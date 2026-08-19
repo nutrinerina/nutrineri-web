@@ -83,6 +83,29 @@ export async function updatePatient(formData: FormData, patientId: string) {
 export async function createClinicalHistory(formData: FormData, patientId: string) {
   const supabase = await createClient()
 
+  let diet_plan_url = null;
+  const dietPlanFile = formData.get('diet_plan_file') as File | null;
+  
+  if (dietPlanFile && dietPlanFile.size > 0) {
+    const fileExt = dietPlanFile.name.split('.').pop();
+    const fileName = `${patientId}-${Date.now()}.${fileExt}`;
+    
+    const { error: uploadError } = await supabase.storage
+      .from('diet_plans')
+      .upload(fileName, dietPlanFile);
+      
+    if (uploadError) {
+      console.error("Error uploading file:", uploadError);
+      return { error: 'Ocurrió un error al subir el archivo del plan.' };
+    }
+    
+    const { data: { publicUrl } } = supabase.storage
+      .from('diet_plans')
+      .getPublicUrl(fileName);
+      
+    diet_plan_url = publicUrl;
+  }
+
   const newHistory = {
     patient_id: patientId,
     consultation_date: formData.get('consultation_date') || new Date().toISOString().split('T')[0],
@@ -137,7 +160,7 @@ export async function createClinicalHistory(formData: FormData, patientId: strin
     next_appointment_date: formData.get('next_appointment_date') || null,
     
     // Documentos y Notas
-    diet_plan_url: formData.get('diet_plan_url') || null,
+    diet_plan_url: diet_plan_url,
     notes: formData.get('notes') || null,
   }
 
