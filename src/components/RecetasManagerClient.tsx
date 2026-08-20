@@ -49,7 +49,6 @@ export default function RecetasManagerClient({ initialRecipes }: { initialRecipe
   const handleEdit = (recipe: any) => {
     setEditingRecipe(recipe);
     setShowForm(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCancel = () => {
@@ -93,8 +92,8 @@ export default function RecetasManagerClient({ initialRecipes }: { initialRecipe
           <button className={styles.addBtn} onClick={handleSeed} style={{ backgroundColor: '#f59e0b' }}>
             {isSubmitting ? 'Insertando...' : 'Sembrar Datos (Temporal)'}
           </button>
-          <button className={styles.addBtn} onClick={showForm ? handleCancel : () => { setShowForm(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-            {showForm ? 'Cancelar' : '+ Nueva Receta'}
+          <button className={styles.addBtn} onClick={() => setShowForm(true)}>
+            + Nueva Receta
           </button>
         </div>
       </header>
@@ -102,74 +101,79 @@ export default function RecetasManagerClient({ initialRecipes }: { initialRecipe
       {error && <div className={styles.error}>{error}</div>}
 
       {showForm && (
-        <form onSubmit={handleSubmit} className={styles.formCard}>
-          <h2>{editingRecipe ? 'Editar Receta' : 'Agregar Nueva Receta'}</h2>
-          <div className={styles.grid2}>
-            <div className={styles.formGroup}>
-              <label>Título *</label>
-              <input type="text" name="title" defaultValue={editingRecipe?.title} required className={styles.input} />
-            </div>
-            <div className={styles.formGroup}>
-              <label>Categoría *</label>
-              <input type="text" name="category" defaultValue={editingRecipe?.category} required placeholder="Ej: Almuerzos" className={styles.input} />
-            </div>
-            <div className={styles.formGroup}>
-              <label>Dificultad *</label>
-              <select name="difficulty" defaultValue={editingRecipe?.difficulty || "Fácil"} required className={styles.input}>
-                <option value="Fácil">Fácil</option>
-                <option value="Media">Media</option>
-                <option value="Difícil">Difícil</option>
-              </select>
-            </div>
-            <div className={styles.formGroup}>
-              <label>Tiempo de Preparación (minutos) *</label>
-              <input type="number" name="prep_time_minutes" defaultValue={editingRecipe?.prep_time_minutes} required className={styles.input} />
-            </div>
-            <div className={styles.formGroupFull}>
-              <label>Imagen de la Receta</label>
-              <input type="file" name="image_file" accept="image/*" className={styles.input} style={{padding: '0.5rem'}} />
-              <input type="hidden" name="image_url" defaultValue={editingRecipe?.image_url || ''} />
-              <small style={{color: 'var(--color-text-muted)', marginTop: '0.25rem'}}>
-                Seleccioná una imagen desde tu PC (Tamaño sugerido: 800x600 px o formato cuadrado para que se vea óptima). 
-                {editingRecipe?.image_url && ' Ya tiene una imagen subida, seleccioná otra solo si querés reemplazarla.'}
-              </small>
-            </div>
-            <div className={styles.formGroupFull}>
-              <label>Ingredientes (Separados por coma) *</label>
-              <textarea 
-                name="ingredients" 
-                defaultValue={(() => {
-                  if (!editingRecipe?.ingredients) return '';
-                  if (typeof editingRecipe.ingredients === 'string') {
-                    try {
-                      if (editingRecipe.ingredients.startsWith('[')) {
-                        return JSON.parse(editingRecipe.ingredients).join(', ');
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <form onSubmit={handleSubmit} className={styles.formCard}>
+              <h2>{editingRecipe ? 'Editar Receta' : 'Agregar Nueva Receta'}</h2>
+              <div className={styles.grid2}>
+                <div className={styles.formGroup}>
+                  <label>Título *</label>
+                  <input type="text" name="title" defaultValue={editingRecipe?.title} required className={styles.input} />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Categoría *</label>
+                  <input type="text" name="category" defaultValue={editingRecipe?.category} required placeholder="Ej: Almuerzos" className={styles.input} />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Dificultad *</label>
+                  <select name="difficulty" defaultValue={editingRecipe?.difficulty || "Fácil"} required className={styles.input}>
+                    <option value="Fácil">Fácil</option>
+                    <option value="Media">Media</option>
+                    <option value="Difícil">Difícil</option>
+                  </select>
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Tiempo de Preparación (minutos) *</label>
+                  <input type="number" name="prep_time_minutes" defaultValue={editingRecipe?.prep_time_minutes} required className={styles.input} />
+                </div>
+                <div className={styles.formGroupFull}>
+                  <label>Imagen de la Receta</label>
+                  <input type="file" name="image_file" accept="image/*" className={styles.input} style={{padding: '0.5rem'}} />
+                  <input type="hidden" name="image_url" defaultValue={editingRecipe?.image_url || ''} />
+                  <small style={{color: 'var(--color-text-muted)', marginTop: '0.25rem'}}>
+                    Seleccioná una imagen desde tu PC (Tamaño sugerido: 800x600 px o formato cuadrado para que se vea óptima). 
+                    {editingRecipe?.image_url && ' Ya tiene una imagen subida, seleccioná otra solo si querés reemplazarla.'}
+                  </small>
+                </div>
+                <div className={styles.formGroupFull}>
+                  <label>Ingredientes (Separados por coma) *</label>
+                  <textarea 
+                    name="ingredients" 
+                    defaultValue={(() => {
+                      if (!editingRecipe?.ingredients) return '';
+                      if (typeof editingRecipe.ingredients === 'string') {
+                        try {
+                          if (editingRecipe.ingredients.startsWith('[')) {
+                            return JSON.parse(editingRecipe.ingredients).join(', ');
+                          }
+                        } catch(e) {}
+                        return editingRecipe.ingredients;
                       }
-                    } catch(e) {}
-                    return editingRecipe.ingredients;
-                  }
-                  if (Array.isArray(editingRecipe.ingredients)) {
-                    return editingRecipe.ingredients.join(', ');
-                  }
-                  return '';
-                })()} 
-                required 
-                placeholder="Pollo, Huevo, Cebolla..." 
-                className={styles.textarea} 
-                rows={2}
-              ></textarea>
-            </div>
-            <div className={styles.formGroupFull}>
-              <label>Instrucciones de Preparación</label>
-              <textarea name="instructions" defaultValue={editingRecipe?.instructions} placeholder="1. Cortar las verduras... 2. Cocinar..." className={styles.textarea} rows={4}></textarea>
-            </div>
+                      if (Array.isArray(editingRecipe.ingredients)) {
+                        return editingRecipe.ingredients.join(', ');
+                      }
+                      return '';
+                    })()} 
+                    required 
+                    placeholder="Pollo, Huevo, Cebolla..." 
+                    className={styles.textarea} 
+                    rows={2}
+                  ></textarea>
+                </div>
+                <div className={styles.formGroupFull}>
+                  <label>Instrucciones de Preparación</label>
+                  <textarea name="instructions" defaultValue={editingRecipe?.instructions} placeholder="1. Cortar las verduras... 2. Cocinar..." className={styles.textarea} rows={4}></textarea>
+                </div>
+              </div>
+              <div className={styles.actions} style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
+                <button type="button" onClick={handleCancel} className={styles.cancelBtn}>Cancelar</button>
+                <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
+                  {isSubmitting ? 'Guardando...' : (editingRecipe ? 'Guardar Cambios' : 'Guardar Receta')}
+                </button>
+              </div>
+            </form>
           </div>
-          <div className={styles.actions}>
-            <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
-              {isSubmitting ? 'Guardando...' : (editingRecipe ? 'Guardar Cambios' : 'Guardar Receta')}
-            </button>
-          </div>
-        </form>
+        </div>
       )}
 
       <div className={styles.list}>

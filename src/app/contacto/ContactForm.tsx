@@ -52,7 +52,7 @@ export default function ContactForm({ initialReason = "" }: { initialReason?: st
       
       <div className={styles.inputGroup}>
         <label htmlFor="email" className={styles.label}>Email (Opcional)</label>
-        <input type="email" id="email" name="email" className={styles.input} placeholder="tu@email.com" />
+        <input type="text" id="email" name="email" className={styles.input} placeholder="tu@email.com" />
       </div>
 
       <div className={styles.inputGroup}>

@@ -43,11 +43,6 @@ export default function RecetasClient({ initialRecipes }: RecetasClientProps) {
       return matchesSearch && matchesIngredients;
     });
 
-    // Si no hay ingredientes seleccionados (ni búsqueda), mostramos solo 6 por defecto
-    if (selectedIngredients.length === 0 && searchQuery === "") {
-      result = result.slice(0, 6);
-    }
-
     return result;
   }, [initialRecipes, selectedIngredients, searchQuery]);
 

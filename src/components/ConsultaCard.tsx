@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './ConsultaCard.module.css';
 import { toggleConsultaRead } from '@/app/dashboard/consultas/actions';
@@ -9,6 +9,10 @@ export default function ConsultaCard({ consulta }: { consulta: any }) {
   const router = useRouter();
   const [isRead, setIsRead] = useState(consulta.read);
   const [isUpdating, setIsUpdating] = useState(false);
+
+  useEffect(() => {
+    setIsRead(consulta.read);
+  }, [consulta.read]);
 
   const handleToggleRead = async () => {
     setIsUpdating(true);

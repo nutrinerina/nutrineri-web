@@ -83,7 +83,6 @@ export default function CalculadoraPage() {
 
   return (
     <>
-      <Header />
       <main style={{ minHeight: '80vh', backgroundColor: '#fdfbf7', padding: '4rem 1rem' }}>
         <div style={{ maxWidth: '600px', margin: '0 auto', backgroundColor: '#fff', borderRadius: '16px', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', overflow: 'hidden' }}>
           
@@ -196,7 +195,6 @@ export default function CalculadoraPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

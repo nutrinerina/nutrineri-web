@@ -7,6 +7,8 @@ export const metadata = {
   title: "Consultas | Panel de Control",
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function ConsultasPage() {
   const supabase = await createClient();
   

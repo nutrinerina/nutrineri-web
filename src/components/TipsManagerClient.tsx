@@ -49,7 +49,6 @@ export default function TipsManagerClient({ initialTips }: { initialTips: any[] 
   const handleEdit = (tip: any) => {
     setEditingTip(tip);
     setShowForm(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCancel = () => {
@@ -65,49 +64,54 @@ export default function TipsManagerClient({ initialTips }: { initialTips: any[] 
           <h1 className={styles.title}>Gestor de Tips (Blog)</h1>
           <p className={styles.subtitle}>Administrá los artículos educativos de la web pública.</p>
         </div>
-        <button className={styles.addBtn} onClick={showForm ? handleCancel : () => { setShowForm(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-          {showForm ? 'Cancelar' : '+ Nuevo Tip'}
+        <button className={styles.addBtn} onClick={() => setShowForm(true)}>
+          + Nuevo Tip
         </button>
       </header>
 
       {error && <div className={styles.error}>{error}</div>}
 
       {showForm && (
-        <form onSubmit={handleSubmit} className={styles.formCard}>
-          <h2>{editingTip ? 'Editar Tip' : 'Agregar Nuevo Tip'}</h2>
-          <div className={styles.grid2}>
-            <div className={styles.formGroup}>
-              <label>Título *</label>
-              <input type="text" name="title" defaultValue={editingTip?.title} required className={styles.input} />
-            </div>
-            <div className={styles.formGroup}>
-              <label>Categoría *</label>
-              <input type="text" name="category" defaultValue={editingTip?.category} required placeholder="Ej: Hábitos, Bienestar" className={styles.input} />
-            </div>
-            <div className={styles.formGroupFull}>
-              <label>Imagen del Tip</label>
-              <input type="file" name="image_file" accept="image/*" className={styles.input} style={{padding: '0.5rem'}} />
-              <input type="hidden" name="image_url" defaultValue={editingTip?.image_url || ''} />
-              <small style={{color: 'var(--color-text-muted)', marginTop: '0.25rem'}}>
-                Seleccioná una imagen desde tu PC (Tamaño sugerido: 800x600 px o formato horizontal). 
-                {editingTip?.image_url && ' Ya tiene una imagen subida, seleccioná otra solo si querés reemplazarla.'}
-              </small>
-            </div>
-            <div className={styles.formGroupFull}>
-              <label>Resumen Corto (Para la tarjeta) *</label>
-              <textarea name="summary" defaultValue={editingTip?.summary} required maxLength={150} className={styles.textarea} rows={2}></textarea>
-            </div>
-            <div className={styles.formGroupFull}>
-              <label>Contenido Detallado (Artículo)</label>
-              <textarea name="content" defaultValue={editingTip?.content} className={styles.textarea} rows={6}></textarea>
-            </div>
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <form onSubmit={handleSubmit} className={styles.formCard}>
+              <h2>{editingTip ? 'Editar Tip' : 'Agregar Nuevo Tip'}</h2>
+              <div className={styles.grid2}>
+                <div className={styles.formGroup}>
+                  <label>Título *</label>
+                  <input type="text" name="title" defaultValue={editingTip?.title} required className={styles.input} />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Categoría *</label>
+                  <input type="text" name="category" defaultValue={editingTip?.category} required placeholder="Ej: Hábitos, Bienestar" className={styles.input} />
+                </div>
+                <div className={styles.formGroupFull}>
+                  <label>Imagen del Tip</label>
+                  <input type="file" name="image_file" accept="image/*" className={styles.input} style={{padding: '0.5rem'}} />
+                  <input type="hidden" name="image_url" defaultValue={editingTip?.image_url || ''} />
+                  <small style={{color: 'var(--color-text-muted)', marginTop: '0.25rem'}}>
+                    Seleccioná una imagen desde tu PC (Tamaño sugerido: 800x600 px o formato horizontal). 
+                    {editingTip?.image_url && ' Ya tiene una imagen subida, seleccioná otra solo si querés reemplazarla.'}
+                  </small>
+                </div>
+                <div className={styles.formGroupFull}>
+                  <label>Resumen Corto (Para la tarjeta) *</label>
+                  <textarea name="summary" defaultValue={editingTip?.summary} required maxLength={150} className={styles.textarea} rows={2}></textarea>
+                </div>
+                <div className={styles.formGroupFull}>
+                  <label>Contenido Detallado (Artículo)</label>
+                  <textarea name="content" defaultValue={editingTip?.content} className={styles.textarea} rows={6}></textarea>
+                </div>
+              </div>
+              <div className={styles.actions} style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
+                <button type="button" onClick={handleCancel} className={styles.cancelBtn}>Cancelar</button>
+                <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
+                  {isSubmitting ? 'Guardando...' : (editingTip ? 'Guardar Cambios' : 'Publicar Tip')}
+                </button>
+              </div>
+            </form>
           </div>
-          <div className={styles.actions}>
-            <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
-              {isSubmitting ? 'Guardando...' : (editingTip ? 'Guardar Cambios' : 'Publicar Tip')}
-            </button>
-          </div>
-        </form>
+        </div>
       )}
 
       <div className={styles.list}>

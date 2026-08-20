@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { createClient } from '@/utils/supabase/server';
 import DashboardCharts from '@/components/DashboardCharts';
 import styles from './dashboard.module.css';
@@ -72,8 +73,13 @@ export default async function DashboardPage() {
   return (
     <div className={styles.page}>
       <header className={styles.pageHeader}>
-        <h1>Hola Nerina</h1>
-        <p>Bienvenido a tu panel de gestión privada.</p>
+        <div>
+          <h1>Hola Nerina</h1>
+          <p>Bienvenido a tu panel de gestión privada.</p>
+        </div>
+        <div className={styles.headerLogo}>
+          <Image src="/01_isotipo_NB.png" alt="Nerina Bruno Logo" width={55} height={55} style={{ objectFit: 'contain' }} />
+        </div>
       </header>
 
       <div className={styles.dashboardGrid}>

@@ -1,12 +1,25 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { createClient } from '@/utils/supabase/client';
 import styles from './Footer.module.css';
 
 export default function Footer() {
   const pathname = usePathname();
+  const [contactInfo, setContactInfo] = useState<{instagram?: string, whatsapp?: string, email?: string} | null>(null);
+
+  useEffect(() => {
+    const fetchContact = async () => {
+      const supabase = createClient();
+      const { data } = await supabase.from('site_content').select('*').eq('page_id', 'contact').single();
+      if (data?.content) {
+        setContactInfo(data.content);
+      }
+    };
+    fetchContact();
+  }, []);
   
   if (pathname?.startsWith('/dashboard') || pathname?.startsWith('/login') || pathname?.startsWith('/agenda-en-vivo')) {
     return null;
@@ -49,9 +62,22 @@ export default function Footer() {
           <div className={styles.linksGroup}>
             <h4 className={styles.title}>Contacto</h4>
             <ul className={styles.linkList}>
-              <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a></li>
-              <li><a href="https://wa.me/123456789" target="_blank" rel="noopener noreferrer" className={styles.link}>WhatsApp</a></li>
-              <li><a href="mailto:hola@nerinabruno.com" className={styles.link}>hola@nerinabruno.com</a></li>
+              {contactInfo?.instagram && (
+                <li><a href={contactInfo.instagram} target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a></li>
+              )}
+              {contactInfo?.whatsapp && (
+                <li><a href={`https://wa.me/${contactInfo.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className={styles.link}>WhatsApp</a></li>
+              )}
+              {contactInfo?.email && (
+                <li><a href={`mailto:${contactInfo.email}`} className={styles.link}>{contactInfo.email}</a></li>
+              )}
+              {(!contactInfo?.instagram && !contactInfo?.whatsapp && !contactInfo?.email) && (
+                <>
+                  <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a></li>
+                  <li><a href="https://wa.me/123456789" target="_blank" rel="noopener noreferrer" className={styles.link}>WhatsApp</a></li>
+                  <li><a href="mailto:hola@nerinabruno.com" className={styles.link}>hola@nerinabruno.com</a></li>
+                </>
+              )}
             </ul>
           </div>
         </div>

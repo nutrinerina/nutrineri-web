@@ -33,7 +33,6 @@ export default async function DashboardLayout({
         <nav className={styles.nav}>
           <Link href="/dashboard" className={styles.navLink}><span className={styles.iconWrapper}><LayoutDashboard size={20} /></span> Resumen</Link>
           <Link href="/dashboard/turnos" className={styles.navLink}><span className={styles.iconWrapper}><Calendar size={20} /></span> Turnos (Agenda)</Link>
-          <Link href="/dashboard/agenda-movil" className={styles.navLink}><span className={styles.iconWrapper}><CalendarDays size={20} /></span> Agenda en Vivo</Link>
           <Link href="/dashboard/pacientes" className={styles.navLink}><span className={styles.iconWrapper}><Users size={20} /></span> Pacientes</Link>
           <Link href="/dashboard/recetas" className={styles.navLink}><span className={styles.iconWrapper}><Apple size={20} /></span> Recetas</Link>
           <Link href="/dashboard/tips" className={styles.navLink}><span className={styles.iconWrapper}><BookOpen size={20} /></span> Tips (Blog)</Link>

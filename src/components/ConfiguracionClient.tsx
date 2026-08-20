@@ -214,10 +214,19 @@ export default function ConfiguracionClient({
             <h2>Página de Contacto y Atención</h2>
             
             <div className={styles.section}>
-              <h3>Vías de Contacto</h3>
-              <p style={{ fontSize: '0.85rem', color: '#666', marginBottom: '1rem' }}>Ingresá los medios por los cuales pueden contactarte (ej: teléfono, email, redes sociales).</p>
+              <h3>Redes Sociales y Vías de Contacto (Footer)</h3>
+              <p style={{ fontSize: '0.85rem', color: '#666', marginBottom: '1rem' }}>Estos datos se mostrarán en el menú inferior de tu sitio web.</p>
               <div className={styles.formGroup}>
-                <textarea name="contact_methods" defaultValue={initialContact.contact_methods} className={styles.textarea} rows={4} placeholder="Ej: WhatsApp: +54 9 11 1234-5678&#10;Email: hola@ejemplo.com"></textarea>
+                <label>Enlace de Instagram</label>
+                <input type="url" name="instagram" defaultValue={initialContact.instagram} className={styles.input} placeholder="https://instagram.com/tu_usuario" />
+              </div>
+              <div className={styles.formGroup}>
+                <label>Número de WhatsApp (ej: 5491112345678)</label>
+                <input type="text" name="whatsapp" defaultValue={initialContact.whatsapp} className={styles.input} placeholder="Ej: 5491112345678" />
+              </div>
+              <div className={styles.formGroup}>
+                <label>Correo Electrónico</label>
+                <input type="text" name="email" defaultValue={initialContact.email} className={styles.input} placeholder="hola@ejemplo.com" />
               </div>
             </div>
 

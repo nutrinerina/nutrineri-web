@@ -30,16 +30,22 @@
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: var(--space-2xl);
-  align-items: start;
+  display: block;
 }
 
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+.publicLinkBtn {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--turn-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.publicLinkBtn:hover {
+  opacity: 0.9;
 }
 
 .formCard {
@@ -48,14 +54,20 @@
   border-radius: var(--radius-lg);
   border: 1px solid var(--turn-border);
   box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 2rem;
+  margin-bottom: var(--space-2xl);
 }
 
-.formCard h2 {
+.formHeader h2 {
   font-size: 1.5rem;
   margin-bottom: var(--space-xs);
   color: var(--turn-text);
+}
+
+.formRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  align-items: flex-end;
 }
 
 .subtitle {
@@ -135,10 +147,39 @@
   text-align: center;
 }
 
-.datesList {
+.agendaSection {
+  margin-top: var(--space-2xl);
+}
+
+.tabsContainer {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2xl);
+  gap: var(--space-sm);
+  overflow-x: auto;
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--turn-border);
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--turn-text-muted);
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tabBtn:hover {
+  color: var(--turn-text);
+}
+
+.activeTab {
+  color: var(--turn-primary);
+  border-bottom-color: var(--turn-primary);
+  font-weight: 700;
 }
 
 .dateGroup {

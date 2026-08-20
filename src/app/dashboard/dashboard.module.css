@@ -167,6 +167,18 @@
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerLogo {
+  position: relative;
+  z-index: 1;
+  background-color: white;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .pageHeader::before {

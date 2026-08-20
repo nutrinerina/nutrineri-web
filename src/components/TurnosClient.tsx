@@ -121,7 +121,7 @@ export default function TurnosClient({ availableSlots }: { availableSlots: Avail
             
             <div className={styles.formGroup}>
               <label>Correo Electrónico</label>
-              <input type="email" name="client_email" required className={styles.input} />
+              <input type="text" name="client_email" required className={styles.input} />
             </div>
             
             <div className={styles.formGroup}>
