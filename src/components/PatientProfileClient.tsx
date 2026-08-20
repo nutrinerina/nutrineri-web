@@ -816,10 +816,19 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
                     <label>Material entregado al paciente</label>
                     <textarea name="delivered_material" className={styles.textarea} rows={2}></textarea>
                   </div>
-                  <div className={styles.formGroupFull}>
-                    <label>Subir archivo del Plan de Alimentación (PDF, Word, Imagen)</label>
-                    <input type="file" name="diet_plan_file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" className={styles.input} />
+                  <div className={styles.grid2}>
+                    <div className={styles.formGroupFull}>
+                      <label>Enlace al Plan (Google Drive, Canva, etc.)</label>
+                      <input type="url" name="diet_plan_url_link" className={styles.input} placeholder="https://..." />
+                    </div>
+                    <div className={styles.formGroupFull}>
+                      <label>O Subir archivo local (PDF, Imagen)</label>
+                      <input type="file" name="diet_plan_file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" className={styles.input} />
+                    </div>
                   </div>
+                  <small style={{ color: 'var(--color-text-muted)', marginBottom: '1rem', display: 'block' }}>
+                    Nota: Para que la subida de archivos funcione, debés tener creado el bucket "diet_plans" en Supabase Storage con políticas públicas. Si no, usá la opción de Enlace al Plan.
+                  </small>
                 </div>
                 <div className={styles.formGroupFull} style={{marginTop: '1rem'}}>
                   <label>Notas Internas (observaciones para futuras consultas)</label>

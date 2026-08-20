@@ -83,7 +83,7 @@ export async function updatePatient(formData: FormData, patientId: string) {
 export async function createClinicalHistory(formData: FormData, patientId: string) {
   const supabase = await createClient()
 
-  let diet_plan_url = null;
+  let diet_plan_url = formData.get('diet_plan_url_link') as string || null;
   const dietPlanFile = formData.get('diet_plan_file') as File | null;
   
   if (dietPlanFile && dietPlanFile.size > 0) {
@@ -96,7 +96,7 @@ export async function createClinicalHistory(formData: FormData, patientId: strin
       
     if (uploadError) {
       console.error("Error uploading file:", uploadError);
-      return { error: 'Ocurrió un error al subir el archivo del plan.' };
+      return { error: 'Ocurrió un error al subir el archivo del plan. Asegurate de que el bucket "diet_plans" exista en Supabase.' };
     }
     
     const { data: { publicUrl } } = supabase.storage
