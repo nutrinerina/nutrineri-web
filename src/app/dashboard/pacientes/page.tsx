@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { createClient } from '@/utils/supabase/server';
+import PatientsListClient from './PatientsListClient';
 import styles from './page.module.css';
 
 export default async function PacientesPage() {
@@ -37,71 +38,7 @@ export default async function PacientesPage() {
         </Link>
       </header>
 
-      <div className={styles.tableContainer}>
-        {patients && patients.length > 0 ? (
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Paciente</th>
-                <th>Contacto</th>
-                <th>Objetivo</th>
-                <th>Última Consulta</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {patients.map(patient => {
-                // Find the latest consultation date
-                let lastConsultation = '-';
-                if (patient.clinical_histories && patient.clinical_histories.length > 0) {
-                  const dates = patient.clinical_histories
-                    .map((h: any) => h.consultation_date)
-                    .filter(Boolean)
-                    .sort((a: string, b: string) => new Date(b).getTime() - new Date(a).getTime());
-                  
-                  if (dates.length > 0) {
-                    lastConsultation = formatDate(dates[0]);
-                  }
-                }
-
-                return (
-                  <tr key={patient.id}>
-                    <td>
-                      <div className={styles.patientName}>
-                        {patient.last_name}, {patient.first_name}
-                      </div>
-                    </td>
-                    <td>
-                      <div className={styles.contactInfo}>
-                        {patient.email && <span>{patient.email}</span>}
-                        {patient.phone && <span>{patient.phone}</span>}
-                      </div>
-                    </td>
-                    <td>
-                      <span className={styles.objective}>{patient.objective || '-'}</span>
-                    </td>
-                    <td>
-                      <span className={styles.date}>{lastConsultation}</span>
-                    </td>
-                    <td>
-                      <Link href={`/dashboard/pacientes/${patient.id}`} className={styles.viewBtn}>
-                        Ver Perfil
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        ) : (
-          <div className={styles.emptyState}>
-            <p>Todavía no tenés pacientes registrados.</p>
-            <Link href="/dashboard/pacientes/nuevo" className={styles.newBtn}>
-              Registrar el primer paciente
-            </Link>
-          </div>
-        )}
-      </div>
+      <PatientsListClient initialPatients={patients || []} />
     </div>
   );
 }

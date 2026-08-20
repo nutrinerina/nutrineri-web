@@ -1,14 +1,14 @@
 .page {
-  padding: var(--space-xl) 0;
+  padding: var(--space-sm) 0;
 }
 
 .header {
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-md);
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 .header h1 {

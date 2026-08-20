@@ -26,17 +26,52 @@ export default async function Home() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <h1 className={styles.title}>
-            {content.hero_title}
-          </h1>
-          <p className={styles.subtitle}>
-            {content.hero_subtitle}
-          </p>
-          <div className={styles.actions}>
-            <Button href="/servicios" variant="primary" size="lg">Conocé mis servicios</Button>
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <Button href="/turnos" variant="primary" size="lg">Reservar turno</Button>
-              <Button href="/contacto" variant="outline" size="lg">Contacto</Button>
+          <div className={styles.heroLeft}>
+            <h1 className={styles.title}>
+              {content.hero_title}
+            </h1>
+            <p className={styles.subtitle}>
+              Te acompaño a lograr tus objetivos con un plan alimentario personalizado, basado en ciencia, empatía y resultados.
+            </p>
+            <div className={styles.actions}>
+              <Button href="/servicios" variant="primary" size="md">
+                Conocé mis servicios <span style={{ marginLeft: '8px' }}>🍃</span>
+              </Button>
+              <Button href="/turnos" variant="outline" size="md">
+                Reservá tu turno <span style={{ marginLeft: '8px' }}>📅</span>
+              </Button>
+            </div>
+            
+            <div className={styles.features}>
+              <div className={styles.featureItem}>
+                <div className={styles.featureIcon}>🌱</div>
+                <div className={styles.featureText}>Planes personalizados para cada etapa de tu vida</div>
+              </div>
+              <div className={styles.featureItem}>
+                <div className={styles.featureIcon}>💚</div>
+                <div className={styles.featureText}>Enfoque integral y realista</div>
+              </div>
+              <div className={styles.featureItem}>
+                <div className={styles.featureIcon}>📊</div>
+                <div className={styles.featureText}>Seguimiento y resultados</div>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.heroRight}>
+            <div className={styles.imageWrapper}>
+              <Image 
+                src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop" 
+                alt="Ensalada saludable"
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
+            </div>
+            <div className={styles.floatingCard}>
+              <div className={styles.quoteIcon}>“</div>
+              <div className={styles.quoteText}>Pequeños cambios hoy, grandes resultados mañana.</div>
+              <div className={styles.heartIcon}>♡</div>
             </div>
           </div>
         </div>
@@ -45,32 +80,36 @@ export default async function Home() {
       {/* Services Highlight */}
       <section className={styles.section}>
         <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>{content.services_title}</h2>
-            <p className={styles.sectionSubtitle}>{content.services_subtitle}</p>
-          </div>
-          
           <div className={styles.grid}>
-            <Card hoverable className={styles.card}>
-              <div className={styles.iconWrapper}>🍏</div>
+            
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIcon}>👤</div>
               <h3 className={styles.cardTitle}>Consulta Nutricional</h3>
-              <p className={styles.cardText}>Evaluación completa, diagnóstico y armado de estrategia personalizada según tus necesidades.</p>
-              <Button href="/servicios" variant="text" className={styles.cardLink}>Conocer más →</Button>
-            </Card>
+              <p className={styles.cardText}>Evaluación integral y plan alimentario personalizado.</p>
+              <a href="/servicios" className={styles.cardLink}>Más info →</a>
+            </div>
 
-            <Card hoverable className={styles.card}>
-              <div className={styles.iconWrapper}>📝</div>
-              <h3 className={styles.cardTitle}>Plan Personalizado</h3>
-              <p className={styles.cardText}>Esquema de alimentación adaptado a tu estilo de vida, preferencias y objetivos reales.</p>
-              <Button href="/servicios" variant="text" className={styles.cardLink}>Conocer más →</Button>
-            </Card>
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIcon}>📋</div>
+              <h3 className={styles.cardTitle}>Planes Alimentarios</h3>
+              <p className={styles.cardText}>Adaptados a tus objetivos, preferencias y estilo de vida.</p>
+              <a href="/servicios" className={styles.cardLink}>Más info →</a>
+            </div>
 
-            <Card hoverable className={styles.card}>
-              <div className={styles.iconWrapper}>🌱</div>
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIcon}>📈</div>
+              <h3 className={styles.cardTitle}>Seguimiento y Control</h3>
+              <p className={styles.cardText}>Acompañamiento continuo para lograr tus metas.</p>
+              <a href="/servicios" className={styles.cardLink}>Más info →</a>
+            </div>
+
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIcon}>📖</div>
               <h3 className={styles.cardTitle}>Educación Alimentaria</h3>
-              <p className={styles.cardText}>Aprende a comer sin culpas. Herramientas para que seas independiente en tus elecciones.</p>
-              <Button href="/servicios" variant="text" className={styles.cardLink}>Conocer más →</Button>
-            </Card>
+              <p className={styles.cardText}>Aprendé a comer mejor y tomar decisiones conscientes.</p>
+              <a href="/servicios" className={styles.cardLink}>Más info →</a>
+            </div>
+
           </div>
         </div>
       </section>
@@ -80,7 +119,10 @@ export default async function Home() {
         <div className={styles.ctaContainer}>
           <h2 className={styles.ctaTitle}>{content.cta_title}</h2>
           <p className={styles.ctaSubtitle}>{content.cta_subtitle}</p>
-          <Button href="/contacto" variant="primary" size="lg">Reservar mi turno</Button>
+          <div className={styles.ctaActions}>
+            <Button href="/turnos" variant="primary" size="lg">Reservar mi turno</Button>
+            <Button href="/contacto" variant="outline" size="lg" style={{ backgroundColor: 'transparent', borderColor: '#ffffff', color: '#ffffff' }}>Contacto</Button>
+          </div>
         </div>
       </section>
     </div>

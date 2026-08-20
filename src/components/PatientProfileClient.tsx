@@ -117,19 +117,33 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <div className={styles.headerInfo}>
+        <div className={styles.headerTop}>
           <Link href="/dashboard/pacientes" className={styles.backBtn}>&larr; Volver</Link>
-          <h1 className={styles.name}>{patient.last_name}, {patient.first_name}</h1>
-          <p className={styles.meta}>
-            {patient.email} | {patient.phone} | {patient.age ? `${patient.age} años` : ''}
-          </p>
+          <div className={styles.headerActions}>
+            <button onClick={() => setIsEditingPatient(true)} className={styles.editBtnTop}>
+              ✏️ Editar Paciente
+            </button>
+            <button 
+              className={styles.newConsultationBtn}
+              onClick={() => setActiveTab('nueva')}
+            >
+              + Nueva Consulta
+            </button>
+          </div>
         </div>
-        <button 
-          className={styles.newConsultationBtn}
-          onClick={() => setActiveTab('nueva')}
-        >
-          + Nueva Consulta
-        </button>
+        <div className={styles.headerInfo}>
+          <div className={styles.avatar}>
+            {patient.first_name ? patient.first_name[0].toUpperCase() : ''}{patient.last_name ? patient.last_name[0].toUpperCase() : ''}
+          </div>
+          <div className={styles.profileDetails}>
+            <h1 className={styles.name}>{patient.last_name}, {patient.first_name}</h1>
+            <div className={styles.metaBadges}>
+              <span className={styles.metaBadge}>📧 {patient.email || 'Sin email'}</span>
+              <span className={styles.metaBadge}>📱 {patient.phone || 'Sin teléfono'}</span>
+              <span className={styles.metaBadge}>🎂 {patient.birth_date ? `${Math.floor((new Date().getTime() - new Date(patient.birth_date).getTime()) / 31557600000)} años` : 'Sin edad'}</span>
+            </div>
+          </div>
+        </div>
       </header>
 
       <div className={styles.tabs}>
@@ -164,11 +178,6 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
           <div className={styles.tabContent}>
             {!isEditingPatient ? (
               <>
-                <div className={styles.editActionHeader}>
-                  <button onClick={() => setIsEditingPatient(true)} className={styles.editBtn}>
-                    ✏️ Editar Datos del Paciente
-                  </button>
-                </div>
                 <div className={styles.grid2}>
                   <div className={styles.card}>
                     <h3>Motivo de Consulta</h3>
@@ -325,7 +334,13 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
             {initialHistories.length === 0 ? (
               <div className={styles.emptyState}>No hay consultas registradas aún.</div>
             ) : (
-              <div className={styles.historiesLayout}>
+              <div className={styles.historiesContainerWrapper}>
+                <div className={styles.historiesActions}>
+                  <button onClick={() => window.print()} className={styles.exportPdfBtn}>
+                    📥 Exportar Historial PDF
+                  </button>
+                </div>
+                <div className={styles.historiesLayout}>
                 <div className={styles.historiesSidebar}>
                   {initialHistories.map((h) => {
                     const titleType = h.consultation_type || 'Consulta';
@@ -476,7 +491,7 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
                       </div>
                     );
                   })()}
-                </div>
+              </div>
               </div>
             )}
           </div>

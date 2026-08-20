@@ -56,6 +56,13 @@ const ALIMENTOS_DB = [
   { id: 41, nombre: 'Tomate', porcion: '1 unidad media (150g)', calorias: 27, carbohidratos: 6, proteinas: 1.3, grasas: 0.3 },
   { id: 42, nombre: 'Lechuga', porcion: '1 porción abundante (50g)', calorias: 8, carbohidratos: 1.5, proteinas: 0.7, grasas: 0.1 },
   { id: 43, nombre: 'Cebolla', porcion: '100g', calorias: 40, carbohidratos: 9, proteinas: 1.1, grasas: 0.1 },
+  { id: 55, nombre: 'Brócoli (Hervido/Vapor)', porcion: '100g', calorias: 35, carbohidratos: 7, proteinas: 2.8, grasas: 0.4 },
+  { id: 56, nombre: 'Espinaca (Cocida)', porcion: '100g', calorias: 23, carbohidratos: 3.8, proteinas: 3, grasas: 0.3 },
+  { id: 57, nombre: 'Zanahoria (Cruda/Rallada)', porcion: '1 unidad media (60g)', calorias: 25, carbohidratos: 6, proteinas: 0.6, grasas: 0.1 },
+  { id: 58, nombre: 'Zapallito / Zucchini (Cocido)', porcion: '100g', calorias: 15, carbohidratos: 3, proteinas: 1.1, grasas: 0.4 },
+  { id: 59, nombre: 'Berenjena (Al horno/Plancha)', porcion: '100g', calorias: 25, carbohidratos: 6, proteinas: 1, grasas: 0.2 },
+  { id: 60, nombre: 'Rúcula', porcion: '1 taza (20g)', calorias: 5, carbohidratos: 0.7, proteinas: 0.5, grasas: 0.1 },
+  { id: 61, nombre: 'Morrón (Pimiento, cualquier color)', porcion: '1 unidad media (100g)', calorias: 26, carbohidratos: 6, proteinas: 1, grasas: 0.3 },
   
   // Frutas y Otros
   { id: 44, nombre: 'Banana', porcion: '1 unidad media', calorias: 105, carbohidratos: 27, proteinas: 1.3, grasas: 0.3 },

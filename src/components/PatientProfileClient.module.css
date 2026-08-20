@@ -6,13 +6,87 @@
 
 .header {
   display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.headerTop {
+  display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .headerInfo {
   display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(45, 106, 79, 0.2);
+}
+
+.profileDetails {
+  display: flex;
   flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.metaBadges {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.metaBadge {
+  background: #f3f4f6;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  color: var(--color-text-main);
+  font-weight: 500;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.editBtnTop {
+  background: none;
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.editBtnTop:hover {
+  background-color: white;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .backBtn {
@@ -184,6 +258,58 @@
 }
 
 /* History List Styles */
+.historiesContainerWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.historiesActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-xs);
+}
+
+.exportPdfBtn {
+  background-color: white;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.exportPdfBtn:hover {
+  background-color: var(--color-primary-light);
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .historiesContainerWrapper, .historiesContainerWrapper * {
+    visibility: visible;
+  }
+  .historiesContainerWrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .historiesActions, .historiesSidebar {
+    display: none !important;
+  }
+  .historiesLayout {
+    display: block !important;
+  }
+}
+
 .historiesLayout {
   display: grid;
   grid-template-columns: 250px 1fr;

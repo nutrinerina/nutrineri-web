@@ -33,22 +33,22 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
           <ul className={styles.navList}>
-            <li><Link href="/" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Inicio</Link></li>
-            <li><Link href="/sobre-mi" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Sobre mí</Link></li>
-            <li><Link href="/servicios" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Servicios</Link></li>
-            <li><Link href="/alimentos" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Alimentos</Link></li>
-            <li><Link href="/recetas" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Recetas</Link></li>
-            <li><Link href="/tips" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Tips</Link></li>
-            <li><Link href="/calculadora" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Calculadora</Link></li>
+            <li><Link href="/" className={`${styles.navLink} ${pathname === '/' ? styles.navLinkActive : ''}`} onClick={() => setIsMenuOpen(false)}>Inicio</Link></li>
+            <li><Link href="/sobre-mi" className={`${styles.navLink} ${pathname === '/sobre-mi' ? styles.navLinkActive : ''}`} onClick={() => setIsMenuOpen(false)}>Sobre mí</Link></li>
+            <li><Link href="/servicios" className={`${styles.navLink} ${pathname === '/servicios' ? styles.navLinkActive : ''}`} onClick={() => setIsMenuOpen(false)}>Servicios</Link></li>
+            <li><Link href="/alimentos" className={`${styles.navLink} ${pathname === '/alimentos' ? styles.navLinkActive : ''}`} onClick={() => setIsMenuOpen(false)}>Alimentos</Link></li>
+            <li><Link href="/recetas" className={`${styles.navLink} ${pathname === '/recetas' ? styles.navLinkActive : ''}`} onClick={() => setIsMenuOpen(false)}>Recetas</Link></li>
+            <li><Link href="/tips" className={`${styles.navLink} ${pathname === '/tips' ? styles.navLinkActive : ''}`} onClick={() => setIsMenuOpen(false)}>Tips</Link></li>
+            <li><Link href="/contacto" className={`${styles.navLink} ${pathname === '/contacto' ? styles.navLinkActive : ''}`} onClick={() => setIsMenuOpen(false)}>Contacto</Link></li>
             {/* Mobile specific links */}
-            <li className={styles.mobileOnly}><Link href="/login" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Ingresar</Link></li>
-            <li className={styles.mobileOnly}><Link href="/turnos" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Reservar turno</Link></li>
+            <li className={styles.mobileOnly}><Link href="/login" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Iniciar sesión</Link></li>
+            <li className={styles.mobileOnly}><Link href="/turnos" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Turnos</Link></li>
           </ul>
         </nav>
 
         <div className={styles.actions}>
-          <Button href="/login" variant="outline" size="sm">Ingresar</Button>
-          <Button href="/turnos" variant="primary" size="sm">Reservar turno</Button>
+          <Button href="/login" variant="outline" size="sm">Iniciar sesión</Button>
+          <Button href="/turnos" variant="primary" size="sm">Turnos</Button>
         </div>
 
         <button className={styles.hamburger} onClick={toggleMenu} aria-label="Toggle Menu">

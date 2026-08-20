@@ -84,12 +84,6 @@ export default function TurnosManagerClient({ initialSlots }: { initialSlots: Sl
 
   return (
     <div className={styles.container}>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
-        <a href="https://nutrineri-web.vercel.app/agenda-en-vivo" target="_blank" rel="noopener noreferrer" className={styles.publicLinkBtn}>
-          Ver Agenda Pública
-        </a>
-      </div>
-
       {message && (
         <div className={message.type === 'error' ? styles.error : styles.success}>
           {message.text}

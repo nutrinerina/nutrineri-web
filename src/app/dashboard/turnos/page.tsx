@@ -29,11 +29,8 @@ export default async function TurnosPage() {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <div>
-          <h1>Gestión de Turnos</h1>
-          <p>Administra tu agenda, abre nuevos horarios y revisa tus próximas consultas.</p>
-        </div>
-        <Link href="/turnos" target="_blank" rel="noopener noreferrer" className={styles.publicLink}>
+        <h1 style={{ margin: 0 }}>Gestión de Turnos</h1>
+        <Link href="https://nutrineri-web.vercel.app/agenda-en-vivo" target="_blank" rel="noopener noreferrer" className={styles.publicLink}>
           Ver Agenda Pública ↗
         </Link>
       </header>

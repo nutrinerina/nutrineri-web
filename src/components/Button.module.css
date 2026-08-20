@@ -10,6 +10,7 @@
   font-family: var(--font-body);
   text-decoration: none;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .button:disabled {
@@ -19,13 +20,13 @@
 
 /* Variants */
 .primary {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
   color: #ffffff;
   box-shadow: var(--shadow-sm);
 }
 
 .primary:hover {
-  background-color: var(--color-tertiary);
+  background-color: var(--color-primary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -42,12 +43,12 @@
 
 .outline {
   background-color: transparent;
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
 }
 
 .outline:hover {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
   color: #ffffff;
 }
 

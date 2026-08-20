@@ -1,18 +1,18 @@
 :root {
-  /* Brand Colors - Luxury Organic Palette */
-  --color-primary: #0F172A;      /* Azul Marino muy oscuro (Títulos pesados, Sidebar) */
-  --color-secondary: #0D9488;    /* Verde Teal (Botones, Acentos) */
-  --color-tertiary: #14B8A6;     /* Teal más claro (Hover, Detalles) */
-  --color-quaternary: #F0FDFA;   /* Fondo Teal muy suave (Tarjetas de destaque) */
+  /* Brand Colors - Organic Green Palette */
+  --color-primary: #1e352c;      /* Verde oscuro profundo (Títulos pesados) */
+  --color-secondary: #426955;    /* Verde hoja (Botones solid, acentos) */
+  --color-tertiary: #1e352c;     /* Verde oscuro para textos principales */
+  --color-quaternary: #f2f7f4;   /* Fondo verde muy suave */
   
   /* UI Colors */
-  --color-background: #F8FAFC;   /* Gris azulado ultra claro (Fondo general) */
-  --color-surface: #ffffff;     /* Blanco puro solo para tarjetas */
-  --color-text-main: #334155;    /* Texto principal */
-  --color-text-muted: #64748B;   /* Texto secundario */
-  --color-text-light: #fcfbf9;  /* Blanco para textos sobre fondos oscuros */
-  --color-error: #EF4444;        /* Rojo para alertas */
-  --color-border: #E2E8F0;       /* Bordes grises */
+  --color-background: #ffffff;   /* Blanco puro para el fondo principal */
+  --color-surface: #ffffff;      /* Blanco puro para tarjetas */
+  --color-text-main: #4a5568;    /* Gris medio para textos descriptivos */
+  --color-text-muted: #718096;   /* Gris claro para textos secundarios */
+  --color-text-light: #ffffff;   /* Blanco para textos sobre fondos oscuros */
+  --color-error: #e53e3e;        /* Rojo para alertas */
+  --color-border: #e2e8f0;       /* Bordes grises */
   
   /* Typography */
   --font-heading: var(--font-outfit), "Playfair Display", serif;
