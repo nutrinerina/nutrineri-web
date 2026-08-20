@@ -491,6 +491,7 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
                       </div>
                     );
                   })()}
+                </div>
               </div>
               </div>
             )}

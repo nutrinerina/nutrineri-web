@@ -11,6 +11,7 @@ interface ButtonProps {
   className?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  style?: React.CSSProperties;
 }
 
 export default function Button({
@@ -22,12 +23,13 @@ export default function Button({
   className = '',
   type = 'button',
   disabled = false,
+  style,
 }: ButtonProps) {
   const buttonClass = `${styles.button} ${styles[variant]} ${styles[size]} ${className}`;
 
   if (href) {
     return (
-      <Link href={href} className={buttonClass}>
+      <Link href={href} className={buttonClass} style={style}>
         {children}
       </Link>
     );
@@ -39,6 +41,7 @@ export default function Button({
       className={buttonClass}
       onClick={onClick}
       disabled={disabled}
+      style={style}
     >
       {children}
     </button>
