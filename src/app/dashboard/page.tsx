@@ -78,7 +78,7 @@ export default async function DashboardPage() {
           <p>Bienvenido a tu panel de gestión privada.</p>
         </div>
         <div className={styles.headerLogo}>
-          <Image src="/01_isotipo_NB.png" alt="Nerina Bruno Logo" width={55} height={55} style={{ objectFit: 'contain' }} />
+          <Image src="/01_isotipo_NB.png" alt="Nerina Bruno Logo" width={80} height={80} style={{ objectFit: 'contain' }} />
         </div>
       </header>
 
