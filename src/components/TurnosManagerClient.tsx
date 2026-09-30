@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, User, Phone, Trash2, XCircle } from 'lucide-react';
 import { createSlots, deleteSlot, cancelAppointment } from '@/app/dashboard/turnos/actions';
 import styles from './TurnosManagerClient.module.css';
 
@@ -161,29 +161,29 @@ export default function TurnosManagerClient({ initialSlots }: { initialSlots: Sl
                   {slotsByDate[activeDateTab].map(slot => (
                     <div key={slot.id} className={`${styles.slotCard} ${slot.status === 'booked' ? styles.slotBooked : styles.slotAvailable}`}>
                       <div className={styles.timeColumn}>
-                        <span className={styles.slotTime}>{slot.time.substring(0, 5)}</span>
+                        <span className={styles.slotTime}><Clock size={16}/> {slot.time.substring(0, 5)}</span>
                         <span className={styles.slotDuration}>{slot.duration} min</span>
                       </div>
                       
                       <div className={styles.slotDetails}>
                         {slot.status === 'booked' ? (
                           <>
-                            <h4 className={styles.clientName}>{slot.client_name}</h4>
+                            <h4 className={styles.clientName}><User size={16} /> {slot.client_name}</h4>
                             <div className={styles.clientInfo}>
-                              <span>{slot.client_phone}</span>
+                              <span><Phone size={14} /> {slot.client_phone}</span>
                             </div>
                             <span className={`${styles.modalityBadge} ${slot.modality === 'online' ? styles.online : ''}`}>
                               {slot.modality === 'online' ? 'Online' : 'Presencial'}
                             </span>
                             <div className={styles.actionButtons}>
-                              <button onClick={() => handleCancel(slot.id)} className={styles.cancelBtn} title="Cancelar Reserva">✕ Cancelar</button>
+                              <button onClick={() => handleCancel(slot.id)} className={styles.cancelBtn} title="Cancelar Reserva"><XCircle size={16} /> Cancelar</button>
                             </div>
                           </>
                         ) : (
                           <>
                             <span className={styles.availableText}>Disponible</span>
                             <div className={styles.actionButtons}>
-                              <button onClick={() => handleDelete(slot.id)} className={styles.deleteBtn} title="Eliminar Horario">Eliminar</button>
+                              <button onClick={() => handleDelete(slot.id)} className={styles.deleteBtn} title="Eliminar Horario"><Trash2 size={16} /> Eliminar</button>
                             </div>
                           </>
                         )}

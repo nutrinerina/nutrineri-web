@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './ConsultaCard.module.css';
 import { toggleConsultaRead } from '@/app/dashboard/consultas/actions';
+import { Mail, Phone, Reply, CheckCircle2, Circle } from 'lucide-react';
 
 export default function ConsultaCard({ consulta }: { consulta: any }) {
   const router = useRouter();
@@ -44,10 +45,14 @@ export default function ConsultaCard({ consulta }: { consulta: any }) {
           </div>
           <div className={styles.contactInfo}>
             <a href={`mailto:${consulta.email}`} className={styles.email}>
+              <Mail size={14} />
               {consulta.email}
             </a>
             {consulta.phone && (
-              <span className={styles.phone}>📱 {consulta.phone}</span>
+              <span className={styles.phone}>
+                <Phone size={14} />
+                {consulta.phone}
+              </span>
             )}
           </div>
         </div>
@@ -71,14 +76,14 @@ export default function ConsultaCard({ consulta }: { consulta: any }) {
       </div>
       <div className={styles.consultaActions}>
         <a href={`mailto:${consulta.email}?subject=Respuesta a tu consulta: ${consulta.reason}`} className={styles.replyBtn}>
-          Responder por Email
+          <Reply size={16} /> Responder por Email
         </a>
         <button 
           onClick={handleToggleRead} 
           disabled={isUpdating}
           className={`${styles.readBtn} ${isRead ? styles.markUnread : styles.markRead}`}
         >
-          {isUpdating ? 'Actualizando...' : (isRead ? 'Marcar como No Leído' : 'Marcar como Leído')}
+          {isUpdating ? 'Actualizando...' : (isRead ? <><Circle size={16} /> Marcar como No Leído</> : <><CheckCircle2 size={16} /> Marcar como Leído</>)}
         </button>
       </div>
     </div>
