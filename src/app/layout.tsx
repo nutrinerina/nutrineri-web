@@ -2,12 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import dynamic from "next/dynamic";
 import "./globals.css";
-
-const Chatbot = dynamic(() => import("@/components/Chatbot"), {
-  ssr: false,
-});
 
 const inter = Inter({
   variable: "--font-inter",
@@ -45,7 +40,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <Header />
         <main style={{ flex: 1 }}>{children}</main>
-        <Chatbot />
         <Footer />
       </body>
     </html>
