@@ -108,3 +108,21 @@ h1 {
     transform: translateY(0);
   }
 }
+
+[data-theme='dark'] {
+  --color-background: #121212;
+  --color-surface: #1e1e1e;
+  --color-text-main: #e2e8f0;
+  --color-text-muted: #a0aec0;
+  --color-text-light: #e2e8f0;
+  --color-primary: #a8d5ba;
+  --color-secondary: #426955;
+  --color-tertiary: #f2f7f4;
+  --color-quaternary: #1a241f;
+  --color-border: #2d3748;
+  --dash-surface: #1e1e1e;
+  --dash-border: #2d3748;
+  --dash-text: #e2e8f0;
+  --dash-text-muted: #a0aec0;
+}
+

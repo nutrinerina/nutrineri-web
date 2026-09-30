@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Button from './Button';
+import ThemeToggle from './ThemeToggle';
 import styles from './Header.module.css';
 
 export default function Header() {
@@ -47,6 +48,7 @@ export default function Header() {
         </nav>
 
         <div className={styles.actions}>
+          <ThemeToggle />
           <Button href="/login" variant="outline" size="sm">Iniciar sesión</Button>
           <Button href="/turnos" variant="primary" size="sm">Turnos</Button>
         </div>
