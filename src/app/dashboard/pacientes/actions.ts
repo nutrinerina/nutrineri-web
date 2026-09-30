@@ -73,7 +73,7 @@ export async function updatePatient(formData: FormData, patientId: string) {
 
   if (error) {
     console.error("Error updating patient:", error)
-    return { error: 'Ocurrió un error al actualizar los datos.' }
+    return { error: `Ocurrió un error al actualizar los datos. Detalle: ${error.message || error.code}` }
   }
 
   revalidatePath(`/dashboard/pacientes/${patientId}`)

@@ -231,6 +231,7 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
             ) : (
               <div className={styles.card}>
                 <h3>Editar Datos del Paciente</h3>
+                {error && <div className={styles.errorBanner} style={{ backgroundColor: '#fee2e2', color: '#ef4444', padding: '1rem', borderRadius: '8px', marginBottom: '1rem' }}>{error}</div>}
                 <form onSubmit={handlePatientUpdateSubmit} className={styles.formContainer}>
                   <div className={styles.grid2}>
                     <div className={styles.formGroup}>
@@ -251,7 +252,7 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
                     </div>
                     <div className={styles.formGroup}>
                       <label>Fecha de Nacimiento</label>
-                      <input type="date" name="birth_date" defaultValue={patient.birth_date} className={styles.input} />
+                      <input type="date" name="birth_date" defaultValue={patient.birth_date ? patient.birth_date.split('T')[0] : ''} className={styles.input} />
                     </div>
                     <div className={styles.formGroup}>
                       <label>Género</label>
