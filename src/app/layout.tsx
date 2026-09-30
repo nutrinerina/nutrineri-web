@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Chatbot from "@/components/Chatbot";
+import dynamic from "next/dynamic";
 import "./globals.css";
+
+const Chatbot = dynamic(() => import("@/components/Chatbot"), {
+  ssr: false,
+});
 
 const inter = Inter({
   variable: "--font-inter",
