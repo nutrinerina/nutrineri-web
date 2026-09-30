@@ -11,7 +11,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  if (pathname?.startsWith('/dashboard') || pathname?.startsWith('/login') || pathname?.startsWith('/agenda-en-vivo')) {
+  if (pathname?.startsWith('/login') || pathname?.startsWith('/agenda-en-vivo')) {
     return null;
   }
 

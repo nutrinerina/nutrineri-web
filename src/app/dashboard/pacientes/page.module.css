@@ -68,77 +68,131 @@
   pointer-events: none;
 }
 
-.tableContainer {
-  background: white;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-  overflow: hidden;
+.listContainer {
+  display: flex;
+  flex-direction: column;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
+.patientListGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.table th {
-  text-align: left;
-  padding: var(--space-md) var(--space-lg);
-  background-color: #f9fafb;
-  color: var(--color-text-muted);
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid #e5e7eb;
+.patientCard {
+  background-color: var(--dash-surface, #ffffff);
+  border: 1px solid var(--dash-border, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-lg, 20px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
 }
 
-.table td {
-  padding: var(--space-md) var(--space-lg);
-  border-bottom: 1px solid #e5e7eb;
-  vertical-align: middle;
+.patientCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  border-color: rgba(45, 106, 79, 0.3);
 }
 
-.table tr:last-child td {
-  border-bottom: none;
+.patientCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 35%;
 }
 
-.table tr:hover {
-  background-color: #f9fafb;
+.patientAvatar {
+  width: 48px;
+  height: 48px;
+  background-color: rgba(45, 106, 79, 0.1);
+  color: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.patientName {
+.patientInfo h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.1rem;
   font-weight: 600;
   color: var(--color-tertiary);
 }
 
-.contactInfo {
+.patientContact {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   font-size: 0.85rem;
   color: var(--color-text-muted);
 }
 
-.objective {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-  max-width: 200px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
+.patientContact span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.viewBtn {
+.patientCardBody {
+  display: flex;
+  gap: 32px;
+  flex-grow: 1;
+  padding: 0 24px;
+  border-left: 1px solid var(--color-border);
+}
+
+.patientMetaInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metaLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.metaValue {
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.patientCardAction {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: var(--color-primary);
   font-weight: 600;
-  text-decoration: none;
   font-size: 0.9rem;
-  transition: color 0.2s;
 }
 
-.viewBtn:hover {
-  color: var(--color-secondary);
+@media (max-width: 768px) {
+  .patientCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .patientCardHeader, .patientCardBody {
+    width: 100%;
+  }
+  .patientCardBody {
+    border-left: none;
+    border-top: 1px solid var(--color-border);
+    padding: 16px 0 0 0;
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 .emptyState {

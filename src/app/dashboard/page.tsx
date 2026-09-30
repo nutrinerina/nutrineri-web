@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { createClient } from '@/utils/supabase/server';
 import DashboardCharts from '@/components/DashboardCharts';
 import styles from './dashboard.module.css';
@@ -108,9 +109,14 @@ export default async function DashboardPage() {
           recentPatients.map(patient => (
             <div key={patient.id} className={styles.patientItem}>
               <span className={styles.patientName}>{patient.first_name} {patient.last_name}</span>
-              <span className={styles.patientDate}>
-                {new Date(patient.created_at).toLocaleDateString('es-AR')}
-              </span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <span className={styles.patientDate}>
+                  {new Date(patient.created_at).toLocaleDateString('es-AR')}
+                </span>
+                <Link href={`/dashboard/pacientes/${patient.id}`} className={styles.viewPatientBtn}>
+                  Ver Perfil
+                </Link>
+              </div>
             </div>
           ))
         ) : (
