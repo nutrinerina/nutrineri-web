@@ -182,3 +182,14 @@
     width: 100%;
   }
 }
+
+@media (max-width: 768px) {
+  .ingredientsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+  }
+  .ingredientTag {
+    justify-content: center;
+  }
+}

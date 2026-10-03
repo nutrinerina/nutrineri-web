@@ -5,7 +5,7 @@
 
 .header {
   background-color: var(--color-quaternary);
-  padding: var(--space-2xl) 0;
+  padding: var(--space-xl) 0;
   text-align: center;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .servicesSection {
-  padding: var(--space-2xl) 0;
+  padding: var(--space-xl) 0;
 }
 
 .grid {
