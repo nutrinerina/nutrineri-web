@@ -227,3 +227,25 @@
   font-size: 1.1rem;
   margin-bottom: var(--space-sm);
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--space-md);
+  }
+  
+  .successCard {
+    padding: var(--space-md);
+  }
+  
+  .datesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+  
+  .slotsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+  
+  .step h2 {
+    font-size: 1.25rem;
+  }
+}

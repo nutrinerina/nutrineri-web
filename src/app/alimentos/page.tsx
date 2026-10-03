@@ -124,13 +124,13 @@ export default function AlimentosPage() {
                   const percentage = ((alimento.calorias / 2000) * 100).toFixed(1);
                   return (
                     <tr key={alimento.id} className={styles.tableRow}>
-                      <td className={styles.alimentoName}>{alimento.nombre}</td>
-                      <td>{alimento.porcion}</td>
-                      <td className={styles.macroValue}>{alimento.calorias}</td>
-                      <td className={styles.macroValue}>{alimento.carbohidratos}</td>
-                      <td className={styles.macroValue}>{alimento.proteinas}</td>
-                      <td className={styles.macroValue}>{alimento.grasas}</td>
-                      <td className={styles.progressCell}>
+                      <td className={styles.alimentoName} data-label="Alimento">{alimento.nombre}</td>
+                      <td data-label="Porción">{alimento.porcion}</td>
+                      <td className={styles.macroValue} data-label="Calorías (kcal)">{alimento.calorias}</td>
+                      <td className={styles.macroValue} data-label="Carbohidratos (g)">{alimento.carbohidratos}</td>
+                      <td className={styles.macroValue} data-label="Proteínas (g)">{alimento.proteinas}</td>
+                      <td className={styles.macroValue} data-label="Grasas (g)">{alimento.grasas}</td>
+                      <td className={styles.progressCell} data-label="% de Dieta (2000 kcal)">
                         <div className={styles.progressContainer}>
                           <div className={styles.progressBarBg}>
                             <div 

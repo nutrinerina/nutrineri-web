@@ -160,4 +160,77 @@
     font-size: 1rem;
     padding: 0.8rem 1.2rem;
   }
+
+  .tableWrapper {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  
+  .table {
+    min-width: unset;
+    display: block;
+  }
+  
+  .table thead {
+    display: none;
+  }
+  
+  .table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .tableRow {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-lg);
+    border: 1px solid var(--color-border);
+  }
+  
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .table td:last-child {
+    border-bottom: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-right: 1rem;
+  }
+
+  .alimentoName {
+    font-size: 1.25rem;
+    padding-bottom: 0.5rem !important;
+    color: var(--color-text) !important;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .alimentoName::before {
+    display: none;
+  }
+
+  .progressCell {
+    width: 100%;
+  }
+
+  .progressContainer {
+    width: 100%;
+  }
 }
