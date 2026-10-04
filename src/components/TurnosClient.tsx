@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { bookAppointment } from '@/app/turnos/actions';
 import styles from './TurnosClient.module.css';
 import Button from './Button';
@@ -26,6 +26,12 @@ export default function TurnosClient({ availableSlots }: { availableSlots: Avail
   }, {} as Record<string, AvailableSlot[]>);
 
   const availableDates = Object.keys(slotsByDate).sort();
+
+  useEffect(() => {
+    if (success) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [success]);
 
   const handleBooking = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

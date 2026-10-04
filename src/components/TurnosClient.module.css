@@ -247,5 +247,22 @@
   
   .step h2 {
     font-size: 1.25rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .subtitle {
+    margin-bottom: var(--space-md);
+  }
+
+  .summaryBox {
+    margin-bottom: var(--space-md);
+  }
+
+  .formGroup {
+    margin-bottom: var(--space-sm);
+  }
+
+  .submitBtn {
+    margin-top: var(--space-sm);
   }
 }
