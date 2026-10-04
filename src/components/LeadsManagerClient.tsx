@@ -1,10 +1,30 @@
 'use client'
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { deleteLead } from '@/app/dashboard/leads/actions';
+import { Trash2 } from 'lucide-react';
 import styles from './DashboardClients.module.css';
 
 export default function LeadsManagerClient({ initialLeads }: { initialLeads: any[] }) {
-  const [leads] = useState(initialLeads);
+  const [leads, setLeads] = useState(initialLeads);
+  const [isDeleting, setIsDeleting] = useState<string | null>(null);
+  const router = useRouter();
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('¿Seguro que querés eliminar este contacto? Esta acción no se puede deshacer.')) return;
+    
+    setIsDeleting(id);
+    const result = await deleteLead(id);
+    
+    if (result?.error) {
+      alert(result.error);
+    } else {
+      setLeads(leads.filter(l => l.id !== id));
+      router.refresh();
+    }
+    setIsDeleting(null);
+  };
 
   const downloadCSV = () => {
     if (leads.length === 0) return;
@@ -60,6 +80,7 @@ export default function LeadsManagerClient({ initialLeads }: { initialLeads: any
                 <th style={{ padding: '1rem', color: '#6b7280', fontWeight: 600 }}>Nombre</th>
                 <th style={{ padding: '1rem', color: '#6b7280', fontWeight: 600 }}>Email</th>
                 <th style={{ padding: '1rem', color: '#6b7280', fontWeight: 600 }}>Resultado Calculadora</th>
+                <th style={{ padding: '1rem', color: '#6b7280', fontWeight: 600 }}>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -72,6 +93,27 @@ export default function LeadsManagerClient({ initialLeads }: { initialLeads: any
                     <span style={{ backgroundColor: 'var(--color-quaternary)', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.9rem', color: 'var(--color-text-main)' }}>
                       {lead.result_data?.result_calories} Kcal ({lead.result_data?.goal === 'lose' ? 'Bajar' : lead.result_data?.goal === 'gain' ? 'Aumentar' : 'Mantenimiento'})
                     </span>
+                  </td>
+                  <td style={{ padding: '1rem' }}>
+                    <button 
+                      onClick={() => handleDelete(lead.id)}
+                      disabled={isDeleting === lead.id}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: isDeleting === lead.id ? '#9ca3af' : '#ef4444',
+                        cursor: isDeleting === lead.id ? 'not-allowed' : 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '0.5rem',
+                        borderRadius: '4px',
+                        transition: 'background-color 0.2s'
+                      }}
+                      title="Eliminar"
+                    >
+                      <Trash2 size={18} />
+                    </button>
                   </td>
                 </tr>
               ))}

@@ -26,3 +26,20 @@ export async function toggleConsultaRead(id: string, currentReadStatus: boolean)
   revalidatePath('/dashboard', 'layout') 
   return { success: true }
 }
+
+export async function deleteConsulta(id: string) {
+  const supabase = await createClient()
+
+  const { error } = await supabase
+    .from('consultations')
+    .delete()
+    .eq('id', id)
+
+  if (error) {
+    console.error('Error deleting consultation:', error)
+    return { error: 'Hubo un error al eliminar la consulta.' }
+  }
+
+  revalidatePath('/dashboard/consultas')
+  return { success: true }
+}

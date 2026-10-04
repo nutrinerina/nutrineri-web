@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './ConsultaCard.module.css';
-import { toggleConsultaRead } from '@/app/dashboard/consultas/actions';
-import { Mail, Phone, Reply, CheckCircle2, Circle } from 'lucide-react';
+import { toggleConsultaRead, deleteConsulta } from '@/app/dashboard/consultas/actions';
+import { Mail, Phone, Reply, CheckCircle2, Circle, Trash2 } from 'lucide-react';
 
 export default function ConsultaCard({ consulta }: { consulta: any }) {
   const router = useRouter();
   const [isRead, setIsRead] = useState(consulta.read);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     setIsRead(consulta.read);
@@ -34,6 +35,28 @@ export default function ConsultaCard({ consulta }: { consulta: any }) {
     }
     setIsUpdating(false);
   };
+
+  const handleDelete = async () => {
+    if (!confirm('¿Estás seguro de que querés eliminar esta consulta? Esta acción no se puede deshacer.')) return;
+    
+    setIsDeleting(true);
+    const result = await deleteConsulta(consulta.id);
+    
+    if (result?.error) {
+      alert(result.error);
+      setIsDeleting(false);
+    } else {
+      router.refresh();
+    }
+  };
+
+  if (isDeleting) {
+    return (
+      <div className={styles.consultaCard} style={{ opacity: 0.5, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100px' }}>
+        Eliminando...
+      </div>
+    );
+  }
 
   return (
     <div className={`${styles.consultaCard} ${!isRead ? styles.unread : ''}`}>
@@ -84,6 +107,14 @@ export default function ConsultaCard({ consulta }: { consulta: any }) {
           className={`${styles.readBtn} ${isRead ? styles.markUnread : styles.markRead}`}
         >
           {isUpdating ? 'Actualizando...' : (isRead ? <><Circle size={16} /> Marcar como No Leído</> : <><CheckCircle2 size={16} /> Marcar como Leído</>)}
+        </button>
+        <button 
+          onClick={handleDelete} 
+          disabled={isDeleting}
+          style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', marginLeft: 'auto' }}
+          title="Eliminar consulta"
+        >
+          <Trash2 size={16} />
         </button>
       </div>
     </div>

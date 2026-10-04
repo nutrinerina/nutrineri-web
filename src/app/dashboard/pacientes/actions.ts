@@ -207,3 +207,20 @@ export async function createClinicalHistory(formData: FormData, patientId: strin
   revalidatePath(`/dashboard/pacientes/${patientId}`)
   return { success: true }
 }
+
+export async function deletePatient(id: string) {
+  const supabase = await createClient()
+
+  const { error } = await supabase
+    .from('patients')
+    .delete()
+    .eq('id', id)
+
+  if (error) {
+    console.error('Error deleting patient:', error)
+    return { error: 'Hubo un error al eliminar el paciente.' }
+  }
+
+  revalidatePath('/dashboard/pacientes')
+  return { success: true }
+}

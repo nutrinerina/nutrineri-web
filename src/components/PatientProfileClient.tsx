@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { createClinicalHistory, updatePatient } from '@/app/dashboard/pacientes/actions';
+import { createClinicalHistory, updatePatient, deletePatient } from '@/app/dashboard/pacientes/actions';
+import { useRouter } from 'next/navigation';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import styles from './PatientProfileClient.module.css';
@@ -10,7 +11,9 @@ import styles from './PatientProfileClient.module.css';
 export default function PatientProfileClient({ patient, initialHistories }: { patient: any, initialHistories: any[] }) {
   const [activeTab, setActiveTab] = useState<'resumen' | 'evolucion' | 'consultas' | 'nueva'>('resumen');
   const [isLoading, setIsLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleExportPDF = async () => {
     const element = document.getElementById('evolution-chart-container');
@@ -103,6 +106,20 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
     setIsUpdatingPatient(false);
   };
 
+  const handleDeletePatient = async () => {
+    if (!confirm('¿Estás seguro de que querés eliminar a este paciente y TODO su historial? Esta acción no se puede deshacer.')) return;
+    
+    setIsDeleting(true);
+    const result = await deletePatient(patient.id);
+    
+    if (result?.error) {
+      alert(result.error);
+      setIsDeleting(false);
+    } else {
+      router.push('/dashboard/pacientes');
+    }
+  };
+
   // Helper para parsear la fecha de la DB (YYYY-MM-DD) y evitar el desfase de zona horaria
   const formatDate = (dateString: string) => {
     if (!dateString) return '-';
@@ -120,6 +137,14 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
         <div className={styles.headerTop}>
           <Link href="/dashboard/pacientes" className={styles.backBtn}>&larr; Volver</Link>
           <div className={styles.headerActions}>
+            <button 
+              onClick={handleDeletePatient} 
+              disabled={isDeleting}
+              className={styles.editBtnTop}
+              style={{ backgroundColor: '#fee2e2', color: '#ef4444', border: '1px solid #fca5a5' }}
+            >
+              {isDeleting ? 'Eliminando...' : '🗑️ Eliminar'}
+            </button>
             <button onClick={() => setIsEditingPatient(true)} className={styles.editBtnTop}>
               ✏️ Editar Paciente
             </button>
