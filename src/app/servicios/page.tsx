@@ -65,8 +65,10 @@ export default async function Servicios() {
           <div className={styles.grid}>
             {servicios.map((s: any, index: number) => (
               <Card key={index} className={styles.card}>
-                <div className={styles.iconWrapper}>{s.icon}</div>
-                <h2 className={styles.cardTitle}>{s.title}</h2>
+                <div className={styles.cardHeader}>
+                  <div className={styles.iconWrapper}>{s.icon}</div>
+                  <h2 className={styles.cardTitle}>{s.title}</h2>
+                </div>
                 <p className={styles.cardDescription}>{s.description}</p>
                 <ul className={styles.benefitsList}>
                   {s.benefits?.map((b: string, i: number) => (

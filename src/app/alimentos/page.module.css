@@ -160,4 +160,67 @@
     font-size: 1rem;
     padding: 0.8rem 1.2rem;
   }
+
+  .container {
+    padding: 0 var(--space-sm);
+  }
+  
+  .tableWrapper {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+  
+  .table {
+    min-width: 100%;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tr {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+    padding: var(--space-sm);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    text-align: right;
+  }
+
+  .table td:last-child {
+    border-bottom: none;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-right: var(--space-md);
+    text-align: left;
+  }
+  
+  .progressCell {
+    min-width: unset;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+  
+  .progressContainer {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }

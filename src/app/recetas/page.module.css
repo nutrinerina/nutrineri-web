@@ -185,11 +185,11 @@
 
 @media (max-width: 768px) {
   .ingredientsGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-sm);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
   .ingredientTag {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
