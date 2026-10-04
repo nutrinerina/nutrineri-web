@@ -42,8 +42,12 @@ export default function Header() {
             <li><Link href="/tips" className={`${styles.navLink} ${pathname === '/tips' ? styles.navLinkActive : ''}`} onClick={() => setIsMenuOpen(false)}>Tips</Link></li>
             <li><Link href="/contacto" className={`${styles.navLink} ${pathname === '/contacto' ? styles.navLinkActive : ''}`} onClick={() => setIsMenuOpen(false)}>Contacto</Link></li>
             {/* Mobile specific links */}
+            <li className={styles.mobileOnly} style={{ width: '100%', padding: '0 20px', marginBottom: '10px' }}>
+              <Link href="/turnos" className={styles.turnosMobileBtn} onClick={() => setIsMenuOpen(false)}>
+                📅 Reservar Turno
+              </Link>
+            </li>
             <li className={styles.mobileOnly}><Link href="/login" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Iniciar sesión</Link></li>
-            <li className={styles.mobileOnly}><Link href="/turnos" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Turnos</Link></li>
           </ul>
         </nav>
 
