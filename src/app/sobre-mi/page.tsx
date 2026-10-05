@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import styles from "./page.module.css";
 
 export const metadata = {
-  title: "Sobre Mí | Nerina Bruno",
+  title: "Sobre Mí | Guapas",
   description: "Conocé mi enfoque sobre la nutrición, basado en hábitos reales, bienestar integral y educación alimentaria sin dietas restrictivas.",
 };
 
@@ -17,7 +17,7 @@ export default async function SobreMi() {
     .single();
 
   const content = siteContent?.content || {
-    title: "Hola, soy Nerina Bruno",
+    title: "Hola, soy Guapas",
     subtitle: "Licenciada en Nutrición",
     paragraph_1: "Creo firmemente que la nutrición no debe ser sinónimo de restricción, culpa ni reglas inquebrantables. Mi objetivo es acompañarte a construir una relación más sana con la comida.",
     paragraph_2: "En mi espacio vas a encontrar un enfoque centrado en educación alimentaria, hábitos posibles y bienestar integral. No trabajo con dietas de moda ni con métodos que te generen estrés.",
@@ -36,7 +36,7 @@ export default async function SobreMi() {
               style={content.image_url ? { backgroundImage: `url(${content.image_url})`, backgroundSize: 'cover', backgroundPosition: 'center', color: 'transparent' } : {}}
             >
               {/* Fallback text si no hay imagen */}
-              <span>[Imagen de Nerina]</span>
+              <span>[Imagen de Guapas]</span>
             </div>
           </div>
           

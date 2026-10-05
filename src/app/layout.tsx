@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter, Outfit, Dancing_Script } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
@@ -15,17 +15,23 @@ const outfit = Outfit({
   weight: ['400', '500', '600', '700', '800']
 });
 
+const dancingScript = Dancing_Script({
+  variable: "--font-dancing",
+  subsets: ["latin"],
+  weight: ['400', '700']
+});
+
 export const metadata: Metadata = {
-  title: "Nerina Bruno | Nutricionista Integrativa",
+  title: "Guapas | Nutricionista Integrativa",
   description: "Nutrición que transforma hábitos y mejora tu vida. Acompañamiento personalizado y educación alimentaria sin dietas restrictivas.",
-  keywords: ["Nutricionista", "Nutrición", "Alimentación Saludable", "Dieta", "Educación Alimentaria", "Nerina Bruno"],
-  authors: [{ name: "Nerina Bruno" }],
+  keywords: ["Nutricionista", "Nutrición", "Alimentación Saludable", "Dieta", "Educación Alimentaria", "Guapas"],
+  authors: [{ name: "Guapas" }],
   openGraph: {
-    title: "Nerina Bruno | Nutricionista",
+    title: "Guapas | Nutricionista",
     description: "Nutrición que transforma hábitos y mejora tu vida. Acompañamiento personalizado y educación alimentaria.",
     type: "website",
     locale: "es_AR",
-    siteName: "Nerina Bruno Nutrición"
+    siteName: "Guapas Nutrición"
   },
   robots: "index, follow",
 };
@@ -36,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} ${outfit.variable}`}>
+    <html lang="es" className={`${inter.variable} ${outfit.variable} ${dancingScript.variable}`}>
       <body className={inter.className}>
         <Header />
         <main style={{ flex: 1 }}>{children}</main>

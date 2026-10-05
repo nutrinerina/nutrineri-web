@@ -6,7 +6,7 @@ import { Activity, Apple, Leaf } from 'lucide-react';
 import styles from '@/app/dashboard/dashboard.module.css';
 
 export const metadata = {
-  title: "Mi Portal | Nutrineri",
+  title: "Mi Portal | Guapas",
 };
 
 export default async function PortalLayout({

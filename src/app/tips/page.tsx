@@ -4,7 +4,7 @@ import TipCard from '@/components/TipCard';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'Tips y Artículos | Nerina Bruno',
+  title: 'Tips y Artículos | Guapas',
   description: 'Consejos, artículos y recursos gratuitos sobre nutrición y bienestar.',
 };
 

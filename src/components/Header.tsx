@@ -23,7 +23,7 @@ export default function Header() {
         <Link href="/" className={styles.logoLink} onClick={() => setIsMenuOpen(false)}>
           <Image 
             src="/01_isotipo_NB.png" 
-            alt="Nerina Bruno Nutricionista Logo" 
+            alt="Guapas Nutrición Logo" 
             width={48} 
             height={48} 
             style={{ objectFit: 'contain' }}

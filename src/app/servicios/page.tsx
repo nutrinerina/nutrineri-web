@@ -4,7 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import styles from "./page.module.css";
 
 export const metadata = {
-  title: "Servicios | Nerina Bruno",
+  title: "Servicios | Guapas",
   description: "Conocé mis servicios de nutrición: consultas personalizadas, educación alimentaria y acompañamiento nutricional.",
 };
 

@@ -3,7 +3,7 @@ import { createClient } from '@/utils/supabase/server';
 import RecetasClient from '@/components/RecetasClient';
 
 export const metadata = {
-  title: "Recetas Saludables | Nerina Bruno",
+  title: "Recetas Saludables | Guapas",
   description: "Platos fáciles, ricos y nutritivos para incorporar en tu día a día.",
 };
 

@@ -31,7 +31,7 @@ export default function Footer() {
           <div className={styles.brandInfo}>
             <Image 
               src="/01_isotipo_NB.png" 
-              alt="Nerina Bruno Nutricionista Logo" 
+              alt="Guapas Nutrición Logo" 
               width={60} 
               height={60} 
               style={{ objectFit: 'contain' }}
@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
         
         <div className={styles.bottom}>
-          <p>&copy; {new Date().getFullYear()} Nerina Bruno Nutricionista. Todos los derechos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Guapas Nutrición. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

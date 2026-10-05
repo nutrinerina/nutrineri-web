@@ -1,12 +1,12 @@
 :root {
-  /* Brand Colors - Organic Green Palette */
-  --color-primary: #1e352c;      /* Verde oscuro profundo (Títulos pesados) */
-  --color-secondary: #426955;    /* Verde hoja (Botones solid, acentos) */
-  --color-tertiary: #1e352c;     /* Verde oscuro para textos principales */
-  --color-quaternary: #f2f7f4;   /* Fondo verde muy suave */
+  /* Brand Colors - Organic Green Palette (Guapas Nutrición) */
+  --color-primary: #5a6e4d;      /* Olive green from Guapas title */
+  --color-secondary: #90a582;    /* Sage green from badges/buttons */
+  --color-tertiary: #3e4b36;     /* Darker green for main texts */
+  --color-quaternary: #e9efe5;   /* Very soft green background */
   
   /* UI Colors */
-  --color-background: #ffffff;   /* Blanco puro para el fondo principal */
+  --color-background: #fdfbf7;   /* Off-white/cream background like the image */
   --color-surface: #ffffff;      /* Blanco puro para tarjetas */
   --color-text-main: #4a5568;    /* Gris medio para textos descriptivos */
   --color-text-muted: #718096;   /* Gris claro para textos secundarios */
@@ -17,6 +17,7 @@
   /* Typography */
   --font-heading: var(--font-outfit), "Playfair Display", serif;
   --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-script: var(--font-dancing), cursive;
   
   /* Spacing - Increased for more whitespace */
   --space-xs: 0.5rem;
@@ -84,6 +85,12 @@ h1 {
   line-height: 1.1;
 }
 
+.brand-script {
+  font-family: var(--font-script);
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
 /* Utilities for Animations */
 .fade-in {
   animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -115,10 +122,10 @@ h1 {
   --color-text-main: #e2e8f0;
   --color-text-muted: #a0aec0;
   --color-text-light: #e2e8f0;
-  --color-primary: #a8d5ba;
-  --color-secondary: #426955;
-  --color-tertiary: #f2f7f4;
-  --color-quaternary: #1a241f;
+  --color-primary: #90a582;
+  --color-secondary: #5a6e4d;
+  --color-tertiary: #fdfbf7;
+  --color-quaternary: #222b1e;
   --color-border: #2d3748;
   --dash-surface: #1e1e1e;
   --dash-border: #2d3748;

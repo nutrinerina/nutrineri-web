@@ -48,7 +48,7 @@ export default async function TipDetail({ params }: { params: Promise<{ id: stri
                 <p>
                   El contenido completo de este artículo está en redacción. 
                   Pronto podrás leer todo el detalle sobre <strong>{tip.title}</strong> y descubrir 
-                  los mejores consejos de la Lic. Nerina Bruno para aplicar en tu día a día.
+                  los mejores consejos de la Lic. Guapas para aplicar en tu día a día.
                 </p>
                 <p>
                   Mientras tanto, recordá que los pequeños cambios sostenibles en el tiempo son los 

@@ -6,7 +6,7 @@ import { LayoutDashboard, Calendar, CalendarDays, Users, Apple, BookOpen, Messag
 import styles from './dashboard.module.css';
 
 export const metadata = {
-  title: "Dashboard | Nerina Bruno",
+  title: "Dashboard | Guapas",
 };
 
 export const dynamic = 'force-dynamic';

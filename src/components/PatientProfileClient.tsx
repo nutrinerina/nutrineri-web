@@ -28,7 +28,7 @@ export default function PatientProfileClient({ patient, initialHistories }: { pa
     // Add header
     pdf.setFontSize(22);
     pdf.setTextColor(22, 163, 74);
-    pdf.text('Nerina Bruno - Nutricion', 20, 20);
+    pdf.text('Guapas - Nutricion', 20, 20);
     
     pdf.setFontSize(16);
     pdf.setTextColor(30, 41, 59);

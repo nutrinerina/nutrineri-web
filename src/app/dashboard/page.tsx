@@ -75,11 +75,11 @@ export default async function DashboardPage() {
     <div className={styles.page}>
       <header className={styles.pageHeader}>
         <div>
-          <h1>Hola Nerina</h1>
+          <h1>Hola Guapas</h1>
           <p>Bienvenido a tu panel de gestión privada.</p>
         </div>
         <div className={styles.headerLogo}>
-          <Image src="/01_isotipo_NB.png" alt="Nerina Bruno Logo" width={80} height={80} style={{ objectFit: 'contain' }} />
+          <Image src="/01_isotipo_NB.png" alt="Guapas Logo" width={80} height={80} style={{ objectFit: 'contain' }} />
         </div>
       </header>
 

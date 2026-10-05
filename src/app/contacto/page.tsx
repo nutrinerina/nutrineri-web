@@ -4,7 +4,7 @@ import Card from "@/components/Card";
 import styles from "./page.module.css";
 
 export const metadata = {
-  title: "Contacto | Nerina Bruno",
+  title: "Contacto | Guapas",
   description: "Ponete en contacto para reservar un turno, hacer una consulta o sumarte a mis programas de nutrición.",
 };
 

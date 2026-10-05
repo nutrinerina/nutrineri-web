@@ -4,7 +4,7 @@ import TurnosClient from '@/components/TurnosClient';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'Solicitar Turno | Nerina Bruno',
+  title: 'Solicitar Turno | Guapas',
   description: 'Reserva tu turno de manera online para tu consulta nutricional.',
 };
 
